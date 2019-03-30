@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import './assets/css/base.css'
 
 // 引入iview框架
 import iView from 'iview'; // 导入组件库

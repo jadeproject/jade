@@ -7,7 +7,7 @@
             <router-link to="/"> 首页</router-link>
           </div>
           <div>
-            <router-link to="/hub"> 关于我们</router-link>
+            关于我们
 
           </div>
           <div>产品介绍</div>
@@ -77,6 +77,8 @@
     left: 0;
     top: 0;
     background-color: #fff;
+    border-bottom: 1px solid #f4f4f4;
+    box-shadow: 4px 2px 2px 2px #ededed;
     
     .headC_key{
       width: 100%;

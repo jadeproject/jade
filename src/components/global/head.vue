@@ -8,7 +8,7 @@
           <div>产品介绍</div>
           <div>开奖公告</div>
           <div>常见问题</div>
-          <div><Icon type="navicon-round"></Icon></div>
+          <div><span class="iconfont">&#xe602;</span></div>
         </div>
       </div>
 

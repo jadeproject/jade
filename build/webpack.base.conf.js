@@ -68,7 +68,12 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
+      },
+      {
+        test: /\.(gif|jpg|png|woff|svg|eot|ttf|jpeg)\??.*$/,
+        loader: 'url-loader?limit=1024&name=Img/[name][hash].[ext]'
       }
+
     ]
   },
   node: {

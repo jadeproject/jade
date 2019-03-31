@@ -30,7 +30,15 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
        |--img 图片
        |--css 样式
     |--components 公共组件
-    |--rooter  路由模块
+        |--global 全局公共组件
+        |--home 页面组件
+        |--hub  玉石中心组件化
+        |--invite 邀请页面组件
+    |--router  路由模块
+    |--view    页面入口
+        |--home  首页入口
+        |--hub   玉石中心入口
+        |--invite 邀请页面
     |--App     主要的挂载
     |--main    文件统一入口
  |--static  公共资源

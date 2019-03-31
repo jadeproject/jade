@@ -49,8 +49,8 @@
     export default {
         data() {
             return {
-              // 对应不同类型
-              type:1,
+              // 对应不同类型，1代表登陆注册，2代表登陆完成
+              type:2,
               // 控制显示隐藏
               flag:false,
               loginkey:{
@@ -118,14 +118,17 @@
       .info{
         padding:20px 0;
         .border-1px(#000);
+        line-height: 40px;
         img{
-          height: 30px;
-          width: 30px;
+          height: 40px;
+          width: 40px;
           border-radius: 50%;
+          vertical-align: top;
         }
         .name{
           color: #fff;
           margin-left: 10px;
+          margin-top: 20px;
         }
 
 

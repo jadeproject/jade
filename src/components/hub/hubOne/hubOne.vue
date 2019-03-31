@@ -1,0 +1,493 @@
+<template>
+    <div class="HobOne">
+      <div class="info"v-if="hubone">
+        <div class="rang">
+          <div class="title">
+             <div v-for="(item,index)  in title" :class="{'current':currentIndex===index}" @click="typeClick(item,index)">{{item.val}}</div>
+          </div>
+          <div class="content clearfix">
+            <ul class="clearfix">
+              <li>
+                <div class="info_jade">
+                  <img src="../../../assets/img/m_avatar.png" alt="">
+                  <div class="foot">
+                    <div class="left">
+                      <span>1元/月</span>
+                      <span>缅甸白玉</span>
+                    </div>
+                    <div class="right" @click="gohubDetail()">立即起租</div>
+                  </div>
+
+                </div>
+              </li>
+              <li>
+                <div class="info_jade">
+                  <img src="../../../assets/img/m_avatar.png" alt="">
+                  <div class="foot">
+                    <div class="left">
+                      <span>1元/月</span>
+                      <span>缅甸白玉</span>
+                    </div>
+                    <div class="right">立即起租</div>
+                  </div>
+
+                </div>
+              </li>
+              <li>
+                <div class="info_jade">
+                  <img src="../../../assets/img/m_avatar.png" alt="">
+                  <div class="foot">
+                    <div class="left">
+                      <span>1元/月</span>
+                      <span>缅甸白玉</span>
+                    </div>
+                    <div class="right">立即起租</div>
+                  </div>
+
+                </div>
+              </li>
+              <li>
+                <div class="info_jade">
+                  <img src="../../../assets/img/m_avatar.png" alt="">
+                  <div class="foot">
+                    <div class="left">
+                      <span>1元/月</span>
+                      <span>缅甸白玉</span>
+                    </div>
+                    <div class="right">立即起租</div>
+                  </div>
+
+                </div>
+              </li>
+              <li>
+                <div class="info_jade">
+                  <img src="../../../assets/img/m_avatar.png" alt="">
+                  <div class="foot">
+                    <div class="left">
+                      <span>1元/月</span>
+                      <span>缅甸白玉</span>
+                    </div>
+                    <div class="right">立即起租</div>
+                  </div>
+
+                </div>
+              </li>
+              <li>
+                <div class="info_jade">
+                  <img src="../../../assets/img/m_avatar.png" alt="">
+                  <div class="foot">
+                    <div class="left">
+                      <span>1元/月</span>
+                      <span>缅甸白玉</span>
+                    </div>
+                    <div class="right">立即起租</div>
+                  </div>
+
+                </div>
+              </li>
+              <li>
+                <div class="info_jade">
+                  <img src="../../../assets/img/m_avatar.png" alt="">
+                  <div class="foot">
+                    <div class="left">
+                      <span>1元/月</span>
+                      <span>缅甸白玉</span>
+                    </div>
+                    <div class="right">立即起租</div>
+                  </div>
+
+                </div>
+              </li>
+              <li>
+                <div class="info_jade">
+                  <img src="../../../assets/img/m_avatar.png" alt="">
+                  <div class="foot">
+                    <div class="left">
+                      <span>1元/月</span>
+                      <span>缅甸白玉</span>
+                    </div>
+                    <div class="right">立即起租</div>
+                  </div>
+
+                </div>
+              </li>
+              <li>
+                <div class="info_jade">
+                  <img src="../../../assets/img/m_avatar.png" alt="">
+                  <div class="foot">
+                    <div class="left">
+                      <span>1元/月</span>
+                      <span>缅甸白玉</span>
+                    </div>
+                    <div class="right">立即起租</div>
+                  </div>
+
+                </div>
+              </li>
+              <li>
+                <div class="info_jade">
+                  <img src="../../../assets/img/m_avatar.png" alt="">
+                  <div class="foot">
+                    <div class="left">
+                      <span>1元/月</span>
+                      <span>缅甸白玉</span>
+                    </div>
+                    <div class="right">立即起租</div>
+                  </div>
+
+                </div>
+              </li>
+              <li>
+                <div class="info_jade">
+                  <img src="../../../assets/img/m_avatar.png" alt="">
+                  <div class="foot">
+                    <div class="left">
+                      <span>1元/月</span>
+                      <span>缅甸白玉</span>
+                    </div>
+                    <div class="right">立即起租</div>
+                  </div>
+
+                </div>
+              </li>
+              <li>
+                <div class="info_jade">
+                  <img src="../../../assets/img/m_avatar.png" alt="">
+                  <div class="foot">
+                    <div class="left">
+                      <span>1元/月</span>
+                      <span>缅甸白玉</span>
+                    </div>
+                    <div class="right">立即起租</div>
+                  </div>
+
+                </div>
+              </li>
+              <li>
+                <div class="info_jade">
+                  <img src="../../../assets/img/m_avatar.png" alt="">
+                  <div class="foot">
+                    <div class="left">
+                      <span>1元/月</span>
+                      <span>缅甸白玉</span>
+                    </div>
+                    <div class="right">立即起租</div>
+                  </div>
+
+                </div>
+              </li>
+              <li>
+                <div class="info_jade">
+                  <img src="../../../assets/img/m_avatar.png" alt="">
+                  <div class="foot">
+                    <div class="left">
+                      <span>1元/月</span>
+                      <span>缅甸白玉</span>
+                    </div>
+                    <div class="right">立即起租</div>
+                  </div>
+
+                </div>
+              </li>
+              <li>
+                <div class="info_jade">
+                  <img src="../../../assets/img/m_avatar.png" alt="">
+                  <div class="foot">
+                    <div class="left">
+                      <span>1元/月</span>
+                      <span>缅甸白玉</span>
+                    </div>
+                    <div class="right">立即起租</div>
+                  </div>
+
+                </div>
+              </li>
+              <li>
+                <div class="info_jade">
+                  <img src="../../../assets/img/m_avatar.png" alt="">
+                  <div class="foot">
+                    <div class="left">
+                      <span>1元/月</span>
+                      <span>缅甸白玉</span>
+                    </div>
+                    <div class="right">立即起租</div>
+                  </div>
+
+                </div>
+              </li>
+              <li>
+                <div class="info_jade">
+                  <img src="../../../assets/img/m_avatar.png" alt="">
+                  <div class="foot">
+                    <div class="left">
+                      <span>1元/月</span>
+                      <span>缅甸白玉</span>
+                    </div>
+                    <div class="right">立即起租</div>
+                  </div>
+
+                </div>
+              </li>
+              <li>
+                <div class="info_jade">
+                  <img src="../../../assets/img/m_avatar.png" alt="">
+                  <div class="foot">
+                    <div class="left">
+                      <span>1元/月</span>
+                      <span>缅甸白玉</span>
+                    </div>
+                    <div class="right">立即起租</div>
+                  </div>
+
+                </div>
+              </li>
+              <li>
+                <div class="info_jade">
+                  <img src="../../../assets/img/m_avatar.png" alt="">
+                  <div class="foot">
+                    <div class="left">
+                      <span>1元/月</span>
+                      <span>缅甸白玉</span>
+                    </div>
+                    <div class="right">立即起租</div>
+                  </div>
+
+                </div>
+              </li>
+              <li>
+                <div class="info_jade">
+                  <img src="../../../assets/img/m_avatar.png" alt="">
+                  <div class="foot">
+                    <div class="left">
+                      <span>1元/月</span>
+                      <span>缅甸白玉</span>
+                    </div>
+                    <div class="right">立即起租</div>
+                  </div>
+
+                </div>
+              </li>
+              <li>
+                <div class="info_jade">
+                  <img src="../../../assets/img/m_avatar.png" alt="">
+                  <div class="foot">
+                    <div class="left">
+                      <span>1元/月</span>
+                      <span>缅甸白玉</span>
+                    </div>
+                    <div class="right">立即起租</div>
+                  </div>
+
+                </div>
+              </li>
+              <li>
+                <div class="info_jade">
+                  <img src="../../../assets/img/m_avatar.png" alt="">
+                  <div class="foot">
+                    <div class="left">
+                      <span>1元/月</span>
+                      <span>缅甸白玉</span>
+                    </div>
+                    <div class="right">立即起租</div>
+                  </div>
+
+                </div>
+              </li>
+              <li>
+                <div class="info_jade">
+                  <img src="../../../assets/img/m_avatar.png" alt="">
+                  <div class="foot">
+                    <div class="left">
+                      <span>1元/月</span>
+                      <span>缅甸白玉</span>
+                    </div>
+                    <div class="right">立即起租</div>
+                  </div>
+
+                </div>
+              </li>
+              <li>
+                <div class="info_jade">
+                  <img src="../../../assets/img/m_avatar.png" alt="">
+                  <div class="foot">
+                    <div class="left">
+                      <span>1元/月</span>
+                      <span>缅甸白玉</span>
+                    </div>
+                    <div class="right">立即起租</div>
+                  </div>
+
+                </div>
+              </li>
+
+            </ul>
+          </div>
+        </div >
+      </div>
+      <hub-detail ref="showDetail" @showPay="PayPage"></hub-detail>
+      <hub-pay ref="showPay_flag"  @showPayT="payT"></hub-pay>
+      <hub-pay-t ref="showPayT_flag"></hub-pay-t>
+    </div>
+
+</template>
+
+<script type="text/ecmascript-6">
+    import hubDetail from './hubDetail'
+    import hubPay from './hubPay'
+    import hubPayT from  './hubPayT'
+    export default {
+        data() {
+            return {
+              title:[
+                {
+                  val:'千元尊享',
+                  type:'1'
+                },
+                {
+                  val:'万元尊享',
+                  type:'2'
+                }
+              ],
+              tt:0,
+              hubone:true,
+              gread:0
+            };
+        },
+      computed:{
+        // 默认显示
+        currentIndex() {
+          return this.tt;
+        }
+      },
+        created() {
+
+        },
+        mounted() {
+
+
+
+        },
+        methods: {
+          typeClick(item,index){
+            this.tt=index;
+          },
+          gohubDetail(){
+            this.$refs.showDetail.show();
+          },
+          PayPage(data){
+            if(data==1){
+              this.$refs.showPay_flag.show();
+            }
+          },
+          payT(data){
+            if(data.key==1){
+              this.$refs.showPayT_flag.show();
+            }
+          }
+        },
+        components: {
+          hubDetail,
+          hubPay,
+          hubPayT
+        }
+    };
+</script>
+
+<style type="text/css" lang="less" scoped>
+  @import "../../../assets/css/config";
+  .HobOne{
+    height: 100%;
+    width: 100%;
+    /*z-index: -10;*/
+    position: relative;
+   .info{
+     height: 100%;
+     width: 100%;
+     background-color: @bg;
+     border-radius: 10px;
+     padding: 20px;
+     .rang{
+       background-color: #fff;
+       border-radius: 10px;
+       height: 100%;
+       width: 100%;
+       .title{
+         display: flex;
+         height: 40px;
+         line-height: 40px;
+         border-bottom: 1px solid #f4f4f4;
+         cursor: pointer;
+
+         div{
+           flex: 1;
+           text-align: center;
+           &.current{
+             color: @bg;
+           }
+         }
+         div:nth-child(1){
+           border-right: 1px solid #999;
+         }
+       }
+       .content{
+         padding-bottom: 20px;
+         width: 100%;
+         height: 92%;
+         overflow: auto;
+         ul li{
+           margin-left: 20px;
+           width: 17%;
+           margin-top: 10px;
+           float: left;
+           .info_jade{
+             height: 150px;
+             width: 100%;
+             background-color: #f4f4f4;
+             position: relative;
+             border-radius: 10px;
+             img{
+               text-align: center;
+               width: 100%;
+               height: 100%;
+             }
+             .foot{
+               position: absolute;
+               left: 0;
+               bottom: 0;
+               width: 100%;
+               display:flex;
+               font-size:12px;
+               background-color: @mask;
+               border-radius: 0 0 10px 10px;
+               .left{
+                 width: 60%;
+                 text-align: center;
+
+                 color: #fff;
+                 span{
+                   display: block;
+                 }
+                 span{
+                   margin-top: 2px;
+                 }
+               }
+               .right{
+                 flex:1;
+                 background-color:red;
+                 text-align: center;
+                 line-height: 30px;
+                 border-radius: 0 0 10px 0;
+                 color: #fff;
+                 cursor: pointer;
+               }
+             }
+           }
+         }
+       }
+     }
+
+   }
+  }
+
+
+</style>

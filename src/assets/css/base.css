@@ -30,6 +30,10 @@ html{
 :focus {
   outline: 1;
 }
+li{
+  list-style-type:none;
+
+}
 
 article, aside, canvas, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section, summary {
@@ -99,14 +103,16 @@ input, select {
   vertical-align: middle;
 }
 
-　.clearfix:after {
-  　　content: " ";
-  　　display: block;
-  　　clear: both;
-  　　height: 0;
+.clearfix{
+  　　zoom:1;
 }
-.clearfix {
-  　　zoom: 1;
+.clearfix:after{
+  content:"";
+  height:0;
+  line-height:0;
+  display:block;
+  visibility:hidden;
+  clear: both;
 }
 @media (min-width: 1024px){
   body{font-size: 18px}

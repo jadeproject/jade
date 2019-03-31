@@ -12,17 +12,21 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: Home
-    },
-    {
-      path: '/hub',
       name: 'Hub',
       component: Hub
+<<<<<<< HEAD
     },{
       path: '/invite',
       name: 'Invite',
       component: Invite 
     },
+=======
+    },
+    // {
+    //   path: '/hub',
+    //   name: 'Hub',
+    //   component: Hub
+    // }
+>>>>>>> master
   ]
 })

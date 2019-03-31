@@ -15,6 +15,7 @@ Vue.use(iView);
 
 // 个人的包
 import './assets/css/base.css'
+// import './assets/css/config.less'
 import './assets/iconfont/iconfont.css'
 // 请求封装
 import {post,get,patch,put} from '../common/require'

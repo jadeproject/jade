@@ -1,0 +1,26 @@
+@bg:#5fcdc7;
+//蒙层
+@mask:#9e9fa1;
+
+//默认字体
+body, html{
+  line-height: 1;
+  font-weight: 200;
+  height: 100%;
+  width: 100%;
+  font-family: 'PingFang SC', 'STHeitiSC-Light', 'Helvetica-Light', arial, sans-serif;
+}
+.border-1px(@color){
+  position: relative;
+  &:after{
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border-bottom: 1px solid @color;
+    content: ' ';
+  }
+
+}
+

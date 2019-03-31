@@ -16,13 +16,12 @@
           <div><span class="iconfont">&#xe602;</span></div>
         </div>
       </div>
-
-
+      <login></login>
     </div>
 
 </template>
-
 <script type="text/ecmascript-6">
+  import login from '@/components/login/login'
     export default {
         data() {
             return {};
@@ -34,7 +33,9 @@
 
         },
         methods: {},
-        components: {}
+        components: {
+          login
+        }
     };
 </script>
 

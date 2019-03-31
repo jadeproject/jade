@@ -70,7 +70,9 @@
 
     export default {
         data() {
-            return {};
+            return {
+
+            };
         },
         created() {
 

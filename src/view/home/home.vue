@@ -1,6 +1,6 @@
 <template>
-    <div>
-
+    <div class="homeC">
+      home
     </div>
 
 </template>
@@ -24,7 +24,10 @@
     };
 </script>
 
-<style type="text/css" lang="less">
+<style type="text/css" lang="less" scoped>
+  .homeC{
+    /*margin-top: 40px;*/
+  }
 
 
 </style>

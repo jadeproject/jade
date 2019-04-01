@@ -12,7 +12,7 @@
           <div>产品介绍</div>
           <div>开奖公告</div>
           <div>常见问题</div>
-          <div @click="longinShow()"><span class="iconfont">&#xe602;</span></div>
+          <div @click="longinShow()" class="icon"><span class="iconfont">&#xe602;</span></div>
         </div>
       </div>
       <login ref="loginT" @On_click="log_click"></login>
@@ -34,7 +34,6 @@
 
         },
         mounted() {
-
 
         },
         methods: {
@@ -70,6 +69,7 @@
             }
 
           }
+
         },
         components: {
           login,

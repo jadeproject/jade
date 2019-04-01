@@ -37,7 +37,7 @@
         </div>
         <div @click="hubOnclick(key=5)">
           <span class="iconfont">&#xe601;</span>
-          <span class="name">抽奖中心</span>
+          <span class="name">抽奖栏目</span>
         </div>
         <div class="exit" @click="exitOnclik">
           退出登陆

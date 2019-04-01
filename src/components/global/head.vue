@@ -16,7 +16,7 @@
         </div>
       </div>
       <login ref="loginT" @On_click="log_click"></login>
-      <login-pop ref="log_Pop"></login-pop>
+      <login-pop ref="log_Pop" @showLoginR="logR"></login-pop>
 
     </div>
 
@@ -59,6 +59,16 @@
            if(data.type=='reg'){
              this.$refs.log_Pop.showreg();
            }
+          },
+          // 显示右边登陆状态
+          logR(data){
+            // 显示登陆状态1，2显示注册状态
+            if(data.key==1){
+              this.$refs.loginT.showLogin()
+            }else if(data.key==2){
+              this.$refs.loginT.showRg();
+            }
+
           }
         },
         components: {

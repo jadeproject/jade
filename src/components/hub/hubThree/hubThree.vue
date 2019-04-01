@@ -12,8 +12,62 @@
       <span>我的编号</span>
       <span>参与/未参与</span>
     </div>
-    <div class="rang_content">
-      <div class="itemC">
+    <div class="rang_content" id="rang_cont">
+      <Collapse active-key="1" accordion>
+          <Panel> 
+            <div class="itemC">
+              <span>千元抽奖日常</span>
+              <span>1</span>
+              <span>20:00:00</span>
+              <span>AW1234567 <div>最新</div> </span>
+              <span>已中奖</span>
+              <span>AW1324443</span>
+              <span>已参加
+                <!-- <span class="iconfont">&#xe65e;</span> -->
+              </span>
+            </div>
+            <div slot="content">
+              <div class="itemC">
+                <span>千元抽奖日常</span>
+                <span>1</span>
+                <span>20:00:00</span>
+                <span>AW1234567 <div>最新</div> </span>
+                <span>已中奖</span>
+                <span>AW1324443</span>
+                <span>已参加
+                  <!-- <span class="iconfont">&#xe65e;</span> -->
+                </span>
+              </div>
+            </div>
+          </Panel>
+          <Panel> 
+            <div class="itemC">
+              <span>千元抽奖日常</span>
+              <span>1</span>
+              <span>20:00:00</span>
+              <span>AW1234567 <div>最新</div> </span>
+              <span>已中奖</span>
+              <span>AW1324443</span>
+              <span>已参加
+                <!-- <span class="iconfont">&#xe65e;</span> -->
+              </span>
+            </div>
+            <div slot="content">
+              <div class="itemC">
+                <span>千元抽奖日常</span>
+                <span>1</span>
+                <span>20:00:00</span>
+                <span>AW1234567 <div>最新</div> </span>
+                <span>已中奖</span>
+                <span>AW1324443</span>
+                <span>已参加
+                  <!-- <span class="iconfont">&#xe65e;</span> -->
+                </span>
+              </div>
+            </div>
+          </Panel>
+      </Collapse>
+      <!-- <div class="itemC">
         <span>千元抽奖日常</span>
         <span>1</span>
         <span>20:00:00</span>
@@ -34,17 +88,11 @@
         <span> <i>点击参加</i>
        <span class="iconfont">&#xe65e;</span>
       </span>
-      </div>
+      </div> -->
     </div>
     <div class="page">
       <Page :current="2" :total="50" simple></Page>
     </div>
-
-
-
-
-
-
   </div>
 
 </template>
@@ -64,6 +112,26 @@
     components: {}
   };
 </script>
+<style>
+#rang_cont .ivu-collapse>.ivu-collapse-item>.ivu-collapse-header>i{
+  position: absolute;
+  right: 0;
+  top: 10px;
+}
+#rang_cont .ivu-collapse{
+  border: none;
+}
+#rang_cont .ivu-collapse>.ivu-collapse-item>.ivu-collapse-header{
+  padding: 0;
+}
+#rang_cont .ivu-collapse-content{
+  padding: 0;
+}
+#rang_cont .ivu-collapse-header{
+  position: relative;
+}
+
+</style>
 
 <style type="text/css" lang="less" scoped>
   @import "../../../assets/css/config";
@@ -83,7 +151,6 @@
       height: 40px;
       line-height: 40px;
       display: flex;
-      border-bottom: 1px solid #f4f4f4;
       font-size: 18px;
       font-weight: 700;
       span{

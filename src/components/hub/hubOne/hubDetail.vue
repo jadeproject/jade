@@ -46,7 +46,7 @@
           </div>
         </div>
       </div>
-      <contract ref="contract_show" @data="gread"></contract>
+      <contract ref="contract_show"></contract>
 
     </div>
 
@@ -104,12 +104,12 @@
             this.tt=index;
             this.bigUrl=item.url;
           },
-          gread(data){
-            if(data.key==1){
-              this.gread=data.key;
-            }
+          // gread(data){
+          //   if(data.key==1){
+          //     this.gread=data.key;
+          //   }
 
-          }
+          // }
         },
         components: {
           contract

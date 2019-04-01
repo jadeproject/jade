@@ -1,7 +1,7 @@
 <template>
   <div class="hubC">
-    <div class="list">
-      <div class="left">
+    <div class="list" :style="{height:hubCheight+'px'}">
+      <div class="left" :style="{height:hubCheight+'px'}">
         <div v-for="(item,index) in list" :key="item.type" :class="{'current':currentIndex===index}" @click="select_Item(index)">
           {{item.val}}
         </div>
@@ -55,7 +55,8 @@
           },
         ],
         tt:0,
-        type:0
+        type:0,
+        hubCheight:document.documentElement.clientHeight-80, // 屏幕尺寸
       };
     },
     computed:{
@@ -92,21 +93,24 @@
 <style type="text/css" lang="less" scoped>
   @import "../../assets/css/config";
   .hubC{
-    margin-top: 80px;
-    padding: 0 100px;
-    height: 100%;
+    // margin-top: 80px;
+    // padding: 0 100px;
+    height: 80%;
     width: 100%;
+    padding-top: 80px;
     .list{
       overflow: hidden;
-      position:fixed;
-      padding: 0 100px;
-      top:80px;
-      bottom:0;
-      left:0;
-      right:0;
-      z-index: -1;
+      width: 1100px;
+      margin: 0 auto;
+      // position:fixed;
+      // padding: 0 100px;
+      // top:80px;
+      // bottom:0;
+      // left:0;
+      // right:0;
+      // z-index: -1;
       .left{
-        width: 20%;
+        width: 200px;
         height: 100%;
         float: left;
         overflow: auto;
@@ -124,12 +128,13 @@
       }
       .right{
         background-color: #f4f4f4;
-        margin-left: 20px;
+        // margin-left: 20px;
         height: 100%;
         float: left;
         overflow: hidden;
-        width: 78%;
+        width: 900px;
         padding: 20px;
+        box-sizing: border-box;
         .content_R{
           height: 100%;
         }

@@ -1,8 +1,10 @@
 <template>
     <div class="headC">
       <div class="headC_key">
-        <div class="left"></div>
+        <!-- <div class="left"></div> -->
         <div class="right">
+          <div></div>
+          <div></div>
           <div>
             <router-link to="/"> 首页</router-link>
           </div>
@@ -12,6 +14,7 @@
           <div>产品介绍</div>
           <div>开奖公告</div>
           <div>常见问题</div>
+          <div></div>
         </div>
         <div @click="longinShow()" class="icon"><span class="iconfont">&#xe602;</span></div>
       </div>
@@ -94,22 +97,23 @@
     z-index: 10;
     
     .headC_key{
-      width: 100%;
+      width: 1100px;
       line-height: 80px;
       display: flex;
       cursor:pointer;
       position: relative;
-      .left{
-        width: 30%;
-        height: 100%;
-      }
+      margin: 0 auto;
+      // .left{
+      //   width: 30%;
+      //   height: 100%;
+      // }
       .right{
-        width: 70%;
+        width: 100%;
         height: 100%;
         display: flex;
         div{
           flex: 1;
-          text-align: left;
+          text-align: center;
 
         }
 
@@ -118,9 +122,10 @@
         position: absolute;
         right: 50px;
         top: 0%;
-        font-size: 20px;
         font-weight: 700;
-
+        .iconfont{
+          font-size: 28px;
+        }
       }
     }
   }

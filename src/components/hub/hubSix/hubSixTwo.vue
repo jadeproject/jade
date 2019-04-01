@@ -71,7 +71,7 @@
 
 <style type="text/css" lang="less" scoped>
   .Past{
-    height: 90%;
+    height: 100%;
     width: 100%;
     background-color: #fff;
     padding: 0 10%;

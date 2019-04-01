@@ -1,50 +1,51 @@
 <template>
-    <div class="loginC" v-if="flag">
-      <div class="noLogin" v-if="type==1">
-         <div @click="loginPonClick()">
-           <span class="iconfont">&#xe61f;</span>
-           <span  class="name">登陆</span>
-         </div>
-         <div @click="regPonClick()">
-           <span class="iconfont">&#xe613;</span>
-           <span class="name">注册</span>
-         </div>
-      </div>
-      <div class="loginInfo" v-if="type==2">
-        <div class="info">
-          <img src="../../assets/img/m_avatar.png" alt="">
-          <span class="name">王小明</span>
+    <div class="loginC_bg" v-if="flag">
+      <div class="loginC">
+        <div class="noLogin" v-if="type==1">
+          <div @click="loginPonClick()">
+            <span class="iconfont">&#xe61f;</span>
+            <span  class="name">登陆</span>
+          </div>
+          <div @click="regPonClick()">
+            <span class="iconfont">&#xe613;</span>
+            <span class="name">注册</span>
+          </div>
         </div>
-        <div @click="hubOnclick(key=0)">
-           <span class="iconfont">&#xe61f;</span>
-           <span class="name">玉石中心</span>
-        </div>
-        <div @click="hubOnclick(key=1)">
-          <span class="iconfont">&#xe652;</span>
-          <span class="name">订单中心</span>
-        </div>
-        <div @click="hubOnclick(key=2)">
-          <span class="iconfont">&#xe630;</span>
-          <span class="name">活动中心</span>
-        </div>
-        <div @click="hubOnclick(key=3)">
-          <span class="iconfont">&#xe655;</span>
-          <span class="name">账户中心</span>
-        </div>
-        <div @click="hubOnclick(key=4)">
-          <span class="iconfont">&#xe604;</span>
-          <span class="name">邀请好友</span>
-        </div>
-        <div @click="hubOnclick(key=5)">
-          <span class="iconfont">&#xe601;</span>
-          <span class="name">抽奖栏目</span>
-        </div>
-        <div class="exit" @click="exitOnclik">
-          退出登陆
-        </div>
+        <div class="loginInfo" v-if="type==2">
+          <div class="info">
+            <img src="../../assets/img/m_avatar.png" alt="">
+            <span class="name">王小明</span>
+          </div>
+          <div @click="hubOnclick(key=0)">
+            <span class="iconfont">&#xe61f;</span>
+            <span class="name">玉石中心</span>
+          </div>
+          <div @click="hubOnclick(key=1)">
+            <span class="iconfont">&#xe652;</span>
+            <span class="name">订单中心</span>
+          </div>
+          <div @click="hubOnclick(key=2)">
+            <span class="iconfont">&#xe630;</span>
+            <span class="name">活动中心</span>
+          </div>
+          <div @click="hubOnclick(key=3)">
+            <span class="iconfont">&#xe655;</span>
+            <span class="name">账户中心</span>
+          </div>
+          <div @click="hubOnclick(key=4)">
+            <span class="iconfont">&#xe604;</span>
+            <span class="name">邀请好友</span>
+          </div>
+          <div @click="hubOnclick(key=5)">
+            <span class="iconfont">&#xe601;</span>
+            <span class="name">抽奖栏目</span>
+          </div>
+          <div class="exit" @click="exitOnclik">
+            退出登陆
+          </div>
 
+        </div>
       </div>
-
     </div>
 
 </template>
@@ -116,15 +117,22 @@
 
 <style type="text/css" lang="less" scoped>
   @import "../../assets/css/config";
-  .loginC{
-    width: 250px;
-    background-color: #9e9fa1;
-    z-index: 10000000000;
+  .loginC_bg{
+    width: 100%;
+    height: 100%;
     position: fixed;
-    right: 0;
-    top: 80px;
+  }
+  .loginC{
+    width: 1100px;
+    z-index: 10;
+    // position: fixed;
+    // top: 80px;
+    margin: 0 auto;
+    overflow: hidden;
     .noLogin,.loginInfo{
-      width: 100%;
+      float: right;
+      background-color: #9e9fa1;
+      width: 250px;
       div{
         padding: 25px 20px;
         text-align: center;

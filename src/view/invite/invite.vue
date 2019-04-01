@@ -31,7 +31,7 @@
                         <p>并在商城</p>
                         <p>完成租赁</p>
                     </div>
-                    <span class="tip_position">立即邀请</span>
+                    <span class="tip_position noselect">立即邀请</span>
                 </div>
             </div>
         </div>
@@ -135,6 +135,15 @@
 </script>
 
 <style type="text/css" lang="less">
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -khtml-user-select: none; /* Konqueror */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+    not supported by any browser */
+}
 .inviteC{
     margin-top: 40px;
     .banner{

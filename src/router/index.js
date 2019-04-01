@@ -11,21 +11,18 @@ export default new Router({
   // base: '/dist',
   routes: [
     {
-      path: '/hub',
+      path: '/',
       name: 'Hub',
       component: Hub
     },{
-      path: '/',
+      path: '/invite',
       name: 'Invite',
       component: Invite 
     },
-<<<<<<< HEAD
-=======
     // {
     //   path: '/hub',
     //   name: 'Hub',
     //   component: Hub
     // }
->>>>>>> master
   ]
 })

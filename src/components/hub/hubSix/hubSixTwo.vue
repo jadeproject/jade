@@ -1,7 +1,7 @@
 <template>
   <div class="Past">
     <div class="Content">
-      <div>
+      <div @click="gohubDetail()">
         <span>千元尊享往期视频</span>
         <span class="iconfont">&#xe62a;</span>
       </div>
@@ -41,14 +41,12 @@
     <div class="page">
       <Page :current="2" :total="50" simple></Page>
     </div>
+    <hub-six-two-d  ref="showDetail"></hub-six-two-d>
   </div>
-  <!--<hub-six-two-detail></hub-six-two-detail>-->
-
-
 </template>
 
 <script type="text/ecmascript-6">
-  // import hubSixTwoDetail from './hubSixTwoDetail'
+  import hubSixTwoD from './hubSixTwoD'
   export default {
     data() {
       return {};
@@ -59,9 +57,14 @@
     mounted() {
 
     },
-    methods: {},
+    methods: {
+      // 点击到视频列表
+      gohubDetail(){
+        this.$refs.showDetail.show();
+      }
+    },
     components: {
-      // hubSixTwoDetail
+      hubSixTwoD
     }
   };
 </script>
@@ -72,6 +75,7 @@
     width: 100%;
     background-color: #fff;
     padding: 0 10%;
+    position: relative;
     .Content{
       width: 100%;
       height: 90%;

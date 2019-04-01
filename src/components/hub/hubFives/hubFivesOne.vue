@@ -1,0 +1,203 @@
+<template>
+  <div class="info">
+    <div class="info_T">
+      <div class="info_img">
+        <img src="../../../assets/img/m_avatar.png" alt="">
+        <div>王小明</div>
+      </div>
+      <div class="info_Balance">
+        <div>账户余额：80000.00</div>
+        <div>提现</div>
+      </div>
+      <div class="info_deposit">
+        <div>押金余额：80000.00</div>
+        <div>充值</div>
+      </div>
+      <div class="info_coupon">
+        <div>优惠券：3</div>
+        <div>赠送优惠券</div>
+      </div>
+    </div>
+    <div class="infoC">
+      <div class="T">
+        <div>时间</div>
+        <div>类型</div>
+        <div>金额</div>
+        <div class="dec">备注</div>
+      </div>
+      <div class="cT">
+        <div class="C">
+          <div>2018/3/21 12:00</div>
+          <div>
+            <span class="in">在线充值</span>
+            <!--<span class="out">体现金额</span>-->
+          </div>
+          <div>1000.00</div>
+          <div>在2019-03-18 22:15:17 平台提现:1000元 订单号：GW1234567 </div>
+        </div>
+        <div class="C">
+          <div>2018/3/21 12:00</div>
+          <div>
+            <span class="in">在线充值</span>
+            <!--<span class="out">体现金额</span>-->
+          </div>
+          <div>1000.00</div>
+          <div>在2019-03-18 22:15:17 平台提现:1000元 订单号：GW1234567 </div>
+        </div>
+        <div class="C">
+          <div>2018/3/21 12:00</div>
+          <div>
+            <span class="in">在线充值</span>
+            <!--<span class="out">体现金额</span>-->
+          </div>
+          <div>1000.00</div>
+          <div>在2019-03-18 22:15:17 平台提现:1000元 订单号：GW1234567 </div>
+        </div>
+        <div class="C">
+          <div>2018/3/21 12:00</div>
+          <div>
+            <span class="in">在线充值</span>
+            <!--<span class="out">体现金额</span>-->
+          </div>
+          <div>1000.00</div>
+          <div>在2019-03-18 22:15:17 平台提现:1000元 订单号：GW1234567 </div>
+        </div>
+        <div class="C">
+          <div>2018/3/21 12:00</div>
+          <div>
+            <span class="in">在线充值</span>
+            <!--<span class="out">体现金额</span>-->
+          </div>
+          <div>1000.00</div>
+          <div>在2019-03-18 22:15:17 平台提现:1000元 订单号：GW1234567 </div>
+        </div>
+        <div class="C">
+          <div>2018/3/21 12:00</div>
+          <div>
+            <span class="in">在线充值</span>
+            <!--<span class="out">体现金额</span>-->
+          </div>
+          <div>1000.00</div>
+          <div>在2019-03-18 22:15:17 平台提现:1000元 订单号：GW1234567 </div>
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+
+</template>
+
+<script type="text/ecmascript-6">
+  export default {
+    data() {
+      return {};
+    },
+    created() {
+
+    },
+    mounted() {
+
+    },
+    methods: {},
+    components: {}
+  };
+</script>
+
+<style type="text/css" lang="less" scoped>
+  @import "../../../assets/css/config";
+  .info{
+    width: 100%;
+    height: 100%;
+    .info_T{
+      padding: 10px;
+      background-color: #f4f4f4;
+      display: flex;
+      .info_img{
+        width: 15%;
+        padding-left: 20px;
+
+        img{
+          height: 50px;
+          width: 50px;
+          border-radius: 50%;
+        }
+        div{
+          font-size: 14px;
+          margin-top: 15px;
+        }
+      }
+      .info_Balance,.info_deposit,.info_coupon{
+        flex: 1;
+        text-align: center;
+        font-size: 16px;
+        position: relative;
+        cursor: pointer;
+        div:nth-child(1){
+          font-weight: 700;
+        }
+        div:nth-child(2){
+          padding: 10px;
+          width: 50%;
+          text-align: center;
+          color: #fff;
+          border-radius: 20px;
+          background-color: red;
+          position: absolute;
+          bottom: 5px;
+          left: 50%;
+          margin-left: -25%;
+        }
+      }
+      .info_deposit,.info_coupon{
+        div:nth-child(2){
+          background-color: @bg;
+        }
+      }
+    }
+    .infoC{
+      height: 80%;
+      width: 100%;
+      overflow: hidden;
+      .T,.C{
+        display: flex;
+        height: 40px;
+        line-height: 40px;
+        border-bottom: 1px solid #f4f4f4;
+        background-color: #fff;
+        div{
+          text-align: center;
+          flex: 1;
+          font-size: 14px;
+          .in{
+            color: green;
+          }
+          .out{
+            color: red;
+          }
+        }
+        div:last-child{
+          /*width: 40%;*/
+          font-size: 12px;
+          line-height: 20px;
+          padding-right: 5px;
+
+        }
+        .dec{
+          line-height: 40px !important;
+        }
+      }
+      .cT{
+        /*width: 100%;*/
+        height: 85%;
+        overflow-y: auto;
+
+      }
+      .C{
+        border: none;
+      }
+    }
+  }
+
+</style>

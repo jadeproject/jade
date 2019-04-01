@@ -132,7 +132,7 @@
     .page{
       position: absolute;
       right: 0px;
-      bottom: 5px;
+      bottom: 20px;
     }
 
 

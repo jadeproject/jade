@@ -1,196 +1,196 @@
 <template>
-    <div class="payOrder">
-       <div class="title">
-         所有订单
-       </div>
-      <div class="itemKey">
-        <span>订单号</span>
-        <span>产品名称</span>
-        <span>玉石名称</span>
-        <span>押金/租金</span>
-        <span>数量</span>
-        <span>实付款</span>
-        <span>租赁时间</span>
-        <span>抽奖编号</span>
-        <span>交易状态</span>
+  <div class="payOrder">
+    <div class="title">
+      所有订单
+    </div>
+    <div class="itemKey">
+      <span>订单号</span>
+      <span>产品名称</span>
+      <span>玉石名称</span>
+      <span>押金/租金</span>
+      <span>数量</span>
+      <span>实付款</span>
+      <span>租赁时间</span>
+      <span>抽奖编号</span>
+      <span>交易状态</span>
+    </div>
+    <div class="rang_content">
+      <div class="itemC">
+        <span>GT2019031563</span>
+        <span>千元尊享</span>
+        <span>白玉吊坠</span>
+        <span>1000元/12月*1</span>
+        <span>1件</span>
+        <span>1012元</span>
+        <span>2019/3/15-2019/3/19</span>
+        <span>ws728839</span>
+        <span>签订纸质合同</span>
       </div>
-      <div class="rang_content">
-        <div class="itemC">
-          <span>GT2019031563</span>
-          <span>千元尊享</span>
-          <span>白玉吊坠</span>
-          <span>1000元/12月*1</span>
-          <span>1件</span>
-          <span>1012元</span>
-          <span>2019/3/15-2019/3/19</span>
-          <span>ws728839</span>
-          <span>签订纸质合同</span>
-        </div>
-        <div class="itemC">
-          <span>GT2019031563</span>
-          <span>千元尊享</span>
-          <span>白玉吊坠</span>
-          <span>1000元/12月*1</span>
-          <span>1件</span>
-          <span>1012元</span>
-          <span>2019/3/15-2019/3/19</span>
-          <span>ws728839</span>
-          <span>签订纸质合同</span>
-        </div>
-        <div class="itemC">
-          <span>GT2019031563</span>
-          <span>千元尊享</span>
-          <span>白玉吊坠</span>
-          <span>1000元/12月*1</span>
-          <span>1件</span>
-          <span>1012元</span>
-          <span>2019/3/15-2019/3/19</span>
-          <span>ws728839</span>
-          <span>签订纸质合同</span>
-        </div>
-        <div class="itemC">
-          <span>GT2019031563</span>
-          <span>千元尊享</span>
-          <span>白玉吊坠</span>
-          <span>1000元/12月*1</span>
-          <span>1件</span>
-          <span>1012元</span>
-          <span>2019/3/15-2019/3/19</span>
-          <span>ws728839</span>
-          <span>签订纸质合同</span>
-        </div>
-        <div class="itemC">
-          <span>GT2019031563</span>
-          <span>千元尊享</span>
-          <span>白玉吊坠</span>
-          <span>1000元/12月*1</span>
-          <span>1件</span>
-          <span>1012元</span>
-          <span>2019/3/15-2019/3/19</span>
-          <span>ws728839</span>
-          <span>签订纸质合同</span>
-        </div>
-        <div class="itemC">
-          <span>GT2019031563</span>
-          <span>千元尊享</span>
-          <span>白玉吊坠</span>
-          <span>1000元/12月*1</span>
-          <span>1件</span>
-          <span>1012元</span>
-          <span>2019/3/15-2019/3/19</span>
-          <span>ws728839</span>
-          <span>签订纸质合同</span>
-        </div>
-        <div class="itemC">
-          <span>GT2019031563</span>
-          <span>千元尊享</span>
-          <span>白玉吊坠</span>
-          <span>1000元/12月*1</span>
-          <span>1件</span>
-          <span>1012元</span>
-          <span>2019/3/15-2019/3/19</span>
-          <span>ws728839</span>
-          <span>签订纸质合同</span>
-        </div>
-        <div class="itemC">
-          <span>GT2019031563</span>
-          <span>千元尊享</span>
-          <span>白玉吊坠</span>
-          <span>1000元/12月*1</span>
-          <span>1件</span>
-          <span>1012元</span>
-          <span>2019/3/15-2019/3/19</span>
-          <span>ws728839</span>
-          <span>签订纸质合同</span>
-        </div>
-        <div class="itemC">
-          <span>GT2019031563</span>
-          <span>千元尊享</span>
-          <span>白玉吊坠</span>
-          <span>1000元/12月*1</span>
-          <span>1件</span>
-          <span>1012元</span>
-          <span>2019/3/15-2019/3/19</span>
-          <span>ws728839</span>
-          <span>签订纸质合同</span>
-        </div>
-        <div class="itemC">
-          <span>GT2019031563</span>
-          <span>千元尊享</span>
-          <span>白玉吊坠</span>
-          <span>1000元/12月*1</span>
-          <span>1件</span>
-          <span>1012元</span>
-          <span>2019/3/15-2019/3/19</span>
-          <span>ws728839</span>
-          <span>签订纸质合同</span>
-        </div>
-        <div class="itemC">
-          <span>GT2019031563</span>
-          <span>千元尊享</span>
-          <span>白玉吊坠</span>
-          <span>1000元/12月*1</span>
-          <span>1件</span>
-          <span>1012元</span>
-          <span>2019/3/15-2019/3/19</span>
-          <span>ws728839</span>
-          <span>签订纸质合同</span>
-        </div>
-        <div class="itemC">
-          <span>GT2019031563</span>
-          <span>千元尊享</span>
-          <span>白玉吊坠</span>
-          <span>1000元/12月*1</span>
-          <span>1件</span>
-          <span>1012元</span>
-          <span>2019/3/15-2019/3/19</span>
-          <span>ws728839</span>
-          <span>签订纸质合同</span>
-        </div>
-        <div class="itemC">
-          <span>GT2019031563</span>
-          <span>千元尊享</span>
-          <span>白玉吊坠</span>
-          <span>1000元/12月*1</span>
-          <span>1件</span>
-          <span>1012元</span>
-          <span>2019/3/15-2019/3/19</span>
-          <span>ws728839</span>
-          <span>签订纸质合同</span>
-        </div>
-        <div class="itemC">
-          <span>GT2019031563</span>
-          <span>千元尊享</span>
-          <span>白玉吊坠</span>
-          <span>1000元/12月*1</span>
-          <span>1件</span>
-          <span>1012元</span>
-          <span>2019/3/15-2019/3/19</span>
-          <span>ws728839</span>
-          <span>签订纸质合同</span>
-        </div>
-
-
+      <div class="itemC">
+        <span>GT2019031563</span>
+        <span>千元尊享</span>
+        <span>白玉吊坠</span>
+        <span>1000元/12月*1</span>
+        <span>1件</span>
+        <span>1012元</span>
+        <span>2019/3/15-2019/3/19</span>
+        <span>ws728839</span>
+        <span>签订纸质合同</span>
       </div>
+      <div class="itemC">
+        <span>GT2019031563</span>
+        <span>千元尊享</span>
+        <span>白玉吊坠</span>
+        <span>1000元/12月*1</span>
+        <span>1件</span>
+        <span>1012元</span>
+        <span>2019/3/15-2019/3/19</span>
+        <span>ws728839</span>
+        <span>签订纸质合同</span>
+      </div>
+      <div class="itemC">
+        <span>GT2019031563</span>
+        <span>千元尊享</span>
+        <span>白玉吊坠</span>
+        <span>1000元/12月*1</span>
+        <span>1件</span>
+        <span>1012元</span>
+        <span>2019/3/15-2019/3/19</span>
+        <span>ws728839</span>
+        <span>签订纸质合同</span>
+      </div>
+      <div class="itemC">
+        <span>GT2019031563</span>
+        <span>千元尊享</span>
+        <span>白玉吊坠</span>
+        <span>1000元/12月*1</span>
+        <span>1件</span>
+        <span>1012元</span>
+        <span>2019/3/15-2019/3/19</span>
+        <span>ws728839</span>
+        <span>签订纸质合同</span>
+      </div>
+      <div class="itemC">
+        <span>GT2019031563</span>
+        <span>千元尊享</span>
+        <span>白玉吊坠</span>
+        <span>1000元/12月*1</span>
+        <span>1件</span>
+        <span>1012元</span>
+        <span>2019/3/15-2019/3/19</span>
+        <span>ws728839</span>
+        <span>签订纸质合同</span>
+      </div>
+      <div class="itemC">
+        <span>GT2019031563</span>
+        <span>千元尊享</span>
+        <span>白玉吊坠</span>
+        <span>1000元/12月*1</span>
+        <span>1件</span>
+        <span>1012元</span>
+        <span>2019/3/15-2019/3/19</span>
+        <span>ws728839</span>
+        <span>签订纸质合同</span>
+      </div>
+      <div class="itemC">
+        <span>GT2019031563</span>
+        <span>千元尊享</span>
+        <span>白玉吊坠</span>
+        <span>1000元/12月*1</span>
+        <span>1件</span>
+        <span>1012元</span>
+        <span>2019/3/15-2019/3/19</span>
+        <span>ws728839</span>
+        <span>签订纸质合同</span>
+      </div>
+      <div class="itemC">
+        <span>GT2019031563</span>
+        <span>千元尊享</span>
+        <span>白玉吊坠</span>
+        <span>1000元/12月*1</span>
+        <span>1件</span>
+        <span>1012元</span>
+        <span>2019/3/15-2019/3/19</span>
+        <span>ws728839</span>
+        <span>签订纸质合同</span>
+      </div>
+      <div class="itemC">
+        <span>GT2019031563</span>
+        <span>千元尊享</span>
+        <span>白玉吊坠</span>
+        <span>1000元/12月*1</span>
+        <span>1件</span>
+        <span>1012元</span>
+        <span>2019/3/15-2019/3/19</span>
+        <span>ws728839</span>
+        <span>签订纸质合同</span>
+      </div>
+      <div class="itemC">
+        <span>GT2019031563</span>
+        <span>千元尊享</span>
+        <span>白玉吊坠</span>
+        <span>1000元/12月*1</span>
+        <span>1件</span>
+        <span>1012元</span>
+        <span>2019/3/15-2019/3/19</span>
+        <span>ws728839</span>
+        <span>签订纸质合同</span>
+      </div>
+      <div class="itemC">
+        <span>GT2019031563</span>
+        <span>千元尊享</span>
+        <span>白玉吊坠</span>
+        <span>1000元/12月*1</span>
+        <span>1件</span>
+        <span>1012元</span>
+        <span>2019/3/15-2019/3/19</span>
+        <span>ws728839</span>
+        <span>签订纸质合同</span>
+      </div>
+      <div class="itemC">
+        <span>GT2019031563</span>
+        <span>千元尊享</span>
+        <span>白玉吊坠</span>
+        <span>1000元/12月*1</span>
+        <span>1件</span>
+        <span>1012元</span>
+        <span>2019/3/15-2019/3/19</span>
+        <span>ws728839</span>
+        <span>签订纸质合同</span>
+      </div>
+      <div class="itemC">
+        <span>GT2019031563</span>
+        <span>千元尊享</span>
+        <span>白玉吊坠</span>
+        <span>1000元/12月*1</span>
+        <span>1件</span>
+        <span>1012元</span>
+        <span>2019/3/15-2019/3/19</span>
+        <span>ws728839</span>
+        <span>签订纸质合同</span>
+      </div>
+
 
     </div>
+
+  </div>
 
 </template>
 
 <script type="text/ecmascript-6">
-    export default {
-        data() {
-            return {};
-        },
-        created() {
+  export default {
+    data() {
+      return {};
+    },
+    created() {
 
-        },
-        mounted() {
+    },
+    mounted() {
 
-        },
-        methods: {},
-        components: {}
-    };
+    },
+    methods: {},
+    components: {}
+  };
 </script>
 
 <style type="text/css" lang="less" scoped>
@@ -199,6 +199,7 @@
     height: 100%;
     width: 100%;
     background-color: #fff;
+    overflow: hidden;
     .title{
       height: 40px;
       line-height: 40px;
@@ -213,6 +214,7 @@
       border-bottom: 1px solid #f4f4f4;
       font-size: 18px;
       font-weight: 700;
+      padding: 0 10px;
       span{
         flex: 1;
         text-align: center;
@@ -226,6 +228,8 @@
       height: 88%;
       width: 100%;
       overflow: auto;
+      padding-bottom: 30px;
+      background-color: #fff;
       .itemC{
         font-weight: 400;
         font-size: 12px;

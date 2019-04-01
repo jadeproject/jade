@@ -14,19 +14,15 @@ export default new Router({
       path: '/',
       name: 'Hub',
       component: Hub
-<<<<<<< HEAD
     },{
       path: '/invite',
       name: 'Invite',
       component: Invite 
-    },
-=======
     },
     // {
     //   path: '/hub',
     //   name: 'Hub',
     //   component: Hub
     // }
->>>>>>> master
   ]
 })

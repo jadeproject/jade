@@ -4,10 +4,9 @@
       <div v-for="(item,index) in peple_title" :class="{'curren':currenIndex==index}" @click="select(item,index)">{{item.val}}</div>
     </div>
     <div class="rangContent">
-      <hub-fives-one v-if="tt==0"></hub-fives-one>
-      <hub-fives-two v-if="tt==1"></hub-fives-two>
-      <hub-fives-three v-if="tt==2"></hub-fives-three>
-      <hub-fives-four v-if="tt==3"></hub-fives-four>
+      <hub-six-one v-if="tt==0"></hub-six-one>
+      <hub-six-two v-if="tt==1"></hub-six-two>
+      <hub-six-three v-if="tt==2"></hub-six-three>
     </div>
 
   </div>
@@ -15,32 +14,27 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import hubFivesOne from './hubFivesOne'
-  import hubFivesTwo from './hubFivesTwo'
-  import hubFivesThree from './hubFivesThree'
-  import hubFivesFour from './hubFivesFour'
+  import hubSixOne from './hubSixOne'
+  import hubSixTwo from './hubSixTwo'
+  import hubSixThree from './hubSixThree'
   export default {
     data() {
       return {
         peple_title:[
           {
-            val:'个人中心',
+            val:'抽奖类型',
             type:1
           },
           {
-            val:'个人信息',
+            val:'往期视频',
             type:2
           },
           {
-            val:'账户安全',
+            val:'抽奖公告',
             type:3
-          },
-          {
-            val:'地址设置',
-            type:4
           }
         ],
-        tt:0
+        tt:1
       };
     },
     computed:{
@@ -58,12 +52,13 @@
       select(item,index){
         this.tt=index;
       }
+
     },
     components: {
-      hubFivesOne,
-      hubFivesTwo,
-      hubFivesThree,
-      hubFivesFour
+      hubSixOne,
+      hubSixTwo,
+      hubSixThree
+
     }
   };
 </script>

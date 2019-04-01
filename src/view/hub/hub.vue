@@ -55,7 +55,7 @@
           },
         ],
         tt:0,
-        type:4
+        type:0
       };
     },
     computed:{

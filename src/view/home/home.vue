@@ -498,7 +498,7 @@
         not supported by any browser */
     }
     .homeC{
-        margin-top: 40px;
+        margin-top: 80px;
         .banner{
             img{
                 width: 100%;

@@ -37,9 +37,9 @@
         </div>
         <div @click="hubOnclick(key=5)">
           <span class="iconfont">&#xe601;</span>
-          <span class="name">抽奖中心</span>
+          <span class="name">抽奖栏目</span>
         </div>
-        <div class="exit">
+        <div class="exit" @click="exitOnclik">
           退出登陆
         </div>
 
@@ -79,6 +79,7 @@
           },
           hiden(){
             this.flag=false;
+
           },
           loginPonClick(){
             this.$emit('On_click',this.loginkey)
@@ -95,6 +96,18 @@
               }
             })
             window.location.reload();
+          },
+          exitOnclik(){
+            this.type=1;
+          },
+          // 登陆后弹对应的弹窗
+          showLogin(){
+            this.flag=true;
+            this.type=2;
+          },
+          showRg(){
+            this.flag=true;
+            this.type=1;
           }
         },
         components: {}
@@ -104,13 +117,14 @@
 <style type="text/css" lang="less" scoped>
   @import "../../assets/css/config";
   .loginC{
-    width: 10%;
+    width: 250px;
     background-color: #9e9fa1;
     z-index: 10000000000;
     position: fixed;
     right: 0;
     top: 80px;
     .noLogin,.loginInfo{
+      width: 100%;
       div{
         padding: 25px 20px;
         text-align: center;
@@ -128,21 +142,27 @@
       }
       div{
         padding: 12px 0;
+        width: 100%;
+        cursor: pointer;
       }
       .info{
         padding:20px 0;
         .border-1px(#000);
+        width: 100%;
         line-height: 40px;
+        text-align: left;
         img{
-          height: 40px;
-          width: 40px;
+          height: 50px;
+          width: 50px;
           border-radius: 50%;
-          vertical-align: top;
+          vertical-align: middle;
+          margin-left: 10%;
         }
         .name{
           color: #fff;
           margin-left: 10px;
           margin-top: 20px;
+          margin-left: 5%;
         }
 
 
@@ -152,9 +172,13 @@
         text-align: center;
         background-color: @bg;
         color: #fff;
+        width: 100%;
       }
 
 
+    }
+    .noLogin{
+      padding: 20px 0;
     }
 
   }

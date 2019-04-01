@@ -35,7 +35,7 @@
         <div class="reade" v-if="reg_I">
           <Checkbox :checked.sync="single"> 我已经阅读相关服务条款和隐私政策</Checkbox>
         </div>
-        <div  class="login_btn">
+        <div  class="login_btn" @click="login_btn">
           {{btn_text}}
         </div>
         <div class="dec_btn" v-if="login_I">
@@ -58,7 +58,14 @@
               reg_I:true,
               single:false,
               flag:false,
-              btn_text:'登陆'
+              btn_text:'登陆',
+              loginR:{
+                key:1
+              },
+              regR:{
+                key:2
+              }
+
             };
         },
         created() {
@@ -82,6 +89,16 @@
           },
           regClick(){
             this.showreg();
+          },
+          // 显示登陆状态
+          login_btn(){
+            if( this.btn_text=="登陆"){
+              this.flag=false;
+              this.$emit('showLoginR',this.loginR)
+            }else if(this.btn_text=="注册"){
+               this.showlogin();
+            }
+
           },
           hiden(){
             this.flag=false;

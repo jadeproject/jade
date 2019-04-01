@@ -6,17 +6,17 @@
           <div>
             <router-link to="/"> 首页</router-link>
           </div>
-          <div v-if="type<0">
+          <div >
             关于我们
           </div>
           <div>产品介绍</div>
           <div>开奖公告</div>
           <div>常见问题</div>
-          <div @click="longinShow()"><span class="iconfont">&#xe602;</span></div>
         </div>
+        <div @click="longinShow()" class="icon"><span class="iconfont">&#xe602;</span></div>
       </div>
       <login ref="loginT" @On_click="log_click"></login>
-      <login-pop ref="log_Pop"></login-pop>
+      <login-pop ref="log_Pop" @showLoginR="logR"></login-pop>
 
     </div>
 
@@ -27,14 +27,15 @@
     export default {
         data() {
             return {
-              showLogin:true
+              showLogin:true,
+              type:null
             };
         },
         created() {
 
         },
         mounted() {
-
+          // this.type=Number(this.$GQ("type"));
 
         },
         methods: {
@@ -59,7 +60,18 @@
            if(data.type=='reg'){
              this.$refs.log_Pop.showreg();
            }
+          },
+          // 显示右边登陆状态
+          logR(data){
+            // 显示登陆状态1，2显示注册状态
+            if(data.key==1){
+              this.$refs.loginT.showLogin()
+            }else if(data.key==2){
+              this.$refs.loginT.showRg();
+            }
+
           }
+
         },
         components: {
           login,
@@ -86,6 +98,7 @@
       line-height: 80px;
       display: flex;
       cursor:pointer;
+      position: relative;
       .left{
         width: 30%;
         height: 100%;
@@ -96,9 +109,18 @@
         display: flex;
         div{
           flex: 1;
-          text-align: center;
+          text-align: left;
 
         }
+
+      }
+      .icon{
+        position: absolute;
+        right: 50px;
+        top: 0%;
+        font-size: 20px;
+        font-weight: 700;
+
       }
     }
   }

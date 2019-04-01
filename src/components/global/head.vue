@@ -6,14 +6,14 @@
           <div>
             <router-link to="/"> 首页</router-link>
           </div>
-          <div v-if="type<0">
+          <div >
             关于我们
           </div>
           <div>产品介绍</div>
           <div>开奖公告</div>
           <div>常见问题</div>
-          <div @click="longinShow()" class="icon"><span class="iconfont">&#xe602;</span></div>
         </div>
+        <div @click="longinShow()" class="icon"><span class="iconfont">&#xe602;</span></div>
       </div>
       <login ref="loginT" @On_click="log_click"></login>
       <login-pop ref="log_Pop" @showLoginR="logR"></login-pop>
@@ -27,13 +27,15 @@
     export default {
         data() {
             return {
-              showLogin:true
+              showLogin:true,
+              type:null
             };
         },
         created() {
 
         },
         mounted() {
+          // this.type=Number(this.$GQ("type"));
 
         },
         methods: {
@@ -96,6 +98,7 @@
       line-height: 80px;
       display: flex;
       cursor:pointer;
+      position: relative;
       .left{
         width: 30%;
         height: 100%;
@@ -106,9 +109,18 @@
         display: flex;
         div{
           flex: 1;
-          text-align: center;
+          text-align: left;
 
         }
+
+      }
+      .icon{
+        position: absolute;
+        right: 50px;
+        top: 0%;
+        font-size: 20px;
+        font-weight: 700;
+
       }
     }
   }

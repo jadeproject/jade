@@ -117,7 +117,7 @@
 <style type="text/css" lang="less" scoped>
   @import "../../assets/css/config";
   .loginC{
-    width: 15%;
+    width: 250px;
     background-color: #9e9fa1;
     z-index: 10000000000;
     position: fixed;

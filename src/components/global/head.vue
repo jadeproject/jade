@@ -6,9 +6,8 @@
           <div>
             <router-link to="/"> 首页</router-link>
           </div>
-          <div>
+          <div v-if="type<0">
             关于我们
-
           </div>
           <div>产品介绍</div>
           <div>开奖公告</div>
@@ -35,6 +34,7 @@
 
         },
         mounted() {
+
 
         },
         methods: {
@@ -71,7 +71,7 @@
 <style type="text/css" lang="less">
   .headC{
     /*height: 20px;*/
-    height: 40px;
+    height: 80px;
     width: 100%;
     position: fixed;
     left: 0;
@@ -79,10 +79,11 @@
     background-color: #fff;
     border-bottom: 1px solid #f4f4f4;
     box-shadow: 4px 2px 2px 2px #ededed;
+    z-index: 10;
     
     .headC_key{
       width: 100%;
-      line-height: 40px;
+      line-height: 80px;
       display: flex;
       cursor:pointer;
       .left{

@@ -15,25 +15,29 @@
           <img src="../../assets/img/m_avatar.png" alt="">
           <span class="name">王小明</span>
         </div>
-        <div>
+        <div @click="hubOnclick(key=0)">
            <span class="iconfont">&#xe61f;</span>
            <span class="name">玉石中心</span>
         </div>
-        <div>
+        <div @click="hubOnclick(key=1)">
           <span class="iconfont">&#xe652;</span>
           <span class="name">订单中心</span>
         </div>
-        <div>
+        <div @click="hubOnclick(key=2)">
           <span class="iconfont">&#xe630;</span>
           <span class="name">活动中心</span>
         </div>
-        <div>
+        <div @click="hubOnclick(key=3)">
           <span class="iconfont">&#xe655;</span>
           <span class="name">账户中心</span>
         </div>
-        <div>
+        <div @click="hubOnclick(key=4)">
           <span class="iconfont">&#xe604;</span>
           <span class="name">邀请好友</span>
+        </div>
+        <div @click="hubOnclick(key=5)">
+          <span class="iconfont">&#xe601;</span>
+          <span class="name">抽奖中心</span>
         </div>
         <div class="exit">
           退出登陆
@@ -81,6 +85,16 @@
           },
           regPonClick(){
             this.$emit('On_click',this.regKey)
+          },
+          hubOnclick(key){
+            this.flag=false;
+            this.$router.push({
+              path:'./hub',
+              query:{
+                type:key
+              }
+            })
+            window.location.reload();
           }
         },
         components: {}
@@ -95,10 +109,10 @@
     z-index: 10000000000;
     position: fixed;
     right: 0;
-    top: 40px;
+    top: 80px;
     .noLogin,.loginInfo{
       div{
-        padding: 25px 0;
+        padding: 25px 20px;
         text-align: center;
         font-size: 14px;
         cursor:pointer;

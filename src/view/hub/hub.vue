@@ -55,7 +55,7 @@
           },
         ],
         tt:0,
-        type:4
+        type:0
       };
     },
     computed:{
@@ -68,6 +68,9 @@
 
     },
     mounted() {
+      this.tt=Number(this.$GQ("type"));
+      this.type=Number(this.$GQ("type"));
+      console.log(this.$GQ("type"));
 
     },
     methods: {
@@ -89,7 +92,7 @@
 <style type="text/css" lang="less" scoped>
   @import "../../assets/css/config";
   .hubC{
-    margin-top: 40px;
+    margin-top: 80px;
     padding: 0 100px;
     height: 100%;
     width: 100%;
@@ -97,7 +100,7 @@
       overflow: hidden;
       position:fixed;
       padding: 0 100px;
-      top:40px;
+      top:80px;
       bottom:0;
       left:0;
       right:0;

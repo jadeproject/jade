@@ -5,12 +5,12 @@
         <div class="content">
           <div class="left">
             <div class="imgbig">
-              <img src="../../../assets/img/m_avatar.png" alt="">
+              <img :src="bigUrl" alt="">
             </div>
             <div class="img_rang">
-              <div><img src="../../../assets/img/m_avatar.png" alt=""></div>
-              <div><img src="../../../assets/img/m_avatar.png" alt=""></div>
-              <div><img src="../../../assets/img/m_avatar.png" alt=""></div>
+              <div v-for="(item,index) in imgUrl" :class="{'cureen':cureendIndex==index}" @click="imgSelect(item,index)"><img :src="item.url" alt=""></div>
+              <!--<div><img src="../../../assets/img/m_avatar.png" alt=""></div>-->
+              <!--<div><img src="../../../assets/img/m_avatar.png" alt=""></div>-->
             </div>
           </div>
           <div class="right">
@@ -58,11 +58,32 @@
         data() {
             return {
               flag:false,
-              gread:0
+              gread:0,
+              imgUrl:[
+                {
+                  url:require("../../../assets/img/m_avatar.png"),
+                  type:0
+                },
+                {
+                  url:require("../../../assets/img/m_avatar.png"),
+                  type:1
+                },
+                {
+                  url:require("../../../assets/img/m_avatar.png"),
+                  type:3
+                }
+              ],
+              tt:0,
+              bigUrl:''
             };
         },
         created() {
-
+           this.bigUrl=this.imgUrl[0].url;
+        },
+        computed:{
+          cureendIndex(){
+            return this.tt;
+          }
         },
         mounted() {
           
@@ -78,6 +99,10 @@
               this.$emit('showPay',this.gread)
             }
 
+          },
+          imgSelect(item,index){
+            this.tt=index;
+            this.bigUrl=item.url;
           },
           gread(data){
             if(data.key==1){
@@ -139,6 +164,10 @@
               font-size:0;
               float:left;
               background-color: #999;
+              &.cureen{
+                border: 3px solid @bg;
+
+              }
               img{
                 width: 100%;
                 height: 100%;

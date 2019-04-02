@@ -12,7 +12,7 @@
           <div>2</div>
           <span>签合同</span>
         </div>
-        <div class="line2">
+        <div class="line">
           <div>3</div>
           <span>付款</span>
         </div>
@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="ecode">
-        <div>需要支付：<span>1000元</span></div>
+        <div>需要支付：<span>{{moneys}}元</span></div>
         <div class="rang">
           <div class="l">
             <img src="../../../assets/img/m_avatar.png" alt="">
@@ -46,13 +46,41 @@
 
 <script type="text/ecmascript-6">
   export default {
+    props:{
+      gohubDetailDatas:{},
+      addCoupons:{}
+    },
     data() {
       return {
-        flag:false
+        flag:false,
+        gohubDetailData:'',
+        addCoupon:'',
+        moneys:''
       };
     },
     created() {
 
+    },
+    watch:{
+      flag(e){
+        if(e == true){
+          this.gohubDetailData = this.gohubDetailDatas;
+          this.addCoupon = this.addCoupons;
+          console.log(this.gohubDetailData)
+          console.log(this.addCoupon)
+          this.moneys = this.gohubDetailData.Totalmoney;
+          // 获取微信支付二维码
+          this.$get('/index.php/hy/wechat/pc_weixin_order',{
+              "uid":this.addCoupon.address.uid,
+              "d_id":this.gohubDetailData.dang,
+              "j_id":this.gohubDetailData.dang,
+              "coupon":this.addCoupon.coupon != ''? this.addCoupon.coupon.id : ''
+          })
+          .then((response) => {
+            console.log(response)
+          })
+        }
+      }
     },
     mounted() {
 

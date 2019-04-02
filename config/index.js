@@ -10,7 +10,15 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/index.php/*': {
+        target: 'http://askxubing.cn',
+        changeOrigin: true,
+        secure: false,
+      },
+      // http://www.ishongyuan.com/index.php/ 正式域名
+      // http://askxubing.cn/index.php/ 测试域名
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
@@ -19,7 +27,7 @@ module.exports = {
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
-
+    
     
     /**
      * Source Maps

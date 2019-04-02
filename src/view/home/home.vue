@@ -385,10 +385,15 @@
             };
         },
         created() {
-
+            this.$get('/index.php/hy/Configure/index_question',{
+                "config":"question",
+            })
+            .then((response) => {
+                console.log(response)
+            })
         },
         mounted () {
-            this.needScroll()
+            this.needScroll()   
         },
         methods: {
             // 常见问题列表点击

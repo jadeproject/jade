@@ -1,5 +1,6 @@
 import axios from 'axios';
 import qs from 'qs';
+import {getSign} from './GetJS';
 axios.defaults.timeout = 5000;
 axios.defaults.baseURL ='';
 
@@ -74,6 +75,7 @@ axios.interceptors.response.use(
 
 export function get(url,params={}){
   // console.log(qs.stringify(params));
+  params.sign = getSign(params);
   return new Promise((resolve,reject) => {
     axios.get(url,{
       params:qs.parse(params)

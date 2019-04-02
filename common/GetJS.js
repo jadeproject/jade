@@ -4,6 +4,7 @@
  * @param{str} 输入要检查的类型
  * @param{type}输入类型是phone或者是tel
  */
+import md5 from 'js-md5';
 export const checkStr = (str, type) => {
   switch (type) {
     case 'phone':  //手机号码
@@ -256,4 +257,22 @@ export function GetQueryString(name) {
   var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
   var r = window.location.search.substr(1).match(reg);
   if(r!=null)return  unescape(r[2]); return null;
+}
+
+// 获取加密签名
+export function getSign(data) {
+  var temp = [];
+  var keys = Object.keys(data).sort();
+  var lose = ["IM_KeyID"]
+  for (var z in keys) 
+  {
+    var k = keys[z];
+    var v = data[k];
+    if(typeof(v)=="object"){
+      v=JSON.stringify(v);
+    }
+    temp.push(k+v);
+  }
+  return "123456";
+  // return md5(`hy${temp.join('')}hy`);
 }

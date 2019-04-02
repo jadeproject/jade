@@ -332,13 +332,13 @@
                             <Panel :key="index" v-for="(item,index) in commonlist"> 
                                 <div class="list" :class="index == indexs ?'listcur list':'list'" @click="commonClick(index)">
                                     <div class="lefts"><span>{{index+1}}</span></div>
-                                    <div class="centers">{{item.txt}}</div>
+                                    <div class="centers">{{item.title}}</div>
                                     <div class="rights"><span class="iconfont">&#xe620;</span></div>
                                 </div>
-                                <p slot="content" class="p_txt">{{item.p_txt}}</p>
+                                <p slot="content" class="p_txt">{{item.desc}}</p>
                             </Panel>
                         </Collapse>
-                        <div class="moretxt">更多</div>
+                        <div class="moretxt" @click="contactbut('info',1)">更多</div>
                     </div>
                 </div>
             </div>
@@ -347,9 +347,9 @@
         <!-- 常见问题 end-->
 
         <!-- 浮窗 -->
-        <div class="contactbut" v-if="isTop">
-            <i-button @click="contactbut('info')" class="int"><span class="iconfont">&#xe678;</span></i-button>
-            <i-button @click="contactbut('info')" class="int"><span class="iconfont">&#xe624;</span></i-button>
+        <div class="contactbut" v-if="isTop == true">
+            <i-button @click="contactbut('info',2)" class="int"><span class="iconfont">&#xe678;</span></i-button>
+            <i-button @click="contactbut('info',2)" class="int"><span class="iconfont">&#xe624;</span></i-button>
             <i-button @click="goTopbut()" class="int" ref="btn" title="回到顶部"><span class="iconfont">&#xe623;</span></i-button>
         </div>
         <!-- 浮窗 end -->
@@ -367,28 +367,21 @@
         data() {
             return {
                 indexs:-2,
-                commonlist:[
-                    {
-                        txt:"问题文案问题文案问题文案问题文案问题文案问题文案",
-                        p_txt:"问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情"
-                    },
-                    {
-                        txt:"问题文案问题文案问题文案问题文案问题文案问题文案",
-                        p_txt:"问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情"
-                    },
-                    {
-                        txt:"问题文案问题文案问题文案问题文案问题文案问题文案",
-                        p_txt:"问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情"
-                    }
-                ],
-                isTop: false
+                commonlist:[],  //常见问题
+                isTop: true
             };
         },
         created() {
-
+            // 常见问题
+            this.$get('/index.php/hy/Configure/index_question',{
+                "config":"question",
+            })
+            .then((response) => {
+                this.commonlist = response.data;
+            })
         },
         mounted () {
-            this.needScroll()
+            this.needScroll()   
         },
         methods: {
             // 常见问题列表点击
@@ -397,8 +390,8 @@
             },
 
             // 联系弹窗
-            contactbut (type) {
-                const title = '扫码联系我们';
+            contactbut (type,nums) {
+                const title = nums == 1? '微信扫码查看更多' : '微信扫码联系我们';
                 const content = '<img class="contactimg" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554054131629&di=2aaffaabed444056a500d99f97a39036&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201701%2F28%2F20170128085020_jfRhX.jpeg" />';
                 switch (type) {
                     case 'info':
@@ -417,7 +410,7 @@
                     let osTop = document.documentElement.scrollTop || document.body.scrollTop;
                     // console.log(osTop)
                     // console.log(clientHeight)
-                    // if (osTop >= clientHeight) {
+                    // if (osTop > clientHeight) {
                     //     console.log(123)
                     //     this.isTop = true
                     // } else {

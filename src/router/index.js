@@ -18,6 +18,10 @@ export default new Router({
       path: '/invite',
       name: 'Invite',
       component: Invite 
+    },{
+      path: '/',
+      name: 'Home',
+      component: Home 
     },
     {
       path: '/hub',

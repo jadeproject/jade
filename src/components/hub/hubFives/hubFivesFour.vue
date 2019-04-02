@@ -71,7 +71,7 @@
 <style type="text/css" lang="less" scoped>
   @import "../../../assets/css/config";
   .peple_Info{
-    padding: 20px;
+    padding: 0px 20px 20px 20px;
     display: flex;
     position: relative;
     height: 90%;
@@ -82,7 +82,7 @@
       height: 100%;
       float: left;
       div{
-        margin-top: 30px;
+        margin-top: 25px;
         i{
           color: red;
         }
@@ -92,7 +92,7 @@
       float: left;
       margin-left: 20px;
       div{
-        margin-top: 25px;
+        margin-top: 20px;
       }
       input{
         border-right: none;
@@ -107,7 +107,7 @@
       text-align: center;
       position: absolute;
       left: 50%;
-      bottom: 20px;
+      bottom: 10px;
       /*margin-left: -50%;*/
       background-color: @bg;
       color: #fff;

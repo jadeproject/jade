@@ -79,7 +79,7 @@
       height: 100%;
       float: left;
       div{
-        margin-top: 30px;
+        margin-top: 25px;
         i{
           color: red;
         }
@@ -89,7 +89,7 @@
       float: left;
       margin-left: 20px;
       div{
-        margin-top: 25px;
+        margin-top: 20px;
       }
       input{
         border-right: none;
@@ -104,7 +104,7 @@
       text-align: center;
       position: absolute;
       left: 50%;
-      bottom: 20px;
+      bottom: 10px;
       /*margin-left: -50%;*/
       background-color: @bg;
       color: #fff;

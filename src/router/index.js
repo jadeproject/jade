@@ -11,9 +11,9 @@ export default new Router({
   // base: '/dist',
   routes: [
     {
-      path: '/hub',
-      name: 'Hub',
-      component: Hub
+      path: '/',
+      name: 'Home',
+      component: Home
     },{
       path: '/invite',
       name: 'Invite',
@@ -23,10 +23,10 @@ export default new Router({
       name: 'Home',
       component: Home 
     },
-    // {
-    //   path: '/hub',
-    //   name: 'Hub',
-    //   component: Hub
-    // }
+    {
+      path: '/hub',
+      name: 'Hub',
+      component: Hub
+    }
   ]
 })

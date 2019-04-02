@@ -175,6 +175,7 @@
             outline: none;
             font-size: 16px;
             cursor: pointer;
+            margin-top: 15px;
           }
         }
         div:nth-child(3){

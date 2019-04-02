@@ -10,30 +10,30 @@
         </div>
 
         <div class="inp" v-if="login_I">
-          <input type="text" placeholder="请输入电话号码">
+          <input type="text" placeholder="请输入电话号码" v-model="phone">
         </div>
         <div class="inp" v-if="login_I">
-          <input type="text" placeholder="请输入登陆密码">
+          <input type="password" placeholder="请输入登陆密码" v-model="psw">
         </div>
         <div class="inp" v-if="reg_I">
-          <input type="text" placeholder="请输入昵称">
+          <input type="text" placeholder="请输入昵称" v-model="reg_name">
         </div>
         <div class="inp" v-if="reg_I">
-          <input type="text" placeholder="请设置密码">
+          <input type="text" placeholder="请设置密码" v-model="reg_psw">
         </div>
         <div class="inp" v-if="reg_I">
           <span>+86</span>
-          <input class="phone" type="text" placeholder="请输入手机号">
+          <input class="phone" type="text" placeholder="请输入手机号" v-model="reg_phone">
         </div>
         <div class="inp" v-if="reg_I">
-          <input type="text" placeholder="请输入短信验证码">
+          <input type="text" placeholder="请输入短信验证码" v-model="reg_yz">
           <div class='yz'>发送短信验证码</div>
         </div>
         <div class="inp" v-if="reg_I">
-          <input type="text" placeholder="请输入邀请人昵称">
+          <input type="text" placeholder="请输入邀请人昵称" v-model='iv_name'>
         </div>
         <div class="reade" v-if="reg_I">
-          <Checkbox :checked.sync="single"> 我已经阅读相关服务条款和隐私政策</Checkbox>
+          <Checkbox :checked.sync="single" v-model='single'> 我已经阅读相关服务条款和隐私政策</Checkbox>
         </div>
         <div  class="login_btn" @click="login_btn">
           {{btn_text}}
@@ -64,8 +64,21 @@
               },
               regR:{
                 key:2
-              }
-
+              },
+              // 登陆手机验证
+              phone:'',
+              // 登陆密码
+              psw:'',
+              // 注册姓名
+              reg_name:'',
+              // 注册密码
+              reg_psw:'',
+              // 注册手机
+              reg_phone:'',
+              // 注册验证码
+              reg_yz:'',
+              // 邀请人姓名
+              iv_name:''
             };
         },
         created() {
@@ -93,10 +106,37 @@
           // 显示登陆状态
           login_btn(){
             if( this.btn_text=="登陆"){
-              this.flag=false;
-              this.$emit('showLoginR',this.loginR)
+                if(this.phone==''){
+                  this.$Message.info("手机号码不为空");
+                  return;
+                } else if(!(/^1[3|5|7|8][0-9]\d{4,8}$/.test(this.phone))){
+                  this.$Message.info("手机号码有误");
+                  return;
+                }else if(this.psw==''){
+                  this.$Message.info("请输入密码");
+                  return;
+                }else {
+                  this.flag=false;
+                  this.$emit('showLoginR',this.loginR)
+                }
             }else if(this.btn_text=="注册"){
-               this.showlogin();
+              if(this.reg_name==''){
+                this.$Message.info("请输入注册姓名")
+              }else if(this.reg_psw==''){
+                this.$Message.info("请输入注册密码")
+              }else if(this.reg_phone==''){
+                this.$Message.info("请输入手机号码")
+              }else if(!(/^1[3|5|7|8][0-9]\d{4,8}$/.test(this.reg_phone))){
+                this.$Message.info("手机号码有误")
+              } else if(this.reg_yz==''){
+                this.$Message.info("请输入验证码")
+              }else if(this.single==false){
+                this.$Message.info("请阅读隐私条约")
+              }else {
+                this.$Message.info("注册成功")
+                this.showlogin();
+              }
+
             }
 
           },
@@ -163,6 +203,7 @@
           outline: none;
           font-size: 16px;
           color: #fff;
+          background: none;
         }
         span{
           position: absolute;

@@ -32,7 +32,7 @@
             <span class="iconfont">&#xe655;</span>
             <span class="name">账户中心</span>
           </div>
-          <div @click="hubOnclick(key=4)">
+          <div @click="Invite()">
             <span class="iconfont">&#xe604;</span>
             <span class="name">邀请好友</span>
           </div>
@@ -109,6 +109,15 @@
           showRg(){
             this.flag=true;
             this.type=1;
+          },
+          Invite(){
+            this.flag=false;
+            this.$router.push({
+              path:'./invite',
+              query:{
+
+              }
+            })
           }
         },
         components: {}

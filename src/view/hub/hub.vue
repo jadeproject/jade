@@ -12,6 +12,7 @@
           <hub-one v-if="type==0"></hub-one>
           <hub-two v-if="type==1"></hub-two>
           <hub-three v-if="type==2"></hub-three>
+          <hub-four v-if="type==3"></hub-four>
           <hub-fives v-if="type==4"></hub-fives>
           <hub-six v-if="type==5"></hub-six>
         </div>
@@ -25,6 +26,7 @@
   import HubOne from '@/components/hub/hubOne/hubOne'
   import HubTwo from '@/components/hub/hubTwo/hubTwo'
   import HubThree from '@/components/hub/hubThree/hubThree'
+  import HubFour from '@/components/hub/hubFour/hubFour'
   import HubFives from '@/components/hub/hubFives/hubFives'
   import HubSix  from '@/components/hub/hubSix/hubSix'
   export default {
@@ -84,6 +86,7 @@
       HubOne,
       HubTwo,
       HubThree,
+      HubFour,
       HubFives,
       HubSix
     }
@@ -137,6 +140,8 @@
         box-sizing: border-box;
         .content_R{
           height: 100%;
+          overflow: hidden;
+          background: #fff;
         }
       }
     }

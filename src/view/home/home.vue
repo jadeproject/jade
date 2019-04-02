@@ -347,7 +347,7 @@
         <!-- 常见问题 end-->
 
         <!-- 浮窗 -->
-        <div class="contactbut">
+        <div class="contactbut" v-if="isTop">
             <i-button @click="contactbut('info')" class="int"><span class="iconfont">&#xe678;</span></i-button>
             <i-button @click="contactbut('info')" class="int"><span class="iconfont">&#xe624;</span></i-button>
             <i-button @click="goTopbut()" class="int" ref="btn" title="回到顶部"><span class="iconfont">&#xe623;</span></i-button>
@@ -381,7 +381,7 @@
                         p_txt:"问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情问题文案详情"
                     }
                 ],
-                isTop: true
+                isTop: false
             };
         },
         created() {
@@ -415,15 +415,19 @@
                 let obtn = this.$refs.btn
                 window.onscroll = function () {
                     let osTop = document.documentElement.scrollTop || document.body.scrollTop;
-                    // if (osTop >= clientHeight) {
-                    //     obtn.style.display = 'block'
-                    // } else {
-                    //     obtn.style.display = 'none'
-                    // }
-                    if (!this.isTop) {
-                        clearInterval(timer)
+                    console.log(osTop)
+                    console.log(clientHeight)
+                    if (osTop >= clientHeight) {
+                        console.log(123)
+                        this.isTop = true
+                    } else {
+                        console.log(222)
+                        this.isTop = false
                     }
-                    this.isTop = false
+                    // if (!this.isTop) {
+                    //     clearInterval(timer)
+                    // }
+                    // this.isTop = false
                 }
             },
             // 回到头部
@@ -432,8 +436,8 @@
                     let osTop = document.documentElement.scrollTop || document.body.scrollTop
                     let ispeed = Math.floor(-osTop / 5)
                     document.documentElement.scrollTop = document.body.scrollTop = osTop + ispeed
-                    this.isTop = true
                     if (osTop === 0) {
+                        this.isTop = false
                         clearInterval(timer)
                     }
                 }, 30)

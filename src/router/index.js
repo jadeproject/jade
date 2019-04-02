@@ -11,13 +11,17 @@ export default new Router({
   // base: '/dist',
   routes: [
     {
-      path: '/',
+      path: '/hub',
       name: 'Hub',
       component: Hub
     },{
       path: '/invite',
       name: 'Invite',
       component: Invite 
+    },{
+      path: '/',
+      name: 'Home',
+      component: Home 
     },
     // {
     //   path: '/hub',

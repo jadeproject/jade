@@ -8,25 +8,25 @@
               <img :src="bigUrl" alt="">
             </div>
             <div class="img_rang">
-              <div v-for="(item,index) in imgUrl" :class="{'cureen':cureendIndex==index}" @click="imgSelect(item,index)"><img :src="item.url" alt=""></div>
+              <div v-for="(item,index) in goodsDetail.avatar" :key="index" :class="{'cureen':cureendIndex==index}" @click="imgSelect(item,index)"><img :src="item" alt=""></div>
               <!--<div><img src="../../../assets/img/m_avatar.png" alt=""></div>-->
               <!--<div><img src="../../../assets/img/m_avatar.png" alt=""></div>-->
             </div>
           </div>
           <div class="right">
-            <div class="title_h">白玉吊坠</div>
-            <div class="dec">寓意：幸福，吉祥，如意</div>
-            <div class="dec">材料：A级缅甸白玉</div>
-            <div class="dec">种类：吊坠</div>
+            <div class="title_h">{{goodsDetail.name}}</div>
+            <div class="dec">寓意：{{goodsDetail.moral}}</div>
+            <div class="dec">材料：{{goodsDetail.ms}}</div>
+            <div class="dec">种类：{{goodsDetail.type}}</div>
             <div class="payType">
               支付类型:
-              <div></div>
-              <div></div>
+              <div><span class="iconfont">&#xe678;</span></div>
+              <div><span class="iconfont">&#xe603;</span></div>
             </div>
             <div class="pay_btn">
               <div>1元/月</div>
               <div>
-                <button @click="btnClci()">立即租</button>
+                <button @click="btnClci(1)">立即租</button>
               </div>
             </div>
             <div class="line_type">
@@ -46,7 +46,7 @@
           </div>
         </div>
       </div>
-      <contract ref="contract_show"></contract>
+      <contract ref="contract_show" @gopay="btnClci"></contract>
 
     </div>
 
@@ -55,30 +55,26 @@
 <script type="text/ecmascript-6">
   import contract from './contract'
     export default {
+        props:{
+          gohubDetailDatas:{}
+        },
         data() {
             return {
               flag:false,
               gread:0,
-              imgUrl:[
-                {
-                  url:require("../../../assets/img/m_avatar.png"),
-                  type:0
-                },
-                {
-                  url:require("../../../assets/img/m_avatar.png"),
-                  type:1
-                },
-                {
-                  url:require("../../../assets/img/m_avatar.png"),
-                  type:3
-                }
-              ],
+              goodsDetail:'',
               tt:0,
               bigUrl:''
             };
         },
         created() {
-           this.bigUrl=this.imgUrl[0].url;
+
+        },
+        watch:{
+          gohubDetailDatas(e){
+            this.goodsDetail = e;
+            this.bigUrl=this.goodsDetail.avatar[0];
+          }
         },
         computed:{
           cureendIndex(){
@@ -86,23 +82,24 @@
           }
         },
         mounted() {
-          
+
         },
         methods: {
           show(){
             this.flag=true;
           },
-          btnClci(){
-            if(this.gread=0){
+          btnClci(status){
+            console.log(status)
+            if(status==1){
               this.$refs.contract_show.show();
-            }else if(this.gread=1){
-              this.$emit('showPay',this.gread)
+            }else if(status==2){
+              this.$emit('showPay','1')
             }
 
           },
           imgSelect(item,index){
             this.tt=index;
-            this.bigUrl=item.url;
+            this.bigUrl=item;
           },
           // gread(data){
           //   if(data.key==1){
@@ -142,8 +139,8 @@
           height: 100%;
           padding: 20px 30px;
           .imgbig{
-            width: 100%;
-            height: 100%;
+            width: 300px;
+            height: 300px;
             background-color: #999;
             border-radius: 10px;
             img{
@@ -195,6 +192,8 @@
               width: 20px;
               background-color: #51e96f;
               display: inline-block;
+              text-align: center;
+              color:#fff;
             }
             div:last-child{
               background-color: blue;

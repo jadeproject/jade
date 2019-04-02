@@ -4,89 +4,27 @@
           <div class="title">选择地址:</div>
           <div class="select">
             <ul class="clearfix">
-              <li>
+              <li v-for="(item,index) in address" :key="index" @click="addressClick(item,index)" :class="addressIndex == index ? 'add_cur':''">
                 <div class="info_h">
-                  <span>广东省广州市</span>
-                  <span>小明（收）</span>
+                  <span>{{item.city}}</span>
+                  <span>{{item.name}}（收）</span>
                 </div>
                 <div class="info_d">
-                  万林会万林国际中心
+                  {{item.address}}
                 </div>
                 <div class="info_d">
-                  电话：13480333098
-                </div>
-
-              </li>
-              <li>
-                <div class="info_h">
-                  <span>广东省广州市</span>
-                  <span>小明（收）</span>
-                </div>
-                <div class="info_d">
-                  万林会万林国际中心
-                </div>
-                <div class="info_d">
-                  电话：13480333098
+                  电话：{{item.mobile}} 
                 </div>
               </li>
-              <li>
-                <div class="info_h">
-                  <span>广东省广州市</span>
-                  <span>小明（收）</span>
-                </div>
-                <div class="info_d">
-                  万林会万林国际中心
-                </div>
-                <div class="info_d">
-                  电话：13480333098
-                </div>
-
-              </li>
-              <li>
-                <div class="info_h">
-                  <span>广东省广州市</span>
-                  <span>小明（收）</span>
-                </div>
-                <div class="info_d">
-                  万林会万林国际中心
-                </div>
-                <div class="info_d">
-                  电话：13480333098
-                </div>
-              </li>
-              <!--<li>-->
-                <!--<div class="info_h">-->
-                  <!--<span>广东省广州市</span>-->
-                  <!--<span>小明（收）</span>-->
-                <!--</div>-->
-                <!--<div class="info_d">-->
-                  <!--万林会万林国际中心-->
-                <!--</div>-->
-                <!--<div class="info_d">-->
-                  <!--电话：13480333098-->
-                <!--</div>-->
-
-              <!--</li>-->
             </ul>
           </div>
-        <div class="youhui">
+        <div class="youhui" v-if="coupon !=''">
           <ul class="clearfix">
-            <li>
-              <img src="../../../assets/img/m_avatar.png" alt="">
-              <div class="rang"></div>
-              <div class="dec">
-                <div>优惠券</div>
+            <li v-for="(item,index) in coupon" :key="index" @click="couponClick(item,index)" :class="couponIndex == index ? 'add_cur':''">
+              <div class="moneys">
+                <p>{{item.money}}元</p>
+                <p>租赁可用</p>
               </div>
-            </li>
-            <li>
-              <img src="../../../assets/img/m_avatar.png" alt="">
-              <div class="rang"></div>
-              <div class="dec">
-                <div>优惠券</div>
-              </div>
-            </li>
-            <li>
-              <img src="../../../assets/img/m_avatar.png" alt="">
               <div class="rang"></div>
               <div class="dec">
                 <div>优惠券</div>
@@ -94,11 +32,11 @@
             </li>
           </ul>
         </div>
-        <div class="paySubmint">
+        <div class="paySubmint" v-if="addName !='' && adds != '' && moneys !=''">
           <div class="header_p">
-            <div>实付款：<span>998元</span></div>
-            <div>收件人：<span>小明</span></div>
-            <div>收件地址：<span>万林会万林国际中心</span></div>
+            <div>实付款：<span>{{moneys}}元</span></div>
+            <div>收件人：<span>{{addName}}</span></div>
+            <div>收件地址：<span>{{adds}}</span></div>
           </div>
           <div class="btn" @click="sub">提交订单</div>
 
@@ -113,26 +51,69 @@
 
 <script type="text/ecmascript-6">
     export default {
+        props:{
+          gohubDetailDatas:{}
+        },
         data() {
             return {
               flag:false,
-              showPayT_data:{
-                key:1
-              }
+              addressIndex:-2,
+              address:'',
+              couponIndex:-2,
+              coupon:'',
+              moneys:'',
+              addName:'',
+              adds:'',
+              addCoupon:{
+                address:{},
+                coupon:{}
+              },
             };
         },
         created() {
-
+          
+        },
+        watch:{
+          flag(e){
+            console.log(e)
+            if(e == true){
+              this.moneys = this.gohubDetailDatas.Totalmoney;
+              // 选择收货地址和优惠券
+              this.$get('/index.php/hy/user/address_coupon',{
+                  "uid":"7",
+              })
+              .then((response) => {
+                console.log(response)
+                // 地址
+                this.address = response.data.address;
+                // 优惠券
+                this.coupon = response.data.coupon;
+              })
+            }
+          }
         },
         mounted() {
 
         },
         methods: {
+          // 选择地址
+          addressClick(data,index){
+            this.addressIndex = index;
+            this.addName = data.name;
+            this.adds = data.address;
+            this.addCoupon.address = data;
+          },
+          // 选择优惠券
+          couponClick(data,index){
+            this.couponIndex = index;
+            this.moneys = this.gohubDetailDatas.Totalmoney - data.money;
+            this.addCoupon.coupon = data;
+          },
           show(){
             this.flag=true;
           },
           sub(){
-            this.$emit('showPayT',this.showPayT_data)
+            this.$emit('showPayT',"1",this.addCoupon,this.moneys)
           }
         },
         components: {}
@@ -166,24 +147,25 @@
           float: left;
           margin-left: 4%;
           margin-bottom: 20px;
+          cursor: pointer;
           .info_h{
             font-size: 12px;
             line-height: 20px;
-            span:nth-child(1){
-              float: left;
-            }
-            span:nth-child(2){
-              float: right;
-            }
-
+            overflow: hidden;
           }
+          
           .info_d{
             line-height: 20px;
             font-size: 12px;
           }
         }
-
-
+        .clearfix{
+          .add_cur{
+            background: #5fcdc7;
+            color:#fff;
+            border-color:#5fcdc7;
+          }
+        }
       }
       .youhui{
         margin-top: 10px;
@@ -198,6 +180,8 @@
           border: 1px solid #999;
           margin-bottom: 10px;
           position: relative;
+          cursor: pointer;
+          overflow: hidden;
           img{
             width: 70%;
             height: 100%;
@@ -225,6 +209,23 @@
               margin-left: 20px;
               margin-top: 20px;
 
+            }
+          }
+        }
+        .clearfix{
+          .add_cur{
+            background: #5fcdc7;
+            color:#fff;
+            border-color:#fff;
+          }
+          .moneys{
+            width: 70%;
+            float: left;
+            text-align: right;
+            padding: 20px 0;
+            box-sizing: border-box;
+            p{
+              line-height: 30px;
             }
           }
         }

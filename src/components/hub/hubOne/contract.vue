@@ -53,7 +53,7 @@
           },
           gread_clk(){
             this.flag=false;
-            this.$emit('data',this.greadkey)
+            this.$emit('gopay','2')
           }
         },
         components: {}
@@ -111,6 +111,7 @@
           height: 50px;
 
           button{
+            cursor: pointer;
             outline: none;
             width: 80px;
             height: 40px;

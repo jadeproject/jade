@@ -22,8 +22,8 @@
 
       </div>
       <div class="c clearfix">
-        <div><input type="text"></div>
-        <div><input type="text"></div>
+        <div><input type="text" v-model="NewPsw"></div>
+        <div><input type="text" v-model="qrPsw"></div>
       </div>
       <div class="r">
         <div></div>
@@ -31,7 +31,7 @@
         <div></div>
       </div>
     </div>
-    <div class="btnsub">提交</div>
+    <div class="btnsub" @click="btnSum">提交</div>
 
 
   </div>
@@ -42,7 +42,9 @@
   export default {
     data() {
       return {
-        flag:false
+        flag:false,
+        NewPsw:'',
+        qrPsw:''
       };
     },
     created() {
@@ -54,7 +56,24 @@
     methods: {
       show(){
         this.flag=true;
+      },
+      btnSum(){
+
+        if(this.NewPsw==''){
+          this.$Message.info('请输入新密码');
+        }else if(this.qrPsw==''){
+          this.$Message.info('请输入确认密码')
+        }else {
+          this.$get('/index.php/hy/user/change_pwd_2',{
+            "uid":JSON.parse(window.localStorage.getItem("loginData")).id,
+            "password":this.NewPsw
+          }).then((response)=>{
+            console.log(response.data);
+          })
+        }
+
       }
+
     },
     components: {}
   };

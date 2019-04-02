@@ -38,20 +38,26 @@
 
         },
         mounted() {
-          // this.type=Number(this.$GQ("type"));
+
 
         },
         methods: {
           // 控制右边切换
           longinShow(){
+            // alert("111")
+            // console.log(JSON.parse(window.localStorage.getItem("loginData")));
+            if (JSON.parse(window.localStorage.getItem("loginData"))==null){
+              this.showLogin=false;
+            }
             this.showLogin=!this.showLogin;
             if(this.showLogin==true){
-              this.$refs.loginT.hiden();
-              this.$refs.log_Pop.hiden();
-            }else {
               this.$refs.loginT.show();
               this.$refs.log_Pop.hiden();
+            }else {
+              this.$refs.loginT.hiden();
+              this.$refs.log_Pop.show();
             }
+
 
           },
           // 点击登陆注册显示不同的窗体

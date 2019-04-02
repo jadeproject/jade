@@ -13,8 +13,8 @@
         </div>
         <div class="loginInfo" v-if="type==2">
           <div class="info">
-            <img src="../../assets/img/m_avatar.png" alt="">
-            <span class="name">王小明</span>
+            <img :src="loginState.avatar" :onerror="imgURL" alt="">
+            <span class="name">{{loginState.username}}</span>
           </div>
           <div @click="hubOnclick(key=0)">
             <span class="iconfont">&#xe61f;</span>
@@ -51,11 +51,13 @@
 </template>
 
 <script type="text/ecmascript-6">
-    export default {
+  import {reloadOne} from "../../../common/GetJS";
+
+  export default {
         data() {
             return {
               // 对应不同类型，1代表登陆注册，2代表登陆完成
-              type:2,
+              type:1,
               // 控制显示隐藏
               flag:false,
               loginkey:{
@@ -63,15 +65,41 @@
               },
               regKey:{
                 type:'reg'
-              }
+              },
+              // 登陆时的用户信息
+              loginState:{},
+              // 默认图片
+              imgURL:'this.src="' + require('../../assets/img/m_avatar.png') + '"'
 
             };
         },
+        computed:{
+
+        },
         created() {
+
 
         },
         mounted() {
 
+          if(JSON.parse(window.localStorage.getItem("loginData"))!=''){
+            this.loginState=JSON.parse(window.localStorage.getItem("loginData"));
+            this.type=2;
+            this.flag=false;
+            reloadOne();
+          }
+
+        },
+        activated(){
+          if(JSON.parse(window.localStorage.getItem("loginData"))!=''){
+            this.loginState=JSON.parse(window.localStorage.getItem("loginData"));
+            this.type=2;
+            this.flag=true;
+            reloadOne();
+          }else {
+            this.type=1;
+            this.flag=false;
+          }
 
         },
         methods: {
@@ -100,6 +128,9 @@
           },
           exitOnclik(){
             this.type=1;
+            this.flag=true;
+            // window.localStorage.removeItem('loginData');
+
           },
           // 登陆后弹对应的弹窗
           showLogin(){
@@ -115,7 +146,6 @@
             this.$router.push({
               path:'./invite',
               query:{
-
               }
             })
           }

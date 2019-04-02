@@ -4,6 +4,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state:{
+    // 成功登陆后用户数据
+    loginData:{}
 
   },
   //同步函数commin 相当于methods 是一些数据的处理方法

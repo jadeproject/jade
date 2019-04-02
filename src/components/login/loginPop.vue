@@ -1,178 +1,216 @@
 <template>
-    <div class="loginPop" v-if="flag">
-      <div class="info">
-        <div class="logo_info">
-            <div class="imgIcon"></div>
-            <div class="info_dec">
-               <div>爱上弘毅</div>
-               <div>幸福从此结缘</div>
-            </div>
+  <div class="loginPop" v-if="flag">
+    <div class="info">
+      <div class="logo_info">
+        <div class="imgIcon"></div>
+        <div class="info_dec">
+          <div>爱上弘毅</div>
+          <div>幸福从此结缘</div>
         </div>
-
-        <div class="inp" v-if="login_I">
-          <input type="text" placeholder="请输入电话号码" v-model="phone">
-        </div>
-        <div class="inp" v-if="login_I">
-          <input type="password" placeholder="请输入登陆密码" v-model="psw">
-        </div>
-        <div class="inp" v-if="reg_I">
-          <input type="text" placeholder="请输入昵称" v-model="reg_name">
-        </div>
-        <div class="inp" v-if="reg_I">
-          <input type="text" placeholder="请设置密码" v-model="reg_psw">
-        </div>
-        <div class="inp" v-if="reg_I">
-          <span>+86</span>
-          <input class="phone" type="text" placeholder="请输入手机号" v-model="reg_phone">
-        </div>
-        <div class="inp" v-if="reg_I">
-          <input type="text" placeholder="请输入短信验证码" v-model="reg_yz">
-          <button class='yz' @click="send" ref="btn_bg" :disabled="isDisable">
-            <i v-if="sendMsgDisabled">{{time+'秒后获取'}}</i>
-            <i v-if="!sendMsgDisabled">获取验证码</i>
-          </button>
-        </div>
-        <div class="inp" v-if="reg_I">
-          <input type="text" placeholder="请输入邀请人昵称" v-model='iv_name'>
-        </div>
-        <div class="reade" v-if="reg_I">
-          <Checkbox :checked.sync="single" v-model='single'> 我已经阅读相关服务条款和隐私政策</Checkbox>
-        </div>
-        <div  class="login_btn" @click="login_btn">
-          {{btn_text}}
-        </div>
-        <div class="dec_btn" v-if="login_I">
-          <div>忘记密码</div>
-          <div @click="regClick()">立即注册</div>
-        </div>
-
-
       </div>
 
+      <div class="inp" v-if="login_I">
+        <input type="text" placeholder="请输入电话号码" v-model="phone">
+      </div>
+      <div class="inp" v-if="login_I">
+        <input type="password" placeholder="请输入登陆密码" v-model="psw">
+      </div>
+      <div class="inp" v-if="reg_I">
+        <input type="text" placeholder="请输入昵称" v-model="reg_name">
+      </div>
+      <div class="inp" v-if="reg_I">
+        <input type="password" placeholder="请设置密码" v-model="reg_psw">
+      </div>
+      <div class="inp" v-if="reg_I">
+        <span>+86</span>
+        <input class="phone" type="text" placeholder="请输入手机号" v-model="reg_phone">
+      </div>
+      <div class="inp" v-if="reg_I">
+        <input type="text" placeholder="请输入短信验证码" v-model="reg_yz">
+        <button class='yz' @click="send" ref="btn_bg" :disabled="isDisable">
+          <i v-if="sendMsgDisabled">{{time+'秒后获取'}}</i>
+          <i v-if="!sendMsgDisabled">获取验证码</i>
+        </button>
+      </div>
+      <div class="inp" v-if="reg_I">
+        <input type="text" placeholder="请输入邀请人昵称" v-model='iv_name'>
+      </div>
+      <div class="reade" v-if="reg_I">
+        <Checkbox :checked.sync="single" v-model='single'> 我已经阅读相关服务条款和隐私政策</Checkbox>
+      </div>
+      <div class="login_btn" @click="login_btn">
+        {{btn_text}}
+      </div>
+      <div class="dec_btn" v-if="login_I">
+        <div>忘记密码</div>
+        <div @click="regClick()">立即注册</div>
+      </div>
+
+
     </div>
+
+  </div>
 
 </template>
 
 <script type="text/ecmascript-6">
-    export default {
-        data() {
-            return {
-              login_I:false,
-              reg_I:true,
-              single:false,
-              flag:false,
-              btn_text:'登陆',
-              loginR:{
-                key:1
-              },
-              regR:{
-                key:2
-              },
-              // 登陆手机验证
-              phone:'',
-              // 登陆密码
-              psw:'',
-              // 注册姓名
-              reg_name:'',
-              // 注册密码
-              reg_psw:'',
-              // 注册手机
-              reg_phone:'',
-              // 注册验证码
-              reg_yz:'',
-              // 邀请人姓名
-              iv_name:'',
-              // 发送验证码
-              time: 60, // 发送验证码倒计时
-              sendMsgDisabled: false,
-              isDisable: false
-            };
+  export default {
+    data() {
+      return {
+        login_I: false,
+        reg_I: true,
+        single: false,
+        flag: false,
+        btn_text: '登陆',
+        loginR: {
+          key: 1
         },
-        created() {
-
+        regR: {
+          key: 2
         },
-        mounted() {
+        // 登陆手机验证
+        phone: '',
+        // 登陆密码
+        psw: '',
+        // 注册姓名
+        reg_name: '',
+        // 注册密码
+        reg_psw: '',
+        // 注册手机
+        reg_phone: '',
+        // 注册验证码
+        reg_yz: '',
+        // 邀请人姓名
+        iv_name: '',
+        // 发送验证码
+        time: 60, // 发送验证码倒计时
+        sendMsgDisabled: false,
+        isDisable: false
+      };
+    },
+    created() {
 
-        },
-        methods: {
-          showlogin(){
-            this.login_I=true;
-            this.reg_I=false;
-            this.flag=true;
-            this.btn_text="登陆"
-          },
-          showreg(){
-            this.login_I=false;
-            this.reg_I=true;
-            this.flag=true;
-            this.btn_text="注册"
-          },
-          regClick(){
-            this.showreg();
-          },
-          // 显示登陆状态
-          login_btn(){
-            if( this.btn_text=="登陆"){
-                if(this.phone==''){
-                  this.$Message.info("手机号码不为空");
-                  return;
-                } else if(!(/^1[3|5|7|8][0-9]\d{4,8}$/.test(this.phone))){
-                  this.$Message.info("手机号码有误");
-                  return;
-                }else if(this.psw==''){
-                  this.$Message.info("请输入密码");
-                  return;
-                }else {
-                  this.flag=false;
-                  this.$emit('showLoginR',this.loginR)
-                }
-            }else if(this.btn_text=="注册"){
-              if(this.reg_name==''){
-                this.$Message.info("请输入注册姓名")
-              }else if(this.reg_psw==''){
-                this.$Message.info("请输入注册密码")
-              }else if(this.reg_phone==''){
-                this.$Message.info("请输入手机号码")
-              }else if(!(/^1[3|5|7|8][0-9]\d{4,8}$/.test(this.reg_phone))){
-                this.$Message.info("手机号码有误")
-              } else if(this.reg_yz==''){
-                this.$Message.info("请输入验证码")
-              }else if(this.single==false){
-                this.$Message.info("请阅读隐私条约")
-              }else {
-                this.$Message.info("注册成功")
-                this.showlogin();
-              }
+    },
+    mounted() {
 
-            }
 
-          },
-          send(){
-            let me = this;
-            me.sendMsgDisabled = true;
-            me.isDisable = true;
-            me.$refs.btn_bg.style.backgroundColor = "#a5acb1";
-            let interval = window.setInterval(function () {
-              if ((me.time--) <= 0) {
-                me.$refs.btn_bg.style.backgroundColor = "#5fcdc7";
-                me.time = 60;
-                me.sendMsgDisabled = false;
-                me.isDisable = false;
-                window.clearInterval(interval);
-              }
-            }, 1000);
-          },
-          hiden(){
-            this.flag=false;
+
+    },
+    methods: {
+      showlogin() {
+        this.login_I = true;
+        this.reg_I = false;
+        this.flag = true;
+        this.btn_text = "登陆"
+      },
+      showreg() {
+        this.login_I = false;
+        this.reg_I = true;
+        this.flag = true;
+        this.btn_text = "注册"
+      },
+      regClick() {
+        this.showreg();
+      },
+      // 显示登陆状态
+      login_btn() {
+        if (this.btn_text == "登陆") {
+          if (this.phone == '') {
+            this.$Message.info("手机号码不为空");
+            return;
+          } else if (!(/^1[3|5|7|8][0-9]\d{4,8}$/.test(this.phone))) {
+            this.$Message.info("手机号码有误");
+            return;
+          } else if (this.psw == '') {
+            this.$Message.info("请输入密码");
+            return;
+          } else {
+            this.$get('/index.php/hy/user/login',{
+              "mobile":this.phone,
+              "password":this.psw
+            }).then((response)=>{
+
+              // 将用户数据存放在缓存中
+              window.localStorage.setItem("loginData",JSON.stringify(response.data));
+              // 将用户数据存放在vuex中
+              this.$store.state.loginData=JSON.parse(window.localStorage.getItem("loginData"));
+              this.flag = false;
+              this.$emit('showLoginR', this.loginR);
+
+
+            })
+
           }
-        },
-        components: {}
-    };
+        } else if (this.btn_text == "注册") {
+          if (this.reg_name == '') {
+            this.$Message.info("请输入注册姓名")
+          } else if (this.reg_psw == '') {
+            this.$Message.info("请输入注册密码")
+          } else if (this.reg_phone == '') {
+            this.$Message.info("请输入手机号码")
+          } else if (!(/^1[3|5|7|8][0-9]\d{4,8}$/.test(this.reg_phone))) {
+            this.$Message.info("手机号码有误")
+          } else if (this.reg_yz == '') {
+            this.$Message.info("请输入验证码")
+          } else if (this.single == false) {
+            this.$Message.info("请阅读隐私条约")
+          } else {
+            // 注册接口
+            this.$get('/index.php/hy/Register/reg', {
+              "mobile": this.reg_phone,
+              "username": this.reg_name,
+              "password": this.reg_psw,
+              "pid": this.iv_name,
+              "code": this.reg_yz
+
+            }).then((response) => {
+              console.log(response.data);
+              this.$Message.info("注册成功")
+              this.showlogin();
+
+            })
+
+          }
+
+        }
+
+      },
+      send() {
+        if(!(/^1[3|5|7|8][0-9]\d{4,8}$/.test(this.reg_phone))){
+          this.$Message.info("手机号码有误");
+          return;
+        }
+        let me = this;
+        me.sendMsgDisabled = true;
+        me.isDisable = true;
+        me.$refs.btn_bg.style.backgroundColor = "#a5acb1";
+        let interval = window.setInterval(function () {
+          if ((me.time--) <= 0) {
+            me.$refs.btn_bg.style.backgroundColor = "#5fcdc7";
+            me.time = 60;
+            me.sendMsgDisabled = false;
+            me.isDisable = false;
+            window.clearInterval(interval);
+          }
+        }, 1000);
+        this.$get("/index.php/hy/code/get_code",{
+          "mobile":this.reg_phone
+        }).then((response)=>{
+          console.log(response.data);
+        })
+      },
+      hiden() {
+        this.flag = false;
+      }
+    },
+    components: {}
+  };
 </script>
 
 <style type="text/css" lang="less" scoped>
   @import "../../assets/css/config.less";
-  .loginPop{
+
+  .loginPop {
     padding: 20px 0;
     width: 40%;
     background-color: @mask;
@@ -181,33 +219,40 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
-    .info{
+
+    .info {
       padding: 0px 100px;
-      .logo_info{
+
+      .logo_info {
         margin-top: 20px;
         display: flex;
-        .imgIcon{
+
+        .imgIcon {
           height: 60px;
           width: 60px;
           border-radius: 50%;
-          background-color:#fff;
+          background-color: #fff;
         }
-        .info_dec{
+
+        .info_dec {
           flex: 1;
           margin-left: 20px;
           margin-top: 10px;
           color: #fff;
-          div:nth-child(1){
-           font-size: 18px;
+
+          div:nth-child(1) {
+            font-size: 18px;
           }
-          div:nth-child(2){
+
+          div:nth-child(2) {
             font-size: 14px;
             margin-top: 10px;
           }
         }
 
       }
-      .inp{
+
+      .inp {
         height: 40px;
         width: 100%;
         margin-top: 25px;
@@ -215,7 +260,8 @@
         border-radius: 20px;
         padding-left: 40px;
         position: relative;
-        input{
+
+        input {
           position: absolute;
           left: 40px;
           top: 50%;
@@ -227,7 +273,8 @@
           color: #fff;
           background: none;
         }
-        span{
+
+        span {
           position: absolute;
           left: 10px;
           top: 50%;
@@ -236,7 +283,8 @@
           transform: translateY(-50%);
           color: @bg;
         }
-        .phone{
+
+        .phone {
           position: absolute;
           left: 60px;
           top: 50%;
@@ -247,13 +295,14 @@
           font-size: 16px;
           color: #fff;
         }
-        .yz{
+
+        .yz {
           position: absolute;
           right: 0;
           top: 0;
           background-color: @bg;
           height: 40px;
-          border-radius:0 20px 20px 0;
+          border-radius: 0 20px 20px 0;
           font-size: 16px;
           padding-right: 10px;
           padding-left: 10px;
@@ -268,27 +317,31 @@
 
         }
       }
-      .login_btn{
+
+      .login_btn {
         margin-top: 20px;
-        background-color:@bg;
+        background-color: @bg;
         text-align: center;
         line-height: 40px;
         color: #fff;
         border-radius: 20px;
       }
-      .reade{
+
+      .reade {
         height: 40px;
         text-align: center;
         line-height: 40px;
         font-size: 22px;
       }
-      .dec_btn{
+
+      .dec_btn {
         margin-top: 40px;
         display: flex;
         line-height: 40px;
         color: #fff;
         cursor: pointer;
-        div{
+
+        div {
           flex: 1;
           text-align: center;
         }

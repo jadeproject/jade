@@ -276,3 +276,11 @@ export function getSign(data) {
   return "123456";
   // return md5(`hy${temp.join('')}hy`);
 }
+
+// 页面刷新一次
+export function reloadOne() {
+  if(location.href.indexOf('#reloaded')==-1){
+    location.href=location.href+"#reloaded";
+    location.reload();
+  }
+}

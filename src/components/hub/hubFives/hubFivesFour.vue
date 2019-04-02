@@ -12,7 +12,7 @@
 
     </div>
     <div class="right_p">
-      <div>王小明</div>
+      <div><input type="text"></div>
       <div><Cascader :data="data2"></Cascader></div>
       <div><input type="text"></div>
       <div><input type="text"></div>
@@ -21,7 +21,7 @@
       <div><input type="text"></div>
       <div> <div><input type="text"></div></div>
     </div>
-    <div class="btn">保存收货人信息</div>
+    <div class="btn" @click="btnAddress">保存收货人信息</div>
 
   </div>
 
@@ -62,8 +62,19 @@
     },
     mounted() {
 
+
     },
-    methods: {},
+    methods: {
+      btnAddress(){
+        // this.$get('/index.php/hy/user/add_address',{
+        //   "uid":JSON.parse(window.localStorage.getItem("loginData")).id,
+        //   "name":'',
+        //   "mobile":'',
+        //
+        // })
+      }
+
+    },
     components: {}
   };
 </script>

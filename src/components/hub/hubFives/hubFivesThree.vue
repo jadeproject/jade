@@ -23,14 +23,19 @@
           <div>短信验证码:</div>
         </div>
         <div class="c clearfix">
-          <div><input type="text"></div>
-          <div><input type="text"></div>
-          <div><input type="text"></div>
+          <div><input type="text" v-model="name"></div>
+          <div><input type="text" v-model="yzm"></div>
+          <div><input type="text" v-model="dxyz"></div>
         </div>
         <div class="r">
           <div></div>
-          <div><img src="../../../assets/img/m_avatar.png" alt=""><span class="watch_look">看不清</span></div>
-          <div><button class="btn">发送验证码</button></div>
+          <div><img src="../../../assets/img/m_avatar.png" alt="" ><span @click="btnClick"  class="watch_look">看不清</span></div>
+          <div>
+            <button class='yz' @click="send" ref="btn_bg" :disabled="isDisable">
+              <i v-if="sendMsgDisabled">{{time+'秒后获取'}}</i>
+              <i v-if="!sendMsgDisabled">获取验证码</i>
+            </button>
+          </div>
         </div>
       </div>
       <div class="btnsub" @click="submint">提交</div>
@@ -49,7 +54,14 @@
   export default {
     data() {
       return {
-        flag:true
+        flag:true,
+        name:'',
+        yzm:'',
+        dxyz:'',
+        // 发送验证码
+        time: 60, // 发送验证码倒计时
+        sendMsgDisabled: false,
+        isDisable: false
 
       };
     },
@@ -58,13 +70,62 @@
     },
     mounted() {
 
+
     },
     methods: {
+      // 提交
       submint(){
-        this.flag=false;
-        this.$refs.detail.show();
+        if(this.name==''){
+          this.$Message.info('请输入姓名');
+        }else if(this.yzm==''){
+          this.$Message.info('请输入验证码');
+        }else if(this.dxyz==''){
+          this.$Message.info('请输入短信验证码');
+        }else {
+          this.$get('/index.php/hy/user/change_pwd_1',{
+             "uid":JSON.parse(window.localStorage.getItem("loginData")).id,
+            "username":JSON.parse(window.localStorage.getItem("loginData")).username,
+            "code":this.dxyz,
+            "mobile":JSON.parse(window.localStorage.getItem("loginData")).mobile
+
+          }).then((responese)=>{
+            console.log(responese.data);
+          })
+          // this.flag=false;
+          // this.$refs.detail.show();
+        }
+
+      },
+      send() {
+        // 短信
+        let me = this;
+        me.sendMsgDisabled = true;
+        me.isDisable = true;
+        me.$refs.btn_bg.style.backgroundColor = "#a5acb1";
+        let interval = window.setInterval(function () {
+          if ((me.time--) <= 0) {
+            me.$refs.btn_bg.style.backgroundColor = "#5fcdc7";
+            me.time = 60;
+            me.sendMsgDisabled = false;
+            me.isDisable = false;
+            window.clearInterval(interval);
+          }
+        }, 1000);
+        this.$get("/index.php/hy/code/get_code",{
+          "mobile":JSON.parse(window.localStorage.getItem("loginData")).mobile
+        }).then((response)=>{
+          console.log(response.data);
+        })
+      },
+      btnClick(){
+        this.$get('/index.php?s=/captcha',{
+          'r':0.904090704845454
+        }).then((responese)=>{
+          console.log(responese.data);
+        })
       }
     },
+
     components: {
       hubFivesThreeD
     }
@@ -151,7 +212,8 @@
       .r{
         flex: 1;
         div{
-          margin-top: 60px;
+          margin-top: 50px;
+          margin-left: 20px;
           font-size: 16px;
           img{
             height: 40px;

@@ -74,7 +74,7 @@
           },
           // tab点击到指定位置
           tabClick(data){
-            console.log(data)
+            // console.log(data)
             let timer = null
             timer = setInterval(function () {
                 let osTop = document.documentElement.scrollTop || document.body.scrollTop;

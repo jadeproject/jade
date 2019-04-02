@@ -415,15 +415,15 @@
                 let obtn = this.$refs.btn
                 window.onscroll = function () {
                     let osTop = document.documentElement.scrollTop || document.body.scrollTop;
-                    console.log(osTop)
-                    console.log(clientHeight)
-                    if (osTop >= clientHeight) {
-                        console.log(123)
-                        this.isTop = true
-                    } else {
-                        console.log(222)
-                        this.isTop = false
-                    }
+                    // console.log(osTop)
+                    // console.log(clientHeight)
+                    // if (osTop >= clientHeight) {
+                    //     console.log(123)
+                    //     this.isTop = true
+                    // } else {
+                    //     console.log(222)
+                    //     this.isTop = false
+                    // }
                     // if (!this.isTop) {
                     //     clearInterval(timer)
                     // }

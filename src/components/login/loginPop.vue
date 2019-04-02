@@ -27,7 +27,10 @@
         </div>
         <div class="inp" v-if="reg_I">
           <input type="text" placeholder="请输入短信验证码" v-model="reg_yz">
-          <div class='yz'>发送短信验证码</div>
+          <button class='yz' @click="send" ref="btn_bg" :disabled="isDisable">
+            <i v-if="sendMsgDisabled">{{time+'秒后获取'}}</i>
+            <i v-if="!sendMsgDisabled">获取验证码</i>
+          </button>
         </div>
         <div class="inp" v-if="reg_I">
           <input type="text" placeholder="请输入邀请人昵称" v-model='iv_name'>
@@ -78,7 +81,11 @@
               // 注册验证码
               reg_yz:'',
               // 邀请人姓名
-              iv_name:''
+              iv_name:'',
+              // 发送验证码
+              time: 60, // 发送验证码倒计时
+              sendMsgDisabled: false,
+              isDisable: false
             };
         },
         created() {
@@ -139,6 +146,21 @@
 
             }
 
+          },
+          send(){
+            let me = this;
+            me.sendMsgDisabled = true;
+            me.isDisable = true;
+            me.$refs.btn_bg.style.backgroundColor = "#a5acb1";
+            let interval = window.setInterval(function () {
+              if ((me.time--) <= 0) {
+                me.$refs.btn_bg.style.backgroundColor = "#5fcdc7";
+                me.time = 60;
+                me.sendMsgDisabled = false;
+                me.isDisable = false;
+                window.clearInterval(interval);
+              }
+            }, 1000);
           },
           hiden(){
             this.flag=false;
@@ -238,6 +260,12 @@
           line-height: 40px;
           color: #fff;
           cursor: pointer;
+          width: 150px;
+          height: 100%;
+          outline: none;
+          text-align: center;
+          border: none;
+
         }
       }
       .login_btn{

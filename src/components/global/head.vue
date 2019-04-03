@@ -18,7 +18,7 @@
         </div>
         <div @click="longinShow()" class="icon noselect"><span class="iconfont">&#xe602;</span></div>
       </div>
-      <login ref="loginT" @On_click="log_click"></login>
+      <login ref="loginT" @On_click="log_click" :loginData="loginData"></login>
       <login-pop ref="log_Pop" @showLoginR="logR"></login-pop>
 
     </div>
@@ -31,10 +31,14 @@
         data() {
             return {
               showLogin:true,
-              type:null
+              type:null,
+              loginData:{}
             };
         },
         created() {
+
+          console.log(JSON.parse(window.localStorage.getItem("loginData")));
+          this.loginData=JSON.parse(window.localStorage.getItem("loginData"));
 
         },
         mounted() {
@@ -46,16 +50,16 @@
           longinShow(){
             // alert("111")
             // console.log(JSON.parse(window.localStorage.getItem("loginData")));
-            if (JSON.parse(window.localStorage.getItem("loginData"))==null){
-              this.showLogin=false;
-            }
+            // if (JSON.parse(window.localStorage.getItem("loginData"))==null){
+            //   this.showLogin=false;
+            // }
             this.showLogin=!this.showLogin;
             if(this.showLogin==true){
               this.$refs.loginT.show();
-              this.$refs.log_Pop.hiden();
+              // this.$refs.log_Pop.hiden();
             }else {
               this.$refs.loginT.hiden();
-              this.$refs.log_Pop.show();
+              // this.$refs.log_Pop.show();
             }
 
 

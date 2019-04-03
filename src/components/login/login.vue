@@ -11,10 +11,10 @@
             <span class="name">注册</span>
           </div>
         </div>
-        <div class="loginInfo" v-if="type==2">
+        <div class="loginInfo" v-if="type==2&&loginData!={}">
           <div class="info">
-            <img :src="loginState.avatar" :onerror="imgURL" alt="">
-            <span class="name">{{loginState.username}}</span>
+            <img :src="loginData.avatar" :onerror="imgURL" alt="">
+            <span class="name">{{loginData.username}}</span>
           </div>
           <div @click="hubOnclick(key=0)">
             <span class="iconfont">&#xe61f;</span>
@@ -51,9 +51,14 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import {reloadOne} from "../../../common/GetJS";
+
 
   export default {
+       props:{
+         loginData:{
+           type:Object
+         }
+       },
         data() {
             return {
               // 对应不同类型，1代表登陆注册，2代表登陆完成
@@ -75,6 +80,7 @@
         },
         computed:{
 
+
         },
         created() {
 
@@ -82,27 +88,29 @@
         },
         mounted() {
 
-          if(JSON.parse(window.localStorage.getItem("loginData"))!=''){
+          if(JSON.parse(window.localStorage.getItem("loginData"))!=null){
             this.loginState=JSON.parse(window.localStorage.getItem("loginData"));
             this.type=2;
-            this.flag=false;
-            reloadOne();
+            this.flag=true;
+
           }
 
         },
         activated(){
-          if(JSON.parse(window.localStorage.getItem("loginData"))!=''){
-            this.loginState=JSON.parse(window.localStorage.getItem("loginData"));
-            this.type=2;
-            this.flag=true;
-            reloadOne();
-          }else {
-            this.type=1;
-            this.flag=false;
-          }
+          // if(JSON.parse(window.localStorage.getItem("loginData"))!=''){
+          //   this.loginState=JSON.parse(window.localStorage.getItem("loginData"));
+          //   this.type=2;
+          //   this.flag=true;
+          //   reloadOne();
+          // }else {
+          //   this.type=1;
+          //   this.flag=false;
+          // }
+
 
         },
         methods: {
+
           show(){
              this.flag=true;
           },
@@ -129,7 +137,8 @@
           exitOnclik(){
             this.type=1;
             this.flag=true;
-            // window.localStorage.removeItem('loginData');
+            // 清除缓存
+            window.localStorage.removeItem('loginData');
 
           },
           // 登陆后弹对应的弹窗

@@ -54,6 +54,7 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import {reloadOne} from "../../../common/GetJS";
   export default {
     data() {
       return {
@@ -125,6 +126,7 @@
             this.$Message.info("请输入密码");
             return;
           } else {
+            // 登陆接口
             this.$get('/index.php/hy/user/login',{
               "mobile":this.phone,
               "password":this.psw
@@ -136,8 +138,8 @@
               this.$store.state.loginData=JSON.parse(window.localStorage.getItem("loginData"));
               this.flag = false;
               this.$emit('showLoginR', this.loginR);
-
-
+              this.$router.push('./')
+              reloadOne();
             })
 
           }
@@ -167,6 +169,7 @@
               console.log(response.data);
               this.$Message.info("注册成功")
               this.showlogin();
+
 
             })
 

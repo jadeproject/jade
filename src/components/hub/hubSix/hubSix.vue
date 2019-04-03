@@ -6,7 +6,7 @@
     <div class="rangContent">
       <hub-six-one v-if="tt==0"></hub-six-one>
       <hub-six-two v-if="tt==1"></hub-six-two>
-      <hub-six-three v-if="tt==2"></hub-six-three>
+      <!--<hub-six-three v-if="tt==2"></hub-six-three>-->
     </div>
 
   </div>
@@ -29,10 +29,10 @@
             val:'往期视频',
             type:2
           },
-          {
-            val:'抽奖公告',
-            type:3
-          }
+          // {
+          //   val:'抽奖公告',
+          //   type:3
+          // }
         ],
         tt:0
       };

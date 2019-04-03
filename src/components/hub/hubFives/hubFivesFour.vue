@@ -13,7 +13,17 @@
     </div>
     <div class="right_p">
       <div><input type="text" v-model="name"></div>
-      <div><Cascader :data="data2"  v-model="value2"></Cascader></div>
+      <div>
+        <i-select :model.sync="model1" size="small" style="width:70px;margin-top: 5px">
+          <i-option v-for="item in cityList" :value="item.value">{{ item.label }}</i-option>
+        </i-select>
+        <i-select :model.sync="model1" size="small" style="width:70px;margin-top: 5px">
+          <i-option v-for="item in cityList" :value="item.value">{{ item.label }}</i-option>
+        </i-select>
+        <i-select :model.sync="model1" size="small" style="width:70px;margin-top: 5px">
+          <i-option v-for="item in cityList" :value="item.value">{{ item.label }}</i-option>
+        </i-select>
+      </div>
       <div><input type="text" v-model="addressD"></div>
       <div><input type="text" v-model="phoneD"></div>
       <div><input type="text" v-model="phone"></div>
@@ -55,6 +65,33 @@
             }]
           }]
         }],
+        cityList: [
+          {
+            value: 'beijing',
+            label: '北京市'
+          },
+          {
+            value: 'shanghai',
+            label: '上海市'
+          },
+          {
+            value: 'shenzhen',
+            label: '深圳市'
+          },
+          {
+            value: 'hangzhou',
+            label: '杭州市'
+          },
+          {
+            value: 'nanjing',
+            label: '南京市'
+          },
+          {
+            value: 'chongqing',
+            label: '重庆市'
+          }
+        ],
+        model1: '',
         name:'',
         address:'',
         addressD:'',

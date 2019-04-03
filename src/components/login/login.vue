@@ -28,7 +28,7 @@
             <span class="iconfont">&#xe630;</span>
             <span class="name">活动中心</span>
           </div>
-          <div @click="hubOnclick(key=3)">
+          <div @click="hubOnclick(key=4)">
             <span class="iconfont">&#xe655;</span>
             <span class="name">账户中心</span>
           </div>

@@ -2,24 +2,34 @@
   <div class="peple_Info clearfix">
     <div class="left_p">
       <div>用户名：</div>
-      <div><i>*</i>客户名称：</div>
+      <!--<div><i>*</i>客户名称：</div>-->
       <div><i>*</i>填写地址：</div>
       <div><i>*</i>详细地址：</div>
       <div><i>*</i>联系人：</div>
       <div><i>*</i>手机号码：</div>
-      <div><i>*</i>邮箱：</div>
+      <!--<div><i>*</i>邮箱：</div>-->
     </div>
     <div class="right_p">
       <div>{{loginData.username}}</div>
+      <!--<div><input type="text"></div>-->
+      <div>
+        <i-select :model.sync="model1" size="small" style="width:70px;margin-top: 10px">
+          <i-option v-for="item in cityList" :value="item.value">{{ item.label }}</i-option>
+        </i-select>
+        <i-select :model.sync="model1" size="small" style="width:70px;margin-top: 10px">
+          <i-option v-for="item in cityList" :value="item.value">{{ item.label }}</i-option>
+        </i-select>
+        <i-select :model.sync="model1" size="small" style="width:70px;margin-top: 10px">
+          <i-option v-for="item in cityList" :value="item.value">{{ item.label }}</i-option>
+        </i-select>
+      </div>
       <div><input type="text"></div>
-      <div><Cascader :data="data2"></Cascader></div>
       <div><input type="text"></div>
-      <div><input type="text"></div>
-      <div>{{loginData.mobile}} <span>已验证</span></div>
-      <div> <div><input type="text"></div></div>
+      <div class="phone_inp">{{loginData.mobile}} <span>已验证</span></div>
+      <!--<div> <div><input type="text"></div></div>-->
     </div>
-    <div class="btn">提交</div>
-
+    <div class="btn" @click="subM">提交</div>
+<!---->
   </div>
 
 </template>
@@ -52,6 +62,33 @@
             }]
           }]
         }],
+        cityList: [
+          {
+            value: 'beijing',
+            label: '北京市'
+          },
+          {
+            value: 'shanghai',
+            label: '上海市'
+          },
+          {
+            value: 'shenzhen',
+            label: '深圳市'
+          },
+          {
+            value: 'hangzhou',
+            label: '杭州市'
+          },
+          {
+            value: 'nanjing',
+            label: '南京市'
+          },
+          {
+            value: 'chongqing',
+            label: '重庆市'
+          }
+        ],
+        model1: '',
         loginData:{
 
         }
@@ -64,7 +101,15 @@
       this.loginData=JSON.parse(window.localStorage.getItem("loginData"));
 
     },
-    methods: {},
+    methods: {
+      subM(){
+        this.$get('/index.php/hy/user/my_person',{
+
+        }).then((response)=>{
+          console.log(response.data);
+        })
+      }
+    },
     components: {}
   };
 </script>
@@ -93,13 +138,22 @@
       float: left;
       margin-left: 20px;
       div{
-        margin-top: 20px;
+        margin-top: 18px;
       }
+      .phone_inp{
+        margin-top: 25px;
+      }
+
+
       input{
         border-right: none;
         border-top: none;
         border-left: none;
         outline: none;
+      }
+      span{
+        color: red;
+        font-size: 14px;
       }
 
     }

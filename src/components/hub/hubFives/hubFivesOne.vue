@@ -15,7 +15,10 @@
       </div>
       <div class="info_coupon">
         <div>优惠券：{{infoData.user.coupon_count==null?'0':infoData.user.coupon_count}}</div>
-        <div>赠送优惠券</div>
+        <div @click="cup_cli">赠送优惠券</div>
+        <div class="ercode" v-if="erFlag">
+          <img :src="`http://askxubing.cn/index.php/hy/user/f_coupon?uid=${loginData.id}&sign=123456`" alt="">
+        </div>
       </div>
     </div>
     <div class="infoC">
@@ -39,6 +42,7 @@
       </div>
 
     </div>
+   
   </div>
 
 </template>
@@ -50,7 +54,8 @@
         // 默认图片
         imgURL:'this.src="' + require('../../../assets/img/m_avatar.png') + '"',
         loginData:{},
-        infoData:{}
+        infoData:{},
+        erFlag:false
 
       };
     },
@@ -68,8 +73,21 @@
       })
 
     },
-    methods: {},
-    components: {}
+    methods: {
+      // 赠送优惠券
+      cup_cli(){
+        this.erFlag=!this.erFlag;
+        this.$get('/index.php/hy/user/f_coupon',{
+          "uid":JSON.parse(window.localStorage.getItem("loginData")).id
+        }).then((response)=>{
+          response.data
+        })
+
+      }
+    },
+    components: {
+
+    }
   };
 </script>
 
@@ -78,6 +96,7 @@
   .info{
     width: 100%;
     height: 100%;
+    position: relative;
     .info_T{
       padding: 10px;
       background-color: #f4f4f4;
@@ -116,6 +135,18 @@
           bottom: 5px;
           left: 50%;
           margin-left: -25%;
+        }
+        .ercode{
+          height: 200px;
+          width: 200px;
+          position: absolute;
+          left: 50%;
+          margin-left: -100px;
+          top: 90px;
+          img{
+            height: 100%;
+            width: 100%;
+          }
         }
       }
       .info_deposit,.info_coupon{
@@ -160,6 +191,7 @@
         /*width: 100%;*/
         height: 85%;
         overflow-y: auto;
+        padding-bottom: 30px;
 
       }
       .C{

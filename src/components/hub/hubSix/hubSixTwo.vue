@@ -1,47 +1,15 @@
 <template>
   <div class="Past">
     <div class="Content">
-      <div @click="gohubDetail()">
-        <span>千元尊享往期视频</span>
-        <span class="iconfont">&#xe62a;</span>
-      </div>
-      <div>
-        <span>千元尊享往期视频</span>
-        <span class="iconfont">&#xe62a;</span>
-      </div>
-      <div>
-        <span>千元尊享往期视频</span>
-        <span class="iconfont">&#xe62a;</span>
-      </div>
-      <div>
-        <span>千元尊享往期视频</span>
-        <span class="iconfont">&#xe62a;</span>
-      </div>
-      <div>
-        <span>千元尊享往期视频</span>
-        <span class="iconfont">&#xe62a;</span>
-      </div>
-      <div>
-        <span>千元尊享往期视频</span>
-        <span class="iconfont">&#xe62a;</span>
-      </div>
-      <div>
-        <span>千元尊享往期视频</span>
-        <span class="iconfont">&#xe62a;</span>
-      </div>
-      <div>
-        <span>千元尊享往期视频</span>
-        <span class="iconfont">&#xe62a;</span>
-      </div>
-      <div>
-        <span>千元尊享往期视频</span>
+      <div @click="gohubDetail(item)" v-for="item in videoData">
+        <span>{{item.title}}</span>
         <span class="iconfont">&#xe62a;</span>
       </div>
     </div>
-    <div class="page">
-      <Page :current="2" :total="50" simple></Page>
-    </div>
-    <hub-six-two-d  ref="showDetail"></hub-six-two-d>
+    <!--<div class="page">-->
+      <!--<Page :current="2" :total="50" simple></Page>-->
+    <!--</div>-->
+    <hub-six-two-d  ref="showDetail" :OneData="OneData" :videoDataType="videoDataType"></hub-six-two-d>
   </div>
 </template>
 
@@ -49,7 +17,35 @@
   import hubSixTwoD from './hubSixTwoD'
   export default {
     data() {
-      return {};
+      return {
+        videoData:[
+          {
+            title:'千元日常往期视频',
+            type:1
+          },
+          {
+            title:'万元日常往期视频',
+            type:2
+          },
+          {
+            title:'千元尊享日常往期视频',
+            type:3
+          },
+          {
+            title:'万元尊享日常往期视频',
+            type:4
+          },
+          {
+            title:'0元得日常往期视频',
+            type:5
+          }
+        ],
+        // 获取头部的信息
+        OneData:{},
+        // 获取对应的视频数据
+        videoDataType:[],
+        pageLeng:'1'
+      };
     },
     created() {
 
@@ -59,8 +55,19 @@
     },
     methods: {
       // 点击到视频列表
-      gohubDetail(){
+      gohubDetail(item){
+        this.OneData=item;
         this.$refs.showDetail.show();
+
+        // 请求视频数据
+        this.$get('/index.php/hy/user/last_moive',{
+          "uid":JSON.parse(window.localStorage.getItem("loginData")).id,
+          "type":item.type,
+          "page":this.pageLeng
+        }).then((response)=>{
+         this.videoDataType=response.data
+
+        })
       }
     },
     components: {

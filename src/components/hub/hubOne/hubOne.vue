@@ -66,8 +66,8 @@
           this.getgoods(1)
         },
         mounted() {
-
-
+          this.tt=Number(this.$GQ('tt'))
+          this.getgoods(this.tt+1);
 
         },
         methods: {

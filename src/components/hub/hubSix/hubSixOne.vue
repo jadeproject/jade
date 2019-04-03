@@ -5,14 +5,14 @@
       <img src="../../../assets/img/banner1.png" :onerror="imgUrl" alt="" class="bgI">
       <div class="info">
 
-        <div class="title">千元尊享01期</div>
-        <div class="dec">已参加</div>
-        <div class="dec"><span>123456人</span></div>
+        <div class="title">千元尊享{{qyData.gear}}期</div>
+        <div class="dec">{{qyData.status}}</div>
+        <div class="dec"><span>{{qyData.num}}人</span></div>
         <div class="dec">
-          <Progress :percent="25"></Progress>
+          <Progress :percent="qyData.jindu"></Progress>
         </div>
         <div class="dec">
-          <button>立即参加</button>
+          <button @click="gohubOne(type=0,tt=0)">立即参加</button>
         </div>
         <div class="share">分享到</div>
         <div class="icon">
@@ -30,14 +30,14 @@
       <img src="../../../assets/img/banner1.png" :onerror="imgUrl" alt="" class="bgI">
       <div class="info">
 
-        <div class="title">千元尊享01期</div>
-        <div class="dec">已参加</div>
-        <div class="dec"><span>123456人</span></div>
+        <div class="title">万元尊享{{wyData.gear}}期</div>
+        <div class="dec">{{wyData.status}}</div>
+        <div class="dec"><span>{{wyData.num}}人</span></div>
         <div class="dec">
-          <Progress :percent="25"></Progress>
+          <Progress :percent="wyData.jindu"></Progress>
         </div>
         <div class="dec">
-          <button>立即参加</button>
+          <button @click="gohubOne(type=0,tt=1)">立即参加</button>
         </div>
         <div class="share">分享到</div>
         <div class="icon">
@@ -50,65 +50,69 @@
       </div>
 
     </div>
-    <div class="typeQY">
-      <img src="../../../assets/img/qy.png" alt="" class="iconbg">
-      <img src="../../../assets/img/banner1.png" :onerror="imgUrl" alt="" class="bgI">
-      <div class="info">
+    <!--<div class="typeQY">-->
+      <!--<img src="../../../assets/img/qy.png" alt="" class="iconbg">-->
+      <!--<img src="../../../assets/img/banner1.png" :onerror="imgUrl" alt="" class="bgI">-->
+      <!--<div class="info">-->
 
-        <div class="title">千元尊享01期</div>
-        <div class="dec">已参加</div>
-        <div class="dec"><span>123456人</span></div>
-        <div class="dec">
-          <Progress :percent="25"></Progress>
-        </div>
-        <div class="dec">
-          <button>立即参加</button>
-        </div>
-        <div class="share">分享到</div>
-        <div class="icon">
-          <span class="iconfont">&#xe6cd;</span>
-          <span class="iconfont">&#xe626;</span>
-          <span class="iconfont">&#xe678;</span>
-          <span class="iconfont">&#xe606;</span>
-        </div>
+        <!--<div class="title">千元尊享01期</div>-->
+        <!--<div class="dec">已参加</div>-->
+        <!--<div class="dec"><span>123456人</span></div>-->
+        <!--<div class="dec">-->
+          <!--<Progress :percent="25"></Progress>-->
+        <!--</div>-->
+        <!--<div class="dec">-->
+          <!--<button>立即参加</button>-->
+        <!--</div>-->
+        <!--<div class="share">分享到</div>-->
+        <!--<div class="icon">-->
+          <!--<span class="iconfont">&#xe6cd;</span>-->
+          <!--<span class="iconfont">&#xe626;</span>-->
+          <!--<span class="iconfont">&#xe678;</span>-->
+          <!--<span class="iconfont">&#xe606;</span>-->
+        <!--</div>-->
 
-      </div>
+      <!--</div>-->
 
-    </div>
-    <div class="typeQY">
-      <img src="../../../assets/img/qy.png" alt="" class="iconbg">
-      <img src="../../../assets/img/banner1.png" :onerror="imgUrl" alt="" class="bgI">
-      <div class="info">
+    <!--</div>-->
+    <!--<div class="typeQY">-->
+      <!--<img src="../../../assets/img/qy.png" alt="" class="iconbg">-->
+      <!--<img src="../../../assets/img/banner1.png" :onerror="imgUrl" alt="" class="bgI">-->
+      <!--<div class="info">-->
 
-        <div class="title">千元尊享01期</div>
-        <div class="dec">已参加</div>
-        <div class="dec"><span>123456人</span></div>
-        <div class="dec">
-          <Progress :percent="25"></Progress>
-        </div>
-        <div class="dec">
-          <button>立即参加</button>
-        </div>
-        <div class="share">分享到</div>
-        <div class="icon">
-          <span class="iconfont">&#xe6cd;</span>
-          <span class="iconfont">&#xe626;</span>
-          <span class="iconfont">&#xe678;</span>
-          <span class="iconfont">&#xe606;</span>
-        </div>
+        <!--<div class="title">千元尊享01期</div>-->
+        <!--<div class="dec">已参加</div>-->
+        <!--<div class="dec"><span>123456人</span></div>-->
+        <!--<div class="dec">-->
+          <!--<Progress :percent="25"></Progress>-->
+        <!--</div>-->
+        <!--<div class="dec">-->
+          <!--<button>立即参加</button>-->
+        <!--</div>-->
+        <!--<div class="share">分享到</div>-->
+        <!--<div class="icon">-->
+          <!--<span class="iconfont">&#xe6cd;</span>-->
+          <!--<span class="iconfont">&#xe626;</span>-->
+          <!--<span class="iconfont">&#xe678;</span>-->
+          <!--<span class="iconfont">&#xe606;</span>-->
+        <!--</div>-->
 
-      </div>
+      <!--</div>-->
 
-    </div>
+    <!--</div>-->
   </div>
 
 </template>
 
 <script type="text/ecmascript-6">
+  import {reloadOne} from "../../../../common/GetJS";
+
   export default {
     data() {
       return {
-        imgURL:'this.src="' + require('../../../assets/img/banner1.png') + '"'
+        imgURL:'this.src="' + require('../../../assets/img/banner1.png') + '"',
+        qyData:{},
+        wyData:{}
       };
     },
     computed: {},
@@ -116,10 +120,28 @@
 
     },
     mounted() {
+      this.$get('/index.php/hy/user/draw_type',{
+        "uid":JSON.parse(window.localStorage.getItem("loginData")).id
+      }).then((responese)=>{
+        this.qyData=responese.data.q_array;
+        this.wyData=responese.data.w_array;
+
+      })
 
 
     },
-    methods: {},
+    methods: {
+      gohubOne(type,tt){
+        this.$router.push({
+          path:'./hub',
+          query:{
+            type:type,
+            tt:tt
+          }
+        })
+        reloadOne();
+      }
+    },
     components: {}
   };
 </script>

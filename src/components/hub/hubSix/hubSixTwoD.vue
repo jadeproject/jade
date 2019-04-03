@@ -1,130 +1,140 @@
 <template>
   <div class="videoC" v-show="flag">
     <div class="videoList">
-      <div class="title">千元尊享往期视频：</div>
-      <div class="list">
+      <div class="title">{{OneData.title}}：</div>
+      <div class="list" v-for="item in videoDataType">
         <div class="video_in">
-          <video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">
+          <video :src="`http://askxubing.cn/${item.movie}`"  width="200" height="130" controls="controls">
           标题
           </video>
         </div>
         <div class="txt">
-          第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放
+          第{{item.gear}}期 开奖回放
         </div>
       </div>
-      <div class="list">
-        <div class="video_in">
-          <video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">
-          标题
-          </video>
-        </div>
-        <div class="txt">
-          第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放
-        </div>
-      </div>
-      <div class="list">
-        <div class="video_in">
-          <video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">
-          标题
-          </video>
-        </div>
-        <div class="txt">
-          第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放
-        </div>
-      </div>
-      <div class="list">
-        <div class="video_in">
-          <video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">
-          标题
-          </video>
-        </div>
-        <div class="txt">
-          第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放
-        </div>
-      </div>
-      <div class="list">
-        <div class="video_in">
-          <video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">
-          标题
-          </video>
-        </div>
-        <div class="txt">
-          第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放
-        </div>
-      </div>
-      <div class="list">
-        <div class="video_in">
-          <video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">
-          标题
-          </video>
-        </div>
-        <div class="txt">
-          第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放
-        </div>
-      </div>
-      <div class="list">
-        <div class="video_in">
-          <video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">
-          标题
-          </video>
-        </div>
-        <div class="txt">
-          第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放
-        </div>
-      </div>
-      <div class="list">
-        <div class="video_in">
-          <video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">
-          标题
-          </video>
-        </div>
-        <div class="txt">
-          第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放
-        </div>
-      </div>
-      <div class="list">
-        <div class="video_in">
-          <video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">
-          标题
-          </video>
-        </div>
-        <div class="txt">
-          第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放
-        </div>
-      </div>
-      <div class="list">
-        <div class="video_in">
-          <video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">
-          标题
-          </video>
-        </div>
-        <div class="txt">
-          第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放
-        </div>
-      </div>
-      <div class="list">
-        <div class="video_in">
-          <video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">
-          标题
-          </video>
-        </div>
-        <div class="txt">
-          第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放
-        </div>
-      </div>
+
+      <!--<div class="list">-->
+        <!--<div class="video_in">-->
+          <!--<video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">-->
+          <!--标题-->
+          <!--</video>-->
+        <!--</div>-->
+        <!--<div class="txt">-->
+          <!--第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="list">-->
+        <!--<div class="video_in">-->
+          <!--<video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">-->
+          <!--标题-->
+          <!--</video>-->
+        <!--</div>-->
+        <!--<div class="txt">-->
+          <!--第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="list">-->
+        <!--<div class="video_in">-->
+          <!--<video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">-->
+          <!--标题-->
+          <!--</video>-->
+        <!--</div>-->
+        <!--<div class="txt">-->
+          <!--第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="list">-->
+        <!--<div class="video_in">-->
+          <!--<video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">-->
+          <!--标题-->
+          <!--</video>-->
+        <!--</div>-->
+        <!--<div class="txt">-->
+          <!--第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="list">-->
+        <!--<div class="video_in">-->
+          <!--<video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">-->
+          <!--标题-->
+          <!--</video>-->
+        <!--</div>-->
+        <!--<div class="txt">-->
+          <!--第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="list">-->
+        <!--<div class="video_in">-->
+          <!--<video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">-->
+          <!--标题-->
+          <!--</video>-->
+        <!--</div>-->
+        <!--<div class="txt">-->
+          <!--第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="list">-->
+        <!--<div class="video_in">-->
+          <!--<video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">-->
+          <!--标题-->
+          <!--</video>-->
+        <!--</div>-->
+        <!--<div class="txt">-->
+          <!--第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="list">-->
+        <!--<div class="video_in">-->
+          <!--<video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">-->
+          <!--标题-->
+          <!--</video>-->
+        <!--</div>-->
+        <!--<div class="txt">-->
+          <!--第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="list">-->
+        <!--<div class="video_in">-->
+          <!--<video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">-->
+          <!--标题-->
+          <!--</video>-->
+        <!--</div>-->
+        <!--<div class="txt">-->
+          <!--第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="list">-->
+        <!--<div class="video_in">-->
+          <!--<video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">-->
+          <!--标题-->
+          <!--</video>-->
+        <!--</div>-->
+        <!--<div class="txt">-->
+          <!--第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放-->
+        <!--</div>-->
+      <!--</div>-->
     </div>
     <div class="page">
-      <Page :current="2" :total="50" simple></Page>
+      <Page :current="current" :total="videoDataType[0].AllPage" simple @on-change="Page_cur"></Page>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   export default {
+    props:{
+      OneData:{
+        type:Object
+      },
+      videoDataType:{
+        type: Array
+      }
+    },
     data() {
       return {
         flag:false,
-        gread:0
+        gread:0,
+        current:1
       };
     },
     created() {
@@ -137,6 +147,17 @@
       show(){
         this.flag=true;
       },
+      Page_cur(){
+        this.$emit('data',this.current)
+        // 请求视频数据
+        this.$get('/index.php/hy/user/last_moive',{
+          "uid":JSON.parse(window.localStorage.getItem("loginData")).id,
+          "type":this.OneData.type,
+          "page":this.current
+        }).then((response)=>{
+          this.videoDataType=response.data
+        })
+      }
     },
     components: {}
   };
@@ -209,7 +230,7 @@
   .page{
     position: absolute;
     right: 0px;
-    bottom: 20px;
+    bottom: 50px;
   }
 }
 

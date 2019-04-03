@@ -506,7 +506,7 @@
             overflow: hidden;
         }
         .home_layout{
-            width: 1100px;
+            width: 1000px;
             margin: 0 auto;
         }
         .about_bg{
@@ -644,20 +644,20 @@
                     width: 32.3%;
                     display: inline-block;
                     .imgs{
-                        width: 320px;
-                        height: 320px;
+                        width: 310px;
+                        height: 310px;
                         font-size: 0;
                         margin: 120px auto 70px;
                         position: relative;
                         &::after{
                             content: '';
-                            width: 374px;
-                            height: 374px;
+                            width: 340px;
+                            height: 340px;
                             border:2px solid #F8F2D8;
                             border-radius:50%;
                             position: absolute;
-                            top: -27px;
-                            left: -27px;
+                            top: -16px;
+                            left: -16px;
                         }
                         img{
                             width: 100%;
@@ -720,7 +720,7 @@
             .con_goods_list{
                 overflow: hidden;
                 .goods_left{
-                    width: 350px;
+                    width: 300px;
                     height:580px;
                     background: #fff;
                     float: left;
@@ -731,12 +731,12 @@
                     }
                 }
                 .goods_right{
-                    width: 750px;
+                    width: 700px;
                     height: 580px;
                     float: left;
                     overflow: hidden;
                     .goods_r_list{
-                        width: 230px;
+                        width: 213px;
                         height: 280px;
                         float: left;
                         margin:0 0 20px 20px;
@@ -760,7 +760,7 @@
                             box-sizing: border-box;
                             overflow: hidden;
                             .t_left{
-                                width: 60%;
+                                width: 56%;
                                 overflow: hidden;
                                 float: left;
                                 text-align: left;
@@ -776,7 +776,7 @@
                                 }
                             }
                             .t_right{
-                                width: 40%;
+                                width: 44%;
                                 float: right;
                                 padding: 22px 0;
                                 box-sizing: border-box; 
@@ -995,7 +995,7 @@
                     float: left;
                  }
                  .centers{
-                     width: 850px;
+                     width: 750px;
                      height: 60px;
                      float: left;
                      color: #fff;

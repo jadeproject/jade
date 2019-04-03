@@ -107,7 +107,7 @@
     padding-top: 80px;
     .list{
       overflow: hidden;
-      width: 1100px;
+      width: 1000px;
       margin: 0 auto;
       // position:fixed;
       // padding: 0 100px;
@@ -117,7 +117,7 @@
       // right:0;
       // z-index: -1;
       .left{
-        width: 200px;
+        width: 20%;
         height: 100%;
         float: left;
         overflow: auto;
@@ -139,7 +139,7 @@
         height: 100%;
         float: left;
         overflow: hidden;
-        width: 900px;
+        width: 80%;
         padding: 20px;
         box-sizing: border-box;
         .content_R{

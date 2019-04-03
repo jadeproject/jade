@@ -10,7 +10,7 @@
         <div>2</div>
         <span>修改登陆密码</span>
       </div>
-      <div class="line2">
+      <div :class="linebg">
         <div>3</div>
         <span>完成修改</span>
       </div>
@@ -44,7 +44,8 @@
       return {
         flag:false,
         NewPsw:'',
-        qrPsw:''
+        qrPsw:'',
+        linebg:'line2'
       };
     },
     created() {
@@ -69,6 +70,9 @@
             "password":this.NewPsw
           }).then((response)=>{
             console.log(response.data);
+            if(response.code==200){
+              this.linebg='line'
+            }
           })
         }
 

@@ -138,6 +138,7 @@
               this.$store.state.loginData=JSON.parse(window.localStorage.getItem("loginData"));
               this.flag = false;
               this.$emit('showLoginR', this.loginR);
+              // 刷新获取数据
               this.$router.push('./')
               reloadOne();
             })

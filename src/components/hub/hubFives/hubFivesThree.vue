@@ -90,9 +90,10 @@
 
           }).then((responese)=>{
             console.log(responese.data);
+            this.flag=false;
+            this.$refs.detail.show();
           })
-          // this.flag=false;
-          // this.$refs.detail.show();
+
         }
 
       },

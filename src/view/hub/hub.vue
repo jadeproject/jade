@@ -75,11 +75,15 @@
       this.type=Number(this.$GQ("type"));
       console.log(this.$GQ("type"));
 
+
     },
     methods: {
       select_Item(index){
         this.tt=index;
         this.type=index;
+        if(this.type==3){
+          this.$router.push('./invite')
+        }
       }
     },
     components: {

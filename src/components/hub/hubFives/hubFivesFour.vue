@@ -4,22 +4,22 @@
       <div>收货人：</div>
       <div><i>*</i>所在地区：</div>
       <div><i>*</i>详细地址：</div>
+      <div><i>*</i>固定电话(选填)：</div>
       <div><i>*</i>手机号：</div>
-      <div><i>*</i>固定电话：</div>
       <div><i>*</i>邮箱：</div>
       <div><i>*</i>紧急联系人：</div>
       <div><i>*</i>联系人电话：</div>
 
     </div>
     <div class="right_p">
-      <div><input type="text"></div>
-      <div><Cascader :data="data2"></Cascader></div>
-      <div><input type="text"></div>
-      <div><input type="text"></div>
-      <div><input type="text"></div>
-      <div><input type="text"></div>
-      <div><input type="text"></div>
-      <div> <div><input type="text"></div></div>
+      <div><input type="text" v-model="name"></div>
+      <div><Cascader :data="data2"  v-model="value2"></Cascader></div>
+      <div><input type="text" v-model="addressD"></div>
+      <div><input type="text" v-model="phoneD"></div>
+      <div><input type="text" v-model="phone"></div>
+      <div><input type="text" v-model="em"></div>
+      <div><input type="text" v-model="jjName"></div>
+      <div> <div><input type="text" v-model="jjPhone"></div></div>
     </div>
     <div class="btn" @click="btnAddress">保存收货人信息</div>
 
@@ -31,47 +31,75 @@
   export default {
     data() {
       return {
+        value2: [],
         data2: [{
-          value: 'zhejiang',
+          value: '浙江',
           label: '浙江',
           children: [{
-            value: 'hangzhou',
+            value: '杭州',
             label: '杭州',
             children: [{
-              value: 'xihu',
+              value: '西湖',
               label: '西湖'
             }]
           }]
         }, {
-          value: 'jiangsu',
+          value: '江苏',
           label: '江苏',
           disabled: true,
           children: [{
-            value: 'nanjing',
+            value: '南京',
             label: '南京',
             children: [{
-              value: 'zhonghuamen',
+              value: '中华门',
               label: '中华门'
             }]
           }]
-        }]
+        }],
+        name:'',
+        address:'',
+        addressD:'',
+        phone:'',
+        phoneD:'',
+        em:'',
+        jjName:'',
+        jjPhone:''
+
       };
     },
     created() {
 
     },
     mounted() {
+      console.log(this.value2);
 
 
     },
     methods: {
       btnAddress(){
-        // this.$get('/index.php/hy/user/add_address',{
-        //   "uid":JSON.parse(window.localStorage.getItem("loginData")).id,
-        //   "name":'',
-        //   "mobile":'',
-        //
-        // })
+        console.log(this.value2);
+        // 拼接地址入参
+        this.address=`${this.value2[0]},${this.value2[1]},${this.value2[2]}`
+        if(this.name==''){
+          this.$Message.info('请输人姓名')
+        }else if(this.phone==''){
+          this.$Message.info('请输入手机号')
+        }else if(this.value2.length==0){
+          this.$Message.info('请选择地址');
+        }else {
+          this.$get('/index.php/hy/user/add_address',{
+            "uid":JSON.parse(window.localStorage.getItem("loginData")).id,
+            "name":this.name,
+            "mobile":this.phone,
+            'city':this.address,
+            'address':this.addressD
+          }).then((response)=>{
+            if(response.code==200){
+              this.$Message.info('提交数据成功');
+            }
+          })
+        }
+
       }
 
     },

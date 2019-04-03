@@ -10,12 +10,12 @@
       <div><i>*</i>邮箱：</div>
     </div>
     <div class="right_p">
-      <div>王小明</div>
+      <div>{{loginData.username}}</div>
       <div><input type="text"></div>
       <div><Cascader :data="data2"></Cascader></div>
       <div><input type="text"></div>
       <div><input type="text"></div>
-      <div>13480****083 <span>已验证</span></div>
+      <div>{{loginData.mobile}} <span>已验证</span></div>
       <div> <div><input type="text"></div></div>
     </div>
     <div class="btn">提交</div>
@@ -51,13 +51,17 @@
               label: '中华门'
             }]
           }]
-        }]
+        }],
+        loginData:{
+
+        }
       };
     },
     created() {
 
     },
     mounted() {
+      this.loginData=JSON.parse(window.localStorage.getItem("loginData"));
 
     },
     methods: {},

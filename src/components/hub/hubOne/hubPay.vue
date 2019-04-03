@@ -162,6 +162,8 @@
           }
         }
         .clearfix{
+          overflow: auto;
+          height: 122px;
           .add_cur{
             background: #5fcdc7;
             color:#fff;
@@ -235,18 +237,22 @@
         }
       }
       .paySubmint{
-        position: absolute;
-        right: 0px;
-        bottom: 0px;
+        position: relative;
+        // right: 0px;
+        // bottom: 0px;
+        margin-top: 20px;
         padding: 10px;
         background-color: @bg;
         .header_p{
-          padding: 5px;
+          padding:10px 20px;
+          box-sizing: border-box;
           background-color: #fff;
           div{
             margin-top: 10px;
             font-size: 16px;
             font-weight: 700;
+            width: 70%;
+            display: inline-block;
             span{
               font-weight: 400;
               margin-left: 10px;
@@ -255,8 +261,14 @@
 
         }
         .btn{
+          width: 20%;
           height: 40px;
+          border-radius: 20px;
           line-height: 40px;
+          position: absolute;
+          right:20px;
+          top: 50%;
+          margin-top: -20px;
           text-align: center;
           background-color: @bg;
           color: #fff;

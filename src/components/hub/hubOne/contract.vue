@@ -16,6 +16,9 @@
         <div class="dec">
           点击“同意”，就表示您同意上述以上内容 <span>"爱上弘毅用户协议"，关于爱上弘毅个人隐私</span>
         </div>
+        <div class="dec">
+          姓名：<i-input v-model="value1" autofocus placeholder="请输入姓名" />
+        </div>
         <div class="btn">
           <div><button class="close" @click="close_btn">取消</button></div>
           <div><button class="gread" @click="gread_clk">同意</button></div>
@@ -32,6 +35,7 @@
         data() {
             return {
               flag:false,
+              value1: '',
               greadkey:{
                 key:1
               }
@@ -52,6 +56,10 @@
             this.flag=false;
           },
           gread_clk(){
+            if(this.value1 == ''){
+              alert("姓名输入不能为空")
+              return;
+            }
             this.flag=false;
             this.$emit('gopay','2')
           }
@@ -59,7 +67,11 @@
         components: {}
     };
 </script>
-
+<style>
+  .ivu-input-wrapper{
+    width:80%;
+  }
+</style>
 <style type="text/css" lang="less" scoped>
   @import "../../../assets/css/config";
   .contract{

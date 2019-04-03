@@ -129,7 +129,8 @@
             // 登陆接口
             this.$get('/index.php/hy/user/login',{
               "mobile":this.phone,
-              "password":this.psw
+              "password":this.psw,
+              "coupon":this.$GQ('coupon')
             }).then((response)=>{
 
               // 将用户数据存放在缓存中

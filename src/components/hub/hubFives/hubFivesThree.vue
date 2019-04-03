@@ -18,7 +18,7 @@
       </div>
       <div class="modify clearfix">
         <div class="l clearfix">
-          <div>账户名:</div>
+          <div>账户名{{randNum}}:</div>
           <div>验证码:</div>
           <div>短信验证码:</div>
         </div>
@@ -29,7 +29,7 @@
         </div>
         <div class="r">
           <div></div>
-          <div><img src="../../../assets/img/m_avatar.png" alt="" ><span @click="btnClick"  class="watch_look">看不清</span></div>
+          <div><img :src="`http://askxubing.cn/index.php?s=/captcha&r=${randNum}`" alt="" ><span @click="btnClick"  class="watch_look">看不清</span></div>
           <div>
             <button class='yz' @click="send" ref="btn_bg" :disabled="isDisable">
               <i v-if="sendMsgDisabled">{{time+'秒后获取'}}</i>
@@ -51,6 +51,7 @@
 
 <script type="text/ecmascript-6">
   import hubFivesThreeD from './hubFivesThreeD'
+  import {sum} from "../../../../common/GetJS";
   export default {
     data() {
       return {
@@ -61,7 +62,8 @@
         // 发送验证码
         time: 60, // 发送验证码倒计时
         sendMsgDisabled: false,
-        isDisable: false
+        isDisable: false,
+        randNum:''
 
       };
     },
@@ -69,6 +71,13 @@
 
     },
     mounted() {
+
+      // 对接图形生成码
+      // 生成随机数
+      this.randNum=sum(1,100);
+      this.showTx(this.randNum);
+
+      console.log();
 
 
     },
@@ -119,12 +128,20 @@
         })
       },
       btnClick(){
-        this.$get('/index.php?s=/captcha',{
-          'r':0.904090704845454
+        this.randNum=sum(1,100);
+        this.showTx(this.randNum);
+
+      },
+      // 获取图形验证码
+      showTx(Num){
+        this.$get('/index.php',{
+          's':'/captcha',
+          'r':Num
         }).then((responese)=>{
           console.log(responese.data);
         })
       }
+
     },
 
     components: {
@@ -218,7 +235,7 @@
           font-size: 16px;
           img{
             height: 40px;
-            width: 60px;
+            width: 80px;
             vertical-align: middle;
             margin-right: 20px;
             .atch_look{

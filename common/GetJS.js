@@ -284,3 +284,15 @@ export function reloadOne() {
     location.reload();
   }
 }
+
+// 随机数
+/**
+ *
+ * @param m 开始   1
+ * @param n 到结束 100
+ * @returns {number}
+ */
+export function sum (m,n){
+  var num = Math.floor(Math.random()*(m - n) + n);
+  return num;
+}

@@ -6,15 +6,15 @@
         <div>{{loginData.username}}</div>
       </div>
       <div class="info_Balance">
-        <div>账户余额：80000.00</div>
+        <div>账户余额：{{infoData.user.money}}</div>
         <div>提现</div>
       </div>
       <div class="info_deposit">
-        <div>押金余额：80000.00</div>
-        <div>充值</div>
+        <div>押金余额：{{infoData.user.deposit==null?'0':infoData.user.deposit}}</div>
+        <!--<div>充值</div>-->
       </div>
       <div class="info_coupon">
-        <div>优惠券：3</div>
+        <div>优惠券：{{infoData.user.coupon_count==null?'0':infoData.user.coupon_count}}</div>
         <div>赠送优惠券</div>
       </div>
     </div>
@@ -26,61 +26,15 @@
         <div class="dec">备注</div>
       </div>
       <div class="cT">
-        <div class="C">
-          <div>2018/3/21 12:00</div>
+        <div class="C" v-for="item in infoData.asset">
+          <div>{{item.time==null?'--':item.time}}</div>
           <div>
-            <span class="in">在线充值</span>
+            <span class="in">{{item.title==null?'--':item.title}}</span>
             <!--<span class="out">体现金额</span>-->
           </div>
-          <div>1000.00</div>
-          <div>在2019-03-18 22:15:17 平台提现:1000元 订单号：GW1234567 </div>
+          <div>{{item.money}}元</div>
+          <div>{{item.desc}} </div>
         </div>
-        <div class="C">
-          <div>2018/3/21 12:00</div>
-          <div>
-            <span class="in">在线充值</span>
-            <!--<span class="out">体现金额</span>-->
-          </div>
-          <div>1000.00</div>
-          <div>在2019-03-18 22:15:17 平台提现:1000元 订单号：GW1234567 </div>
-        </div>
-        <div class="C">
-          <div>2018/3/21 12:00</div>
-          <div>
-            <span class="in">在线充值</span>
-            <!--<span class="out">体现金额</span>-->
-          </div>
-          <div>1000.00</div>
-          <div>在2019-03-18 22:15:17 平台提现:1000元 订单号：GW1234567 </div>
-        </div>
-        <div class="C">
-          <div>2018/3/21 12:00</div>
-          <div>
-            <span class="in">在线充值</span>
-            <!--<span class="out">体现金额</span>-->
-          </div>
-          <div>1000.00</div>
-          <div>在2019-03-18 22:15:17 平台提现:1000元 订单号：GW1234567 </div>
-        </div>
-        <div class="C">
-          <div>2018/3/21 12:00</div>
-          <div>
-            <span class="in">在线充值</span>
-            <!--<span class="out">体现金额</span>-->
-          </div>
-          <div>1000.00</div>
-          <div>在2019-03-18 22:15:17 平台提现:1000元 订单号：GW1234567 </div>
-        </div>
-        <div class="C">
-          <div>2018/3/21 12:00</div>
-          <div>
-            <span class="in">在线充值</span>
-            <!--<span class="out">体现金额</span>-->
-          </div>
-          <div>1000.00</div>
-          <div>在2019-03-18 22:15:17 平台提现:1000元 订单号：GW1234567 </div>
-        </div>
-
 
       </div>
 
@@ -95,7 +49,8 @@
       return {
         // 默认图片
         imgURL:'this.src="' + require('../../../assets/img/m_avatar.png') + '"',
-        loginData:{}
+        loginData:{},
+        infoData:{}
 
       };
     },
@@ -104,6 +59,13 @@
     },
     mounted() {
       this.loginData=JSON.parse(window.localStorage.getItem("loginData"));
+      this.$get('/index.php/hy/user/my_asset',{
+        "uid":JSON.parse(window.localStorage.getItem("loginData")).id
+
+      }).then((responese)=>{
+          this.infoData=responese.data;
+        console.log(this.infoData);
+      })
 
     },
     methods: {},

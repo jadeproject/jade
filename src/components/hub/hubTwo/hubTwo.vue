@@ -15,159 +15,16 @@
       <span>交易状态</span>
     </div>
     <div class="rang_content">
-      <div class="itemC">
-        <span>GT2019031563</span>
-        <span>千元尊享</span>
-        <span>白玉吊坠</span>
-        <span>1000元/12月*1</span>
+      <div class="itemC" v-for="item in order">
+        <span>{{item.id}}</span>
+        <span>{{item.dang}}</span>
+        <span>{{item.jade_name}}</span>
+        <span>{{item.money}}</span>
         <span>1件</span>
-        <span>1012元</span>
-        <span>2019/3/15-2019/3/19</span>
-        <span>ws728839</span>
-        <span>签订纸质合同</span>
-      </div>
-      <div class="itemC">
-        <span>GT2019031563</span>
-        <span>千元尊享</span>
-        <span>白玉吊坠</span>
-        <span>1000元/12月*1</span>
-        <span>1件</span>
-        <span>1012元</span>
-        <span>2019/3/15-2019/3/19</span>
-        <span>ws728839</span>
-        <span>签订纸质合同</span>
-      </div>
-      <div class="itemC">
-        <span>GT2019031563</span>
-        <span>千元尊享</span>
-        <span>白玉吊坠</span>
-        <span>1000元/12月*1</span>
-        <span>1件</span>
-        <span>1012元</span>
-        <span>2019/3/15-2019/3/19</span>
-        <span>ws728839</span>
-        <span>签订纸质合同</span>
-      </div>
-      <div class="itemC">
-        <span>GT2019031563</span>
-        <span>千元尊享</span>
-        <span>白玉吊坠</span>
-        <span>1000元/12月*1</span>
-        <span>1件</span>
-        <span>1012元</span>
-        <span>2019/3/15-2019/3/19</span>
-        <span>ws728839</span>
-        <span>签订纸质合同</span>
-      </div>
-      <div class="itemC">
-        <span>GT2019031563</span>
-        <span>千元尊享</span>
-        <span>白玉吊坠</span>
-        <span>1000元/12月*1</span>
-        <span>1件</span>
-        <span>1012元</span>
-        <span>2019/3/15-2019/3/19</span>
-        <span>ws728839</span>
-        <span>签订纸质合同</span>
-      </div>
-      <div class="itemC">
-        <span>GT2019031563</span>
-        <span>千元尊享</span>
-        <span>白玉吊坠</span>
-        <span>1000元/12月*1</span>
-        <span>1件</span>
-        <span>1012元</span>
-        <span>2019/3/15-2019/3/19</span>
-        <span>ws728839</span>
-        <span>签订纸质合同</span>
-      </div>
-      <div class="itemC">
-        <span>GT2019031563</span>
-        <span>千元尊享</span>
-        <span>白玉吊坠</span>
-        <span>1000元/12月*1</span>
-        <span>1件</span>
-        <span>1012元</span>
-        <span>2019/3/15-2019/3/19</span>
-        <span>ws728839</span>
-        <span>签订纸质合同</span>
-      </div>
-      <div class="itemC">
-        <span>GT2019031563</span>
-        <span>千元尊享</span>
-        <span>白玉吊坠</span>
-        <span>1000元/12月*1</span>
-        <span>1件</span>
-        <span>1012元</span>
-        <span>2019/3/15-2019/3/19</span>
-        <span>ws728839</span>
-        <span>签订纸质合同</span>
-      </div>
-      <div class="itemC">
-        <span>GT2019031563</span>
-        <span>千元尊享</span>
-        <span>白玉吊坠</span>
-        <span>1000元/12月*1</span>
-        <span>1件</span>
-        <span>1012元</span>
-        <span>2019/3/15-2019/3/19</span>
-        <span>ws728839</span>
-        <span>签订纸质合同</span>
-      </div>
-      <div class="itemC">
-        <span>GT2019031563</span>
-        <span>千元尊享</span>
-        <span>白玉吊坠</span>
-        <span>1000元/12月*1</span>
-        <span>1件</span>
-        <span>1012元</span>
-        <span>2019/3/15-2019/3/19</span>
-        <span>ws728839</span>
-        <span>签订纸质合同</span>
-      </div>
-      <div class="itemC">
-        <span>GT2019031563</span>
-        <span>千元尊享</span>
-        <span>白玉吊坠</span>
-        <span>1000元/12月*1</span>
-        <span>1件</span>
-        <span>1012元</span>
-        <span>2019/3/15-2019/3/19</span>
-        <span>ws728839</span>
-        <span>签订纸质合同</span>
-      </div>
-      <div class="itemC">
-        <span>GT2019031563</span>
-        <span>千元尊享</span>
-        <span>白玉吊坠</span>
-        <span>1000元/12月*1</span>
-        <span>1件</span>
-        <span>1012元</span>
-        <span>2019/3/15-2019/3/19</span>
-        <span>ws728839</span>
-        <span>签订纸质合同</span>
-      </div>
-      <div class="itemC">
-        <span>GT2019031563</span>
-        <span>千元尊享</span>
-        <span>白玉吊坠</span>
-        <span>1000元/12月*1</span>
-        <span>1件</span>
-        <span>1012元</span>
-        <span>2019/3/15-2019/3/19</span>
-        <span>ws728839</span>
-        <span>签订纸质合同</span>
-      </div>
-      <div class="itemC">
-        <span>GT2019031563</span>
-        <span>千元尊享</span>
-        <span>白玉吊坠</span>
-        <span>1000元/12月*1</span>
-        <span>1件</span>
-        <span>1012元</span>
-        <span>2019/3/15-2019/3/19</span>
-        <span>ws728839</span>
-        <span>签订纸质合同</span>
+        <span>{{item.payment}}</span>
+        <span>{{item.time}}</span>
+        <span>{{item.number}}<i v-if="item.prize=='1'">中奖</i></span>
+        <span>{{item.status}}</span>
       </div>
 
 
@@ -180,12 +37,20 @@
 <script type="text/ecmascript-6">
   export default {
     data() {
-      return {};
+      return {
+        order:[]
+      };
     },
     created() {
 
     },
     mounted() {
+      this.$get('/index.php/hy/user/my_order',{
+        // "uid":JSON.parse(window.localStorage.getItem("loginData")).id
+        "uid":'7'
+      }).then((response)=>{
+        this.order=response.data
+      })
 
     },
     methods: {},
@@ -220,7 +85,7 @@
         text-align: center;
       }
       span:nth-child(7){
-        width: 30%;
+
       }
 
     }
@@ -232,14 +97,29 @@
       background-color: #fff;
       .itemC{
         font-weight: 400;
-        font-size: 12px;
+        font-size: 10px;
+        padding: 6px 0;
+        line-height: 22px;
         span:nth-child(4),span:nth-child(5),span:nth-child(6),span:nth-child(8){
           color: @bg;
+          i{
+            background-color: red;
+            padding: 3px;
+            color: #fff;
+            border-radius: 10px;
+          }
         }
 
         span:nth-child(7){
-          line-height: 20px;
+          line-height: 10px;
+          /*padding: 5px 0;*/
+          font-size: 10px !important;
+          width: 100px !important;
         }
+        span:nth-child(4){
+          line-height: 15px;
+        }
+
       }
     }
 

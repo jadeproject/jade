@@ -145,7 +145,7 @@
     not supported by any browser */
 }
 .inviteC{
-    margin-top: 40px;
+    margin-top: 80px;
     .banner{
         width:100%;
         overflow: hidden;
@@ -159,7 +159,7 @@
             height: 330px;
             position: absolute;
             left: 50%;
-            bottom: 50px;
+            bottom: 0;
             margin-left: -175px;
             font-size: 20px;
             text-align: center;
@@ -205,7 +205,7 @@
         overflow: hidden;
     }
     .ihsteps_layout{
-        width: 1100px;
+        width: 1000px;
         margin: 0 auto;
     }
     .steps_bg{
@@ -331,7 +331,7 @@
                 margin: 0 auto;
                 border-radius: 10px;
                 .list{
-                    width: 280px;
+                    width: 237px;
                     background: #8AABE1;
                     display: inline-block;
                     font-size: 0;

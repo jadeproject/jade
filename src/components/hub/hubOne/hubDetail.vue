@@ -135,7 +135,7 @@
         width: 100%;
         display:flex;
         .left{
-          width:40%;
+          // width:40%;
           height: 100%;
           padding: 20px 30px;
           .imgbig{

@@ -1,5 +1,5 @@
 <template>
-    <div class="loginC_bg" v-if="flag">
+    <div class="loginC_bg" v-if="flag" @click.stop="hiden()">
       <div class="loginC">
         <div class="noLogin" v-if="type==1">
           <div @click="loginPonClick()">
@@ -169,9 +169,18 @@
     width: 100%;
     height: 100%;
     position: fixed;
+    background-color: rgba(0,0,0,0.3);/* IE9、标准浏览器、IE6和部分IE7内核的浏览器(如QQ浏览器)会读懂 */
+  }
+  @media \0screen\,screen\9 {/* 只支持IE6、7、8 */
+    .loginC_bg{
+      background-color:#000000;
+      filter:Alpha(opacity=50);
+      position:static; /* IE6、7、8只能设置position:static(默认属性) ，否则会导致子元素继承Alpha值 */
+      *zoom:1; /* 激活IE6、7的haslayout属性，让它读懂Alpha */
+    }
   }
   .loginC{
-    width: 1100px;
+    width: 1000px;
     z-index: 10;
     // position: fixed;
     // top: 80px;

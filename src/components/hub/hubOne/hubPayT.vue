@@ -1,5 +1,5 @@
 <template>
-  <div class="hubPayC" v-if="flag">
+  <div class="hubPayC" v-show="flag">
     <div class="titleT">订单支付</div>
     <div class="address">
       <div class="title">Hi,小明</div>
@@ -29,7 +29,7 @@
             <div>微信支付</div>
           </div>
           <div v-if="deviceStatus == true" class="r">
-            <img :src="alipayImg" alt="">
+            <canvas id="alipaycanvas" width="186px" height="190px"></canvas>
             <div>支付宝支付</div>
           </div>
           <div  v-if="deviceStatus == false" class="zhifubao" @click="iphoneClick()">点击调用支付宝进行支付</div>
@@ -43,6 +43,7 @@
 </template>
 
 <script type="text/ecmascript-6">
+var QRCode = require('qrcode')
   export default {
     props:{
       gohubDetailDatas:{},
@@ -85,6 +86,16 @@
           //   document.body.appendChild(div)
           //   document.forms[0].submit()
           // })
+          let weixinpaycanvas = document.getElementById('weixinpaycanvas')
+          this.alipayImg = "http://askxubing.cn/index.php/hy/Alipay/wap_alipay_order?uid=2&d_id=1&j_id=4&sign=123456";
+          let alipaycanvas = document.getElementById('alipaycanvas')
+          QRCode.toCanvas(alipaycanvas, this.alipayImg, (error) => {
+            if (error) {
+              console.log(error)
+            } else {
+              console.log('success')
+            }
+          })
           if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
             // 移动端打开
             console.log("移动端打开")
@@ -218,13 +229,13 @@
             }
           }
           .l,.r{
-            width: 130px;
-            height: 130px;
+            width: 180px;
+            height: 180px;
             flex: 1;
             text-align: center;
             img{
-              height: 130px;
-              width: 130px;
+              height: 194px;
+              width: 194px;
               display: inline-block;
               background-color: #f4f4f4;
             }
@@ -235,6 +246,11 @@
           .r{
             div{
               margin-top: 20px;
+            }
+            #alipaycanvas{
+              width: 100%;
+              height: 100%;
+              margin: 0 auto;
             }
           }
 

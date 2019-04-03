@@ -123,7 +123,7 @@
     z-index: 11;
     
     .headC_key{
-      width: 1100px;
+      width: 1000px;
       line-height: 80px;
       display: flex;
       cursor:pointer;

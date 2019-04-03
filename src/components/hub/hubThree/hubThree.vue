@@ -1,25 +1,25 @@
 <template>
   <div class="payOrder">
     <div class="title">
-      活动中心
+      所有抽奖
     </div>
     <div class="itemKey">
       <span>抽奖类别</span>
-      <span>期号</span>
+      <span>期数/日常期数</span>
       <span>开奖时间</span>
       <span>中奖编号</span>
       <span>抽奖状态</span>
       <span>我的编号</span>
       <span>参与/未参与</span>
     </div>
-    <div class="rang_content" id="rang_cont">
+    <div class="rang_content" id="rang_cont" v-if="flag">
       <Collapse active-key="1" accordion>
           <Panel> 
-            <div class="itemC">
+            <div class="itemC" @click="drawListClick('1')">
               <span>千元抽奖日常</span>
-              <span>{{drawData.fa_luck_draw_q.gear}}</span>
-              <span>20:00:00</span>
-              <span>{{drawData.fa_luck_draw_q.number}} <div>最新</div> </span>
+              <span>{{drawData.fa_luck_draw_q.gear}}/{{drawData.fa_luck_draw_q.gear_today}}</span>
+              <span>{{timeData[0]}}</span>
+              <span>{{drawData.fa_luck_draw_q.number}} <!-- <div>最新</div>  --></span>
               <span>{{drawData.fa_luck_draw_q.status}}</span>
               <span>{{drawData.fa_luck_draw_q.my_number}}</span>
               <span>{{drawData.fa_luck_draw_q.partake}}
@@ -27,14 +27,122 @@
               </span>
             </div>
             <div slot="content">
-              <div class="itemC">
+              <div class="itemC" v-for="(item,index) in drawDataList" :key="index">
                 <span>千元抽奖日常</span>
-                <span>1</span>
-                <span>20:00:00</span>
-                <span>AW1234567 <div>最新</div> </span>
-                <span>已中奖</span>
-                <span>AW1324443</span>
-                <span>已参加
+                <span>{{item.gear}}/{{item.gear_today}}</span>
+                <span>{{timeData[0]}}</span>
+                <span>{{item.id}}</span>
+                <span>{{item.status}}</span>
+                <span>{{item.dang}}</span>
+                <span>{{item.partake}}
+                  <!-- <span class="iconfont">&#xe65e;</span> -->
+                </span>
+              </div>
+            </div>
+          </Panel>
+
+          <Panel> 
+            <div class="itemC" @click="drawListClick('2')">
+              <span>万元抽奖日常</span>
+              <span>{{drawData.fa_luck_draw_q.gear}}/{{drawData.fa_luck_draw_q.gear_today}}</span>
+              <span>{{timeData[1]}}</span>
+              <span>{{drawData.fa_luck_draw_w.number}}</span>
+              <span>{{drawData.fa_luck_draw_w.status}}</span>
+              <span>{{drawData.fa_luck_draw_w.my_number}}</span>
+              <span>{{drawData.fa_luck_draw_w.partake}}
+                <!-- <span class="iconfont">&#xe65e;</span> -->
+              </span>
+            </div>
+            <div slot="content">
+              <div class="itemC" v-for="(item,index) in drawDataList" :key="index">
+                <span>万元抽奖日常</span>
+                <span>{{item.gear}}/{{item.gear_today}}</span>
+                <span>{{timeData[0]}}</span>
+                <span>{{item.id}}</span>
+                <span>{{item.status}}</span>
+                <span>{{item.dang}}</span>
+                <span>{{item.partake}}
+                  <!-- <span class="iconfont">&#xe65e;</span> -->
+                </span>
+              </div>
+            </div>
+          </Panel>
+
+          <Panel> 
+            <div class="itemC" @click="drawListClick('3')">
+              <span>千元尊享大奖</span>
+              <span>{{drawData.fa_luck_draw_vip_q.gear}}/</span>
+              <span>{{timeData[2]}}</span>
+              <span>{{drawData.fa_luck_draw_vip_q.uid}}</span>
+              <span>{{drawData.fa_luck_draw_vip_q.status}}</span>
+              <span>{{drawData.fa_luck_draw_vip_q.my_uid}}</span>
+              <span>{{drawData.fa_luck_draw_vip_q.partake}}
+                <!-- <span class="iconfont">&#xe65e;</span> -->
+              </span>
+            </div>
+            <div slot="content">
+              <div class="itemC" v-for="(item,index) in drawDataList" :key="index">
+                <span>千元尊享大奖</span>
+                <span>{{item.gear}}/</span>
+                <span>{{timeData[0]}}</span>
+                <span>{{item.id}}</span>
+                <span>{{item.status}}</span>
+                <span>{{item.dang}}</span>
+                <span>{{item.partake}}
+                  <!-- <span class="iconfont">&#xe65e;</span> -->
+                </span>
+              </div>
+            </div>
+          </Panel>
+
+          <Panel> 
+            <div class="itemC" @click="drawListClick('4')">
+              <span>万元尊享大奖</span>
+              <span>{{drawData.fa_luck_draw_vip_w.gear}}/</span>
+              <span>{{timeData[3]}}</span>
+              <span>{{drawData.fa_luck_draw_vip_w.uid}}</span>
+              <span>{{drawData.fa_luck_draw_vip_w.status}}</span>
+              <span>{{drawData.fa_luck_draw_vip_w.my_uid}}</span>
+              <span>{{drawData.fa_luck_draw_vip_w.partake}}
+                <!-- <span class="iconfont">&#xe65e;</span> -->
+              </span>
+            </div>
+            <div slot="content">
+              <div class="itemC" v-for="(item,index) in drawDataList" :key="index">
+                <span>万元尊享大奖</span>
+                <span>{{item.gear}}/</span>
+                <span>{{timeData[0]}}</span>
+                <span>{{item.id}}</span>
+                <span>{{item.status}}</span>
+                <span>{{item.dang}}</span>
+                <span>{{item.partake}}
+                  <!-- <span class="iconfont">&#xe65e;</span> -->
+                </span>
+              </div>
+            </div>
+          </Panel>
+
+          <Panel> 
+            <div class="itemC" @click="drawListClick('5')">
+              <span>0元购1元得</span>
+              <span>{{drawData.one.qs}}/</span>
+              <span>{{timeData[4]}}</span>
+              <span>{{drawData.one.uid}}</span>
+              <span>{{drawData.one.status}}</span>
+              <span>{{drawData.one.my_uid}}</span>
+              <span>{{drawData.one.partake}}
+                <!-- <span class="iconfont">&#xe65e;</span> -->
+              </span>
+            </div>
+            <div slot="content">
+              <div class="itemC" v-for="(item,index) in drawDataList" :key="index">
+                <span>0元购1元得</span>
+                <span>{{item.qs}}/</span>
+                <span>{{timeData[0]}}</span>
+                <span>{{item.id}}</span>
+                <span>{{item.status}}</span>
+                <span>{{item.dang}}</span>
+                <span>{{item.partake}}
                   <!-- <span class="iconfont">&#xe65e;</span> -->
                 </span>
               </div>
@@ -42,9 +150,9 @@
           </Panel>
       </Collapse>
     </div>
-    <div class="page">
+    <!-- <div class="page">
       <Page :current="2" :total="50" simple></Page>
-    </div>
+    </div> -->
   </div>
 
 </template>
@@ -53,23 +161,54 @@
   export default {
     data() {
       return {
+        flag:false,
         drawData:'',
+        drawDataList:'',
+        timeData:'',
+        indexs:''
       };
     },
     created() {
       // 获取用户所有抽奖
       this.$get('/index.php/hy/user/my_draw',{
+        // "uid":JSON.parse(window.localStorage.getItem("loginData")).id
           "uid":"7",
       })
       .then((response) => {
-        console.log(response)
         this.drawData = response.data;
+        // 获取所有抽奖栏目开奖时间
+        this.$get('/index.php/hy/user/show_draw',{
+          // "uid":JSON.parse(window.localStorage.getItem("loginData")).id
+            "uid":"7",
+        })
+        .then((res) => {
+          this.flag = true;
+          this.timeData = res.data;
+        })
       })
+      
     },
     mounted() {
 
     },
-    methods: {},
+    methods: {
+      drawListClick(e){
+        if(this.indexs == e){
+          return;
+        }
+        this.indexs = e;
+        // 获取所有抽奖栏目五个栏目数据
+        this.$get('/index.php/hy/user/my_draw_data',{
+          // "uid":JSON.parse(window.localStorage.getItem("loginData")).id
+            "uid":"7",
+            "type":e,
+            "page":1
+        })
+        .then((response) => {
+          this.drawDataList = response.data;
+        })
+      }
+    },
     components: {}
   };
 </script>
@@ -112,7 +251,7 @@
       height: 40px;
       line-height: 40px;
       display: flex;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 700;
       span{
         flex: 1;

@@ -3,18 +3,13 @@
       <div class="ct">
         <div class="title">爱上弘毅租赁合同</div>
         <div class="ctxt">
-          爱上弘毅租赁合同爱上弘毅租赁合同爱上弘毅租赁合爱上弘毅租赁合同爱上弘毅租赁合同
-          同爱上弘毅租赁合同爱上弘毅租赁合同爱上弘毅租赁合同爱上弘毅租赁合同爱上弘毅租赁合
-          同爱上弘毅租赁合同爱上弘毅租赁合同爱上弘毅租赁合同爱上弘毅租赁合同爱上弘毅租赁合同
-          爱上弘毅租赁合同爱上弘毅租赁合同爱上弘毅租赁合同爱上弘毅租赁合同爱上弘毅租赁合同
-          爱上弘毅租赁合同爱上弘毅租赁合同爱上弘毅租赁合同爱上弘毅租赁合同爱上弘毅租赁合同
-          爱上弘毅租赁合同爱上弘毅租赁合同爱上弘毅租赁合同爱上弘毅租赁合同爱上弘毅租赁合同
-          爱上弘毅租赁合同爱上弘毅租赁合同爱上弘毅租赁合同爱上弘毅租赁合同爱上弘毅租赁合同
-          爱上弘毅租赁合同爱上弘毅租赁合同爱上弘毅租赁合同爱上弘毅租赁合同爱上弘毅租赁合同
-          爱上弘毅租赁合同爱上弘毅租赁合同爱上弘毅租赁合同爱上弘毅租赁合同
+          {{yajin}}
         </div>
         <div class="dec">
           点击“同意”，就表示您同意上述以上内容 <span>"爱上弘毅用户协议"，关于爱上弘毅个人隐私</span>
+        </div>
+        <div class="dec">
+          姓名：<i-input v-model="names" autofocus placeholder="请输入姓名" />
         </div>
         <div class="btn">
           <div><button class="close" @click="close_btn">取消</button></div>
@@ -32,9 +27,11 @@
         data() {
             return {
               flag:false,
+              names: '',
               greadkey:{
                 key:1
-              }
+              },
+              yajin:'',
             };
         },
         created() {
@@ -42,7 +39,20 @@
         },
         mounted() {
 
-
+        },
+        watch:{
+          flag(e){
+            if(e == true){
+              // 合同内容
+              this.$get('/index.php/hy/user/my_fa_contract',{
+                // "uid":JSON.parse(window.localStorage.getItem("loginData")).id
+                "uid":'7'
+              }).then((response)=>{
+                console.log(response)
+                this.yajin=response.data.yajin
+              })
+            }
+          }
         },
         methods: {
           show(){
@@ -52,14 +62,34 @@
             this.flag=false;
           },
           gread_clk(){
-            this.flag=false;
-            this.$emit('gopay','2')
+            let reg = /^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/;//验证姓名正则
+            if(this.names == ''){
+              alert("姓名输入不能为空")
+              return;
+            }else if(!reg.test(this.names)){
+              alert("姓名格式不正确")
+              return;
+            }
+            // 填写合同名字
+            this.$get('/index.php/hy/user/update_user_name',{
+              // "uid":JSON.parse(window.localStorage.getItem("loginData")).id
+              "uid":'7',
+              "username":this.names
+            }).then((response)=>{
+              console.log(response)
+              this.flag=false;
+              this.$emit('gopay','2')
+            })
           }
         },
         components: {}
     };
 </script>
-
+<style>
+  .ivu-input-wrapper{
+    width:80%;
+  }
+</style>
 <style type="text/css" lang="less" scoped>
   @import "../../../assets/css/config";
   .contract{
@@ -85,7 +115,7 @@
       }
       .ctxt{
         padding: 0 10px;
-        height: 70%;
+        height: 50%;
         width: 100%;
         overflow: auto;
         font-size: 16px;

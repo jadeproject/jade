@@ -18,7 +18,7 @@
       </div>
       <div class="modify clearfix">
         <div class="l clearfix">
-          <div>账户名{{randNum}}:</div>
+          <div>账户名:</div>
           <div>验证码:</div>
           <div>短信验证码:</div>
         </div>

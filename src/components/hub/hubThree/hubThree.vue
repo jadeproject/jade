@@ -17,38 +17,12 @@
           <Panel> 
             <div class="itemC">
               <span>千元抽奖日常</span>
-              <span>1</span>
+              <span>{{drawData.fa_luck_draw_q.gear}}</span>
               <span>20:00:00</span>
-              <span>AW1234567 <div>最新</div> </span>
-              <span>已中奖</span>
-              <span>AW1324443</span>
-              <span>已参加
-                <!-- <span class="iconfont">&#xe65e;</span> -->
-              </span>
-            </div>
-            <div slot="content">
-              <div class="itemC">
-                <span>千元抽奖日常</span>
-                <span>1</span>
-                <span>20:00:00</span>
-                <span>AW1234567 <div>最新</div> </span>
-                <span>已中奖</span>
-                <span>AW1324443</span>
-                <span>已参加
-                  <!-- <span class="iconfont">&#xe65e;</span> -->
-                </span>
-              </div>
-            </div>
-          </Panel>
-          <Panel> 
-            <div class="itemC">
-              <span>千元抽奖日常</span>
-              <span>1</span>
-              <span>20:00:00</span>
-              <span>AW1234567 <div>最新</div> </span>
-              <span>已中奖</span>
-              <span>AW1324443</span>
-              <span>已参加
+              <span>{{drawData.fa_luck_draw_q.number}} <div>最新</div> </span>
+              <span>{{drawData.fa_luck_draw_q.status}}</span>
+              <span>{{drawData.fa_luck_draw_q.my_number}}</span>
+              <span>{{drawData.fa_luck_draw_q.partake}}
                 <!-- <span class="iconfont">&#xe65e;</span> -->
               </span>
             </div>
@@ -67,28 +41,6 @@
             </div>
           </Panel>
       </Collapse>
-      <!-- <div class="itemC">
-        <span>千元抽奖日常</span>
-        <span>1</span>
-        <span>20:00:00</span>
-        <span>AW1234567 <div>最新</div> </span>
-        <span>已中奖</span>
-        <span>AW1324443</span>
-        <span>已参加
-       <span class="iconfont">&#xe65e;</span>
-      </span>
-      </div>
-      <div class="itemC">
-        <span>千元抽奖日常</span>
-        <span>1</span>
-        <span>20:00:00</span>
-        <span>AW1234567 </span>
-        <span>已中奖</span>
-        <span>AW1324443</span>
-        <span> <i>点击参加</i>
-       <span class="iconfont">&#xe65e;</span>
-      </span>
-      </div> -->
     </div>
     <div class="page">
       <Page :current="2" :total="50" simple></Page>
@@ -100,10 +52,19 @@
 <script type="text/ecmascript-6">
   export default {
     data() {
-      return {};
+      return {
+        drawData:'',
+      };
     },
     created() {
-
+      // 获取用户所有抽奖
+      this.$get('/index.php/hy/user/my_draw',{
+          "uid":"7",
+      })
+      .then((response) => {
+        console.log(response)
+        this.drawData = response.data;
+      })
     },
     mounted() {
 

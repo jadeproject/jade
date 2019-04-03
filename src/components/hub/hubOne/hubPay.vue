@@ -20,7 +20,7 @@
           </div>
         <div class="youhui" v-if="coupon !=''">
           <ul class="clearfix">
-            <li v-for="(item,index) in coupon" :key="index" @click="couponClick(item,index)" :class="couponIndex == index ? 'add_cur':''">
+            <li v-for="(item,index) in coupon" :key="index" @click="couponClick(item,index)" :class="couponIndex == index ? 'add_cur':''" v-if="item.status === 'normal'">
               <div class="moneys">
                 <p>{{item.money}}元</p>
                 <p>租赁可用</p>
@@ -39,12 +39,8 @@
             <div>收件地址：<span>{{adds}}</span></div>
           </div>
           <div class="btn" @click="sub">提交订单</div>
-
         </div>
       </div>
-
-
-
     </div>
 
 </template>
@@ -105,6 +101,12 @@
           },
           // 选择优惠券
           couponClick(data,index){
+            if(this.couponIndex == index){
+              this.addCoupon.coupon = {};
+              this.moneys = this.gohubDetailDatas.Totalmoney;
+              this.couponIndex = '-2';
+              return;
+            }
             this.couponIndex = index;
             this.moneys = this.gohubDetailDatas.Totalmoney - data.money;
             this.addCoupon.coupon = data;
@@ -172,6 +174,8 @@
         width: 100%;
         padding: 10px;
         border: 1px dashed #999;
+        height: 40%;
+        overflow: auto;
         ul li{
           float: left;
           margin-left: 5%;

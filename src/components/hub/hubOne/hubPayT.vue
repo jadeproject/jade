@@ -24,22 +24,20 @@
       <div class="ecode">
         <div>需要支付：<span>{{moneys}}元</span></div>
         <div class="rang">
-          <div class="l">
-            <img src="../../../assets/img/m_avatar.png" alt="">
+          <div v-if="deviceStatus == true" class="l">
+            <img :src='weixinpayImg' alt="">
             <div>微信支付</div>
           </div>
-          <div class="r">
-            <img src="../../../assets/img/m_avatar.png" alt="">
+          <div v-if="deviceStatus == true" class="r">
+            <img :src="alipayImg" alt="">
             <div>支付宝支付</div>
           </div>
+          <div  v-if="deviceStatus == false" class="zhifubao" @click="iphoneClick()">点击调用支付宝进行支付</div>
         </div>
 
       </div>
 
     </div>
-
-
-
   </div>
 
 </template>
@@ -53,9 +51,13 @@
     data() {
       return {
         flag:false,
-        gohubDetailData:'',
-        addCoupon:'',
-        moneys:''
+        gohubDetailData:'', //商品信息
+        addCoupon:'', //地址和优惠券
+        moneys:'',  //付款金额
+        weixinpayImg:'',  //微信付款二维码
+        host:window.location.host,
+        alipayImg:'', //阿里付款二维码
+        deviceStatus:true,  //打开的设备，true = pc端，false = 移动端
       };
     },
     created() {
@@ -66,19 +68,32 @@
         if(e == true){
           this.gohubDetailData = this.gohubDetailDatas;
           this.addCoupon = this.addCoupons;
-          console.log(this.gohubDetailData)
-          console.log(this.addCoupon)
           this.moneys = this.gohubDetailData.Totalmoney;
-          // 获取微信支付二维码
-          this.$get('/index.php/hy/wechat/pc_weixin_order',{
-              "uid":this.addCoupon.address.uid,
-              "d_id":this.gohubDetailData.dang,
-              "j_id":this.gohubDetailData.dang,
-              "coupon":this.addCoupon.coupon != ''? this.addCoupon.coupon.id : ''
-          })
-          .then((response) => {
-            console.log(response)
-          })
+          this.weixinpayImg = "http://askxubing.cn" + "/index.php/hy/wechat/pc_wechat_order?uid="+this.addCoupon.address.uid+"&d_id="+this.gohubDetailData.dang+"&j_id="+this.gohubDetailData.id + "&coupon="+(this.addCoupon.coupon.id != undefined? this.addCoupon.coupon.id : '' )+"&sign=" + "123456";
+          //this.alipayImg = "http://askxubing.cn" + "/index.php/hy/alipay/pc_alipay_order?uid="+this.addCoupon.address.uid+"&d_id="+this.gohubDetailData.dang+"&j_id="+this.gohubDetailData.id + "&coupon="+(this.addCoupon.coupon.id != undefined? this.addCoupon.coupon.id : '' )+"&sign=" + "123456";
+          // 获取支付宝支付二维码
+          // this.$get('/index.php/hy/alipay/pc_alipay_order',{
+          //     "uid":this.addCoupon.address.uid,
+          //     "d_id":this.gohubDetailData.dang,
+          //     "j_id":this.gohubDetailData.dang,
+          //     "coupon":this.addCoupon.coupon.id != undefined ? this.addCoupon.coupon.id : ''
+          // })
+          // .then((response) => {
+          //   console.log(response)
+          //   const div = document.createElement('div')
+          //   div.innerHTML = response //此处form就是后台返回接收到的数据
+          //   document.body.appendChild(div)
+          //   document.forms[0].submit()
+          // })
+          if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            // 移动端打开
+            console.log("移动端打开")
+            this.deviceStatus = false;
+          } else {
+            // PC端打开
+            console.log("PC端打开")
+            this.deviceStatus = true;
+          }
         }
       }
     },
@@ -88,6 +103,10 @@
     methods: {
       show(){
         this.flag=true;
+      },
+      // 移动端支付宝支付
+      iphoneClick(){
+        window.location.href = "askxubing.cn/index.php/hy/Alipay/wap_alipay_order?uid=2&d_id=1&j_id=4&sign=123456"
       }
     },
     components: {}
@@ -103,6 +122,7 @@
     top: 0;
     width: 100%;
     height: 100%;
+    overflow: auto;
     .titleT{
       height: 40px;
       line-height: 40px;
@@ -178,14 +198,35 @@
         .rang{
           margin-top: 20px;
           display: flex;
-
+          .zhifubao{
+            flex: 1;
+            padding: 0 30px;
+            height: 40px;
+            line-height: 40px;
+            box-sizing: border-box;
+            background: #f8f8f8;
+            color:#5fcdc7;
+            border-radius: 5px;
+            font-size: 20px;
+            border:1px solid #999;
+            margin: 0 auto;
+            cursor: pointer;
+            &:active{
+              background: #5fcdc7;
+              color:#fff;
+              border-color: #5fcdc7;
+            }
+          }
           .l,.r{
+            width: 130px;
+            height: 130px;
             flex: 1;
             text-align: center;
             img{
-              height: 100px;
-              width: 100px;
-              background-color: red;
+              height: 130px;
+              width: 130px;
+              display: inline-block;
+              background-color: #f4f4f4;
             }
           }
           .l{

@@ -46,7 +46,6 @@
         }, {
           value: '江苏',
           label: '江苏',
-          disabled: true,
           children: [{
             value: '南京',
             label: '南京',
@@ -72,6 +71,7 @@
     },
     mounted() {
       console.log(this.value2);
+
 
 
     },

@@ -2,8 +2,8 @@
   <div class="info">
     <div class="info_T">
       <div class="info_img">
-        <img src="../../../assets/img/m_avatar.png" alt="">
-        <div>王小明</div>
+        <img :src="loginData.avatar" :onerror="imgURL" alt="">
+        <div>{{loginData.username}}</div>
       </div>
       <div class="info_Balance">
         <div>账户余额：80000.00</div>
@@ -92,12 +92,18 @@
 <script type="text/ecmascript-6">
   export default {
     data() {
-      return {};
+      return {
+        // 默认图片
+        imgURL:'this.src="' + require('../../../assets/img/m_avatar.png') + '"',
+        loginData:{}
+
+      };
     },
     created() {
 
     },
     mounted() {
+      this.loginData=JSON.parse(window.localStorage.getItem("loginData"));
 
     },
     methods: {},

@@ -75,6 +75,7 @@ axios.interceptors.response.use(
 
 export function get(url,params={}){
   // console.log(qs.stringify(params));
+  console.log('测试登录状态')
   params.sign = getSign(params);
   return new Promise((resolve,reject) => {
     axios.get(url,{

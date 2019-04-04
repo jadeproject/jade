@@ -190,13 +190,13 @@
             div{
               height: 20px;
               width: 20px;
-              background-color: #51e96f;
+              background-color: #51E96F;
               display: inline-block;
               text-align: center;
               color:#fff;
             }
             div:last-child{
-              background-color: blue;
+              background-color: #4597E6;
             }
 
           }

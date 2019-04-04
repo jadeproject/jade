@@ -1,17 +1,26 @@
 <template>
     <div class="foodC">
-        <div class="lefts">2019-2020  杭州弘缘电子商务有限公司</div>
-        <div class="rights">联系电话：400-640-6699/0571-88299181</div>
+        <div class="lefts">{{foodData[0]}}</div>
+        <div class="rights">联系电话：{{foodData[1]}}</div>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
     export default {
         data() {
-            return {};
+            return {
+                foodData:'',
+            };
         },
         created() {
-
+            // 资料
+            this.$get('/index.php/hy/user/index_floot',{
+                "uid":"1",
+            })
+            .then((response) => {
+                console.log(response)
+                this.foodData = response.data;
+            })
         },
         mounted() {
 

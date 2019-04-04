@@ -59,12 +59,18 @@
         tt:0,
         type:0,
         hubCheight:document.documentElement.clientHeight-80, // 屏幕尺寸
+        typeStatus:this.$GQ("type"),
       };
     },
     computed:{
       // 默认显示
       currentIndex() {
         return this.tt;
+      }
+    },
+    watch:{
+      type(e){
+        console.log(e)
       }
     },
     created() {
@@ -74,13 +80,17 @@
       this.tt=Number(this.$GQ("type"));
       this.type=Number(this.$GQ("type"));
       console.log(this.$GQ("type"));
-
-
     },
     methods: {
       select_Item(index){
         this.tt=index;
         this.type=index;
+        this.$router.push({
+          path:'./hub',
+          query:{
+            type:index
+          }
+        })
         if(this.type==3){
           this.$router.push('./invite')
         }

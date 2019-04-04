@@ -30,9 +30,8 @@
       <div><input type="text" v-model="em"></div>
       <div><input type="text" v-model="jjName"></div>
       <div> <div><input type="text" v-model="jjPhone"></div></div>
+      <div class="btn" @click="btnAddress">保存收货人信息</div>
     </div>
-    <div class="btn" @click="btnAddress">保存收货人信息</div>
-
   </div>
 
 </template>
@@ -153,7 +152,7 @@
     height: 90%;
     width: 100%;
     .left_p{
-      width: 20%;
+      width: 25%;
       text-align: right;
       height: 100%;
       float: left;
@@ -181,13 +180,13 @@
     .btn{
       padding: 10px 30px;
       text-align: center;
-      position: absolute;
-      left: 50%;
-      bottom: 10px;
+      // position: absolute;
+      // left: 50%;
+      // bottom: 10px;
       /*margin-left: -50%;*/
       background-color: @bg;
       color: #fff;
-      margin-left: -60px;
+      // margin-left: -60px;
     }
 
   }

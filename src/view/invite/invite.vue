@@ -4,9 +4,9 @@
         <div class="banner">
             <img src="../../assets/img/invite_banner.jpg" alt="">
             <div class="banner_position">
-                <div class="name_img"><div><img src="../../assets/img/m_avatar.png" alt=""></div></div>
-                <div class="name_txt">糟老头子、</div>
-                <div class="tips">我已成功邀请 <span>60</span> 人</div>
+                <div class="name_img"><div><img :src="userData.avatar" alt=""></div></div>
+                <div class="name_txt">{{userData.username}}</div>
+                <div class="tips">我已成功邀请 <span>{{userData.count}}</span> 人</div>
             </div>
         </div>
         <!-- 大图 end -->
@@ -82,8 +82,8 @@
                         </div>
                         <div class="ranking_tab ranking_list" v-for="(item,index) in rankingList" :key="index">
                             <div class="num1"><span :class="index < 3 ? 'span_cur':''"><strong v-if="index > 2">NO.</strong>{{index+1}}</span></div>
-                            <div class="num2"><img :src="item.imgs" alt=""></div>
-                            <div class="num3">{{item.names}}</div>
+                            <div class="num2"><img :src="item.img" alt=""></div>
+                            <div class="num3">{{item.username}}</div>
                             <div class="num4">{{item.nums}}</div>
                         </div>
                     </div>
@@ -98,33 +98,29 @@
     export default {
         data() {
             return {
-                rankingList:[
-                    {
-                        names:'包你赢',
-                        imgs:'http://img5.duitang.com/uploads/item/201203/31/20120331181716_Fc2AA.thumb.700_0.jpeg',
-                        nums:'150'
-                    },{
-                        names:'包你赢',
-                        imgs:'http://img5.duitang.com/uploads/item/201203/31/20120331181716_Fc2AA.thumb.700_0.jpeg',
-                        nums:'150'
-                    },{
-                        names:'包你赢',
-                        imgs:'http://img5.duitang.com/uploads/item/201203/31/20120331181716_Fc2AA.thumb.700_0.jpeg',
-                        nums:'150'
-                    },{
-                        names:'包你赢',
-                        imgs:'http://img5.duitang.com/uploads/item/201203/31/20120331181716_Fc2AA.thumb.700_0.jpeg',
-                        nums:'150'
-                    },{
-                        names:'包你赢',
-                        imgs:'http://img5.duitang.com/uploads/item/201203/31/20120331181716_Fc2AA.thumb.700_0.jpeg',
-                        nums:'150'
-                    }
-                ]
+                userData:'',    //顶部信息-头像昵称等
+                rankingList:[],  // 排行榜
             };
         },
         created() {
+            // 顶部信息-头像昵称等
+            this.$get('/index.php/hy/user/invitation_user',{
+                // "uid":JSON.parse(window.localStorage.getItem("loginData")).id
+                "uid":"7",
+            })
+            .then((response) => {
+                console.log(response)
+                this.userData = response.data;
+            })
 
+            // 排行榜
+            this.$get('/index.php/hy/user/invitation_list',{
+                "uid":"1",
+            })
+            .then((response) => {
+                console.log(response)
+                this.rankingList = response.data;
+            })
         },
         mounted() {
 

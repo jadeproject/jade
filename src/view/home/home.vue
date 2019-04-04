@@ -3,17 +3,8 @@
         <!-- 轮播图 -->
         <div class="banner">
             <Carousel autoplay>
-                <Carousel-item>
-                    <div class="demo-carousel"><img src="../../assets/img/banner1.png" alt=""></div>
-                </Carousel-item>
-                <Carousel-item>
-                    <div class="demo-carousel"><img src="../../assets/img/banner1.png" alt=""></div>
-                </Carousel-item>
-                <Carousel-item>
-                    <div class="demo-carousel"><img src="../../assets/img/banner1.png" alt=""></div>
-                </Carousel-item>
-                <Carousel-item>
-                    <div class="demo-carousel"><img src="../../assets/img/banner1.png" alt=""></div>
+                <Carousel-item v-for="(item,index) in bannerData" :key="index">
+                    <div class="demo-carousel"><img :src="item" alt=""></div>
                 </Carousel-item>
             </Carousel>
         </div>
@@ -28,130 +19,78 @@
                 </div>
                 <div class="con_text">
                     <div class="left">
-                        这里是关于公司的简介这里是关于公司的简介这里是关于公司的简这里是关于公司的简介这里是关于公司的简介这里是关于公司的简介<br/>
-                        这里是关于公司的简介这里是关于公司的简介这里是关于公司的简这里是关于公司的简介这里是关于公司这里是关于公司的简介这里是关于公司的简介这里是关于公司的简介<br/>
-                        这里是关于公司的简介这里是关于公司的简介这里是关于公司的简介<br/>
+                        {{aboutData.one}}
                     </div>
                     <div class="right">
-                        Company ProfileCompany ProfileCompany ProfileCompany <br/>ProfileCompany ProfileCompany ProfileCompany ProfileCompany ProfileCompany ProfileCompany <br/>ProfileCompany ProfileCompany ProfileCompany ProfileCompany
+                        {{aboutData.two}}
                     </div>
                 </div>
-                <div class="bot_more">阅读更多</div>
+                <div class="bot_more" @click="contactbut('info',1)">阅读更多</div>
             </div>
         </div>
         <!-- 关于我们 end -->
 
         <!-- 产品介绍 -->
-        <div class="home_bg product_bg bdDDCAA2">
+        <div class="home_bg product_bg bdDDCAA2" v-if="productStatus">
             <div class="product">
                 <div class="top_title">产品介绍</div>
                 <div class="home_layout">
                     <div class="con_goods">
-                        <div class="left"><img src="../../assets/img/banner1.png" alt=""></div>
+                        <div class="left"><img :src="productData.q[0].png" alt=""></div>
                         <div class="right">
-                            <h5>观音吊坠</h5>
-                            <p class="p1">大慈大悲 普渡众生</p>
-                            <p class="p2">材料：和田玉籽料</p>
-                            <p class="p3">种类：吊坠</p>
+                            <h5>{{productData.q[0].name}}</h5>
+                            <p class="p1">{{productData.q[0].moral}}</p>
+                            <p class="p2">材料：{{productData.q[0].ms}}</p>
+                            <p class="p3">种类：{{productData.q[0].type}}</p>
                             <div class="but">
-                                <strong>1元/月</strong> <span>立即起租</span>
+                                <strong>1元/月</strong> <span @click="productDataClick(productData.q[0])">立即起租</span>
                             </div>
                         </div>
                     </div>
                     <div class="con_goods_list">
                         <div class="goods_list_in">
-                            <div class="imgs"><img src="../../assets/img/product.jpg" alt=""></div>
+                            <div class="imgs"><img :src="productData.q[1].png" alt=""></div>
                             <div class="goods_list_txt">
-                                <h5>翡翠</h5>
+                                <h5>{{productData.q[1].name}}</h5>
                                 <p>1元/月</p>
-                                <div>立即起租</div>
+                                <div @click="productDataClick(productData.q[1])">立即起租</div>
                             </div>
                         </div>
                         <div class="goods_list_in">
-                            <div class="imgs"><img src="../../assets/img/product.jpg" alt=""></div>
+                            <div class="imgs"><img :src="productData.q[2].png" alt=""></div>
                             <div class="goods_list_txt">
-                                <h5>翡翠</h5>
+                                <h5>{{productData.q[2].name}}</h5>
                                 <p>1元/月</p>
-                                <div>立即起租</div>
+                                <div @click="productDataClick(productData.q[2])">立即起租</div>
                             </div>
                         </div>
                         <div class="goods_list_in">
-                            <div class="imgs"><img src="../../assets/img/product.jpg" alt=""></div>
+                            <div class="imgs"><img :src="productData.q[3].png" alt=""></div>
                             <div class="goods_list_txt">
-                                <h5>翡翠</h5>
+                                <h5>{{productData.q[3].name}}</h5>
                                 <p>1元/月</p>
-                                <div>立即起租</div>
+                                <div @click="productDataClick(productData.q[3])">立即起租</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="home_bg product_bg">
+        <div class="home_bg product_bg" v-if="productStatus">
             <div class="product">
                 <div class="home_layout">
                     <div class="product_imgsbg"><img src="../../assets/img/banner1.png" alt=""></div>
                     <div class="con_goods_list pb100">
                         <div class="goods_left"><img src="../../assets/img/banner1.png" alt=""></div>
                         <div class="goods_right">
-                            <div class="goods_r_list">
-                                <div class="imgs"><img src="../../assets/img/product.jpg" alt=""></div>
+                            <div class="goods_r_list" v-for="(item,index) in productData.w" :key="index">
+                                <div class="imgs"><img :src="item.png" alt=""></div>
                                 <div class="txt">
                                     <div class="t_left">
                                         <h5>10元/月</h5>
-                                        <p>天然缅甸翡翠手镯</p>
+                                        <p>{{item.name}}</p>
                                     </div>
-                                    <div class="t_right"><span>立即起租</span></div>
-                                </div>
-                            </div>
-                            <div class="goods_r_list">
-                                <div class="imgs"><img src="../../assets/img/product.jpg" alt=""></div>
-                                <div class="txt">
-                                    <div class="t_left">
-                                        <h5>10元/月</h5>
-                                        <p>天然缅甸翡翠手镯</p>
-                                    </div>
-                                    <div class="t_right"><span>立即起租</span></div>
-                                </div>
-                            </div>
-                            <div class="goods_r_list">
-                                <div class="imgs"><img src="../../assets/img/product.jpg" alt=""></div>
-                                <div class="txt">
-                                    <div class="t_left">
-                                        <h5>10元/月</h5>
-                                        <p>天然缅甸翡翠手镯</p>
-                                    </div>
-                                    <div class="t_right"><span>立即起租</span></div>
-                                </div>
-                            </div>
-                            <div class="goods_r_list">
-                                <div class="imgs"><img src="../../assets/img/product.jpg" alt=""></div>
-                                <div class="txt">
-                                    <div class="t_left">
-                                        <h5>10元/月</h5>
-                                        <p>天然缅甸翡翠手镯</p>
-                                    </div>
-                                    <div class="t_right"><span>立即起租</span></div>
-                                </div>
-                            </div>
-                            <div class="goods_r_list">
-                                <div class="imgs"><img src="../../assets/img/product.jpg" alt=""></div>
-                                <div class="txt">
-                                    <div class="t_left">
-                                        <h5>10元/月</h5>
-                                        <p>天然缅甸翡翠手镯</p>
-                                    </div>
-                                    <div class="t_right"><span>立即起租</span></div>
-                                </div>
-                            </div>
-                            <div class="goods_r_list">
-                                <div class="imgs"><img src="../../assets/img/product.jpg" alt=""></div>
-                                <div class="txt">
-                                    <div class="t_left">
-                                        <h5>10元/月</h5>
-                                        <p>天然缅甸翡翠手镯天然缅甸翡翠手镯</p>
-                                    </div>
-                                    <div class="t_right"><span>立即起租</span></div>
+                                    <div class="t_right"><span @click="productDataClick(item)">立即起租</span></div>
                                 </div>
                             </div>
                         </div>
@@ -367,11 +306,43 @@
         data() {
             return {
                 indexs:-2,
+                bannerData:[],  //轮播图
+                aboutData:'',   //关于我们
+                productData:'', //产品介绍
+                productStatus:false,    //产品介绍显示状态
                 commonlist:[],  //常见问题
                 isTop: true
             };
         },
         created() {
+            // 轮播图
+            this.$get('/index.php/hy/user/chart',{
+                "uid":"1",
+            })
+            .then((response) => {
+                console.log(response)
+                this.bannerData = response.data;
+            })
+
+            // 关于我们
+            this.$get('/index.php/hy/user/about',{
+                "uid":"1",
+            })
+            .then((response) => {
+                console.log(response)
+                this.aboutData = response.data;
+            })
+
+            // 产品介绍
+            this.$get('/index.php/hy/user/product',{
+                "uid":"1",
+            })
+            .then((response) => {
+                console.log(response)
+                this.productStatus = true;
+                this.productData = response.data;
+            })
+
             // 常见问题
             this.$get('/index.php/hy/Configure/index_question',{
                 "config":"question",
@@ -384,6 +355,10 @@
             this.needScroll()   
         },
         methods: {
+            // 产品介绍点击
+            productDataClick(data){
+                console.log(data)
+            },
             // 常见问题列表点击
             commonClick(e){
                 this.indexs = e;
@@ -662,6 +637,7 @@
                         img{
                             width: 100%;
                             height: 100%;
+                            background: #fff;
                             border-radius: 50%;
                         }
                     }

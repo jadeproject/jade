@@ -26,6 +26,7 @@
           <div><input type="text" v-model="name"></div>
           <div><input type="text" v-model="yzm"></div>
           <div><input type="text" v-model="dxyz"></div>
+          <div class="btnsub" @click="submint">提交</div>
         </div>
         <div class="r">
           <div></div>
@@ -38,13 +39,8 @@
           </div>
         </div>
       </div>
-      <div class="btnsub" @click="submint">提交</div>
     </div>
-
-
     <hub-fives-three-d ref="detail"></hub-fives-three-d>
-
-
   </div>
 
 </template>
@@ -267,13 +263,13 @@
     .btnsub{
       padding: 10px 30px;
       text-align: center;
-      position: absolute;
-      left: 50%;
-      bottom: 20px;
+      // position: absolute;
+      // left: 50%;
+      // bottom: 20px;
       /*margin-left: -50%;*/
       background-color: @bg;
       color: #fff;
-      margin-left: -30px;
+      // margin-left: -30px;
     }
 
   }

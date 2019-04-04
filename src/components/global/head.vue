@@ -8,17 +8,17 @@
           <div @click="tabClick('0')">
             <router-link to="/"> 首页</router-link>
           </div>
-          <div @click="tabClick('700')">
+          <div @click="tabClick('700')" v-if="hostStatus">
             关于我们
           </div>
-          <div @click="tabClick('1430')">产品介绍</div>
-          <div @click="tabClick('3810')">开奖公告</div>
-          <div @click="tabClick('4700')">常见问题</div>
-          <div></div>
+          <div @click="tabClick('1430')" v-if="hostStatus">产品介绍</div>
+          <div @click="tabClick('3810')" v-if="hostStatus">开奖公告</div>
+          <div @click="tabClick('4700')" v-if="hostStatus">常见问题</div>
+          <div v-if="hostStatus"></div>
         </div>
         <div @click="longinShow()" class="icon noselect"><span class="iconfont">&#xe602;</span></div>
       </div>
-      <login ref="loginT" @On_click="log_click" :loginData="loginData"></login>
+      <login ref="loginT" @On_click="log_click" @host_click="hostStatusClick" :loginData="loginData"></login>
       <login-pop ref="log_Pop" @showLoginR="logR"></login-pop>
 
     </div>
@@ -30,39 +30,49 @@
     export default {
         data() {
             return {
-              showLogin:true,
+              showLogin:false,
               type:null,
-              loginData:{}
+              loginData:{},
+              hostStatus:true
             };
         },
         created() {
 
           console.log(JSON.parse(window.localStorage.getItem("loginData")));
           this.loginData=JSON.parse(window.localStorage.getItem("loginData"));
-
+          this.hostStatusClick();
         },
         mounted() {
 
+        },
+        watch:{
 
         },
         methods: {
+          hostStatusClick(e){
+            if(this.$GQ("type")){
+              console.log("不显示")
+              this.hostStatus = false;
+            }else{
+              console.log("显示")
+              this.hostStatus = true;
+            }
+          },
           // 控制右边切换
           longinShow(){
             // alert("111")
             // console.log(JSON.parse(window.localStorage.getItem("loginData")));
             // if (JSON.parse(window.localStorage.getItem("loginData"))==null){
             //   this.showLogin=false;
-            // }
+            // } 
             this.showLogin=!this.showLogin;
-            if(this.showLogin==true){
+            if(this.showLogin){
               this.$refs.loginT.show();
               // this.$refs.log_Pop.hiden();
             }else {
               this.$refs.loginT.hiden();
               // this.$refs.log_Pop.show();
             }
-
-
           },
           // 点击登陆注册显示不同的窗体
           log_click(data){
@@ -71,6 +81,9 @@
            }
            if(data.type=='reg'){
              this.$refs.log_Pop.showreg();
+           }
+           if(data=='showLogin'){
+             this.showLogin=false;
            }
           },
           // 显示右边登陆状态
@@ -84,6 +97,10 @@
           },
           // tab点击到指定位置
           tabClick(data){
+            this.$refs.loginT.hiden();
+            if(data == 0){
+              this.hostStatus = true;
+            }
             // console.log(data)
             let timer = null
             timer = setInterval(function () {
@@ -141,6 +158,9 @@
         div{
           flex: 1;
           text-align: center;
+          a{
+            display: block;
+          }
           a{
             color:#000;
           }

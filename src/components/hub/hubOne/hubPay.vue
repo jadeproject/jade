@@ -183,7 +183,7 @@
           margin-left: 5%;
           height: 100px;
           width: 25%;
-          border: 1px solid #999;
+          border: 1px solid #fff;
           margin-bottom: 10px;
           position: relative;
           cursor: pointer;
@@ -207,12 +207,13 @@
             top: 0;
             right: 0;
             width: 30%;
-            height: 100px;
+            height: 100%;
             text-align: center;
+            border: 1px solid #d9d9d9;
             div{
               width: 20%;
               text-align: center;
-              margin-left: 20px;
+              margin-left: 15px;
               margin-top: 20px;
 
             }
@@ -220,15 +221,18 @@
         }
         .clearfix{
           .add_cur{
-            background: #5fcdc7;
-            color:#fff;
+            .moneys{
+              color:#fff;
+              background: #5fcdc7;
+            }
             border-color:#fff;
           }
           .moneys{
             width: 70%;
             float: left;
+            background: #d9d9d9;
             text-align: right;
-            padding: 20px 0;
+            padding: 20px 5px;
             box-sizing: border-box;
             p{
               line-height: 30px;

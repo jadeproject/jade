@@ -16,29 +16,31 @@
             <img :src="loginData.avatar" :onerror="imgURL" alt="">
             <span class="name">{{loginData.username}}</span>
           </div>
-          <div @click="hubOnclick(key=0)">
-            <span class="iconfont">&#xe61f;</span>
-            <span class="name">玉石中心</span>
-          </div>
-          <div @click="hubOnclick(key=1)">
-            <span class="iconfont">&#xe652;</span>
-            <span class="name">订单中心</span>
-          </div>
-          <div @click="hubOnclick(key=2)">
-            <span class="iconfont">&#xe630;</span>
-            <span class="name">活动中心</span>
-          </div>
-          <div @click="hubOnclick(key=4)">
-            <span class="iconfont">&#xe655;</span>
-            <span class="name">账户中心</span>
-          </div>
-          <div @click="Invite()">
-            <span class="iconfont">&#xe604;</span>
-            <span class="name">邀请好友</span>
-          </div>
-          <div @click="hubOnclick(key=5)">
-            <span class="iconfont">&#xe601;</span>
-            <span class="name">抽奖栏目</span>
+          <div v-if="hostStatus">
+            <div @click="hubOnclick(key=0)">
+              <span class="iconfont">&#xe61f;</span>
+              <span class="name">玉石中心</span>
+            </div>
+            <div @click="hubOnclick(key=1)">
+              <span class="iconfont">&#xe652;</span>
+              <span class="name">订单中心</span>
+            </div>
+            <div @click="hubOnclick(key=2)">
+              <span class="iconfont">&#xe630;</span>
+              <span class="name">活动中心</span>
+            </div>
+            <div @click="hubOnclick(key=4)">
+              <span class="iconfont">&#xe655;</span>
+              <span class="name">账户中心</span>
+            </div>
+            <div @click="Invite()">
+              <span class="iconfont">&#xe604;</span>
+              <span class="name">邀请好友</span>
+            </div>
+            <div @click="hubOnclick(key=5)">
+              <span class="iconfont">&#xe601;</span>
+              <span class="name">抽奖栏目</span>
+            </div>
           </div>
           <div class="exit" @click="exitOnclik">
             退出登陆
@@ -74,27 +76,26 @@
               // 登陆时的用户信息
               loginState:{},
               // 默认图片
-              imgURL:'this.src="' + require('../../assets/img/m_avatar.png') + '"'
-
+              imgURL:'this.src="' + require('../../assets/img/m_avatar.png') + '"',
+              hostStatus:true,
             };
         },
         computed:{
 
-
+        },
+        watch:{
+          loginData(e){
+            console.log(e)
+          }
         },
         created() {
-
-
+          
         },
         mounted() {
-
           if(JSON.parse(window.localStorage.getItem("loginData"))!=null){
             this.loginState=JSON.parse(window.localStorage.getItem("loginData"));
             this.type=2;
-            this.flag=true;
-
           }
-
         },
         activated(){
           // if(JSON.parse(window.localStorage.getItem("loginData"))!=''){
@@ -115,6 +116,7 @@
              this.flag=true;
           },
           hiden(){
+            this.$emit('On_click',"showLogin")
             this.flag=false;
 
           },
@@ -125,14 +127,16 @@
             this.$emit('On_click',this.regKey)
           },
           hubOnclick(key){
-            this.flag=false;
+            // this.flag=false;
             this.$router.push({
               path:'./hub',
               query:{
                 type:key
               }
             })
-            window.location.reload();
+            // this.hostStatus = false;
+            this.$emit("host_click",key)
+            // window.location.reload();
           },
           exitOnclik(){
             this.type=1;
@@ -155,8 +159,10 @@
             this.$router.push({
               path:'./invite',
               query:{
+                type:"invite"
               }
             })
+            this.$emit("host_click","invite")
           }
         },
         components: {}

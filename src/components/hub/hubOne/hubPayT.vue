@@ -70,7 +70,7 @@ var QRCode = require('qrcode')
           this.gohubDetailData = this.gohubDetailDatas;
           this.addCoupon = this.addCoupons;
           this.moneys = this.gohubDetailData.Totalmoney;
-          this.weixinpayImg = "http://askxubing.cn" + "/index.php/hy/wechat/pc_wechat_order?uid="+this.addCoupon.address.uid+"&d_id="+this.gohubDetailData.dang+"&j_id="+this.gohubDetailData.id + "&coupon="+(this.addCoupon.coupon.id != undefined? this.addCoupon.coupon.id : '' )+"&sign=" + "123456";
+          this.weixinpayImg = "/index.php/hy/wechat/pc_wechat_order?uid="+this.addCoupon.address.uid+"&d_id="+this.gohubDetailData.dang+"&j_id="+this.gohubDetailData.id + "&coupon="+(this.addCoupon.coupon.id != undefined? this.addCoupon.coupon.id : '' )+"&sign=" + "123456";
           //this.alipayImg = "http://askxubing.cn" + "/index.php/hy/alipay/pc_alipay_order?uid="+this.addCoupon.address.uid+"&d_id="+this.gohubDetailData.dang+"&j_id="+this.gohubDetailData.id + "&coupon="+(this.addCoupon.coupon.id != undefined? this.addCoupon.coupon.id : '' )+"&sign=" + "123456";
           // 获取支付宝支付二维码
           // this.$get('/index.php/hy/alipay/pc_alipay_order',{
@@ -87,7 +87,7 @@ var QRCode = require('qrcode')
           //   document.forms[0].submit()
           // })
           let weixinpaycanvas = document.getElementById('weixinpaycanvas')
-          this.alipayImg = "http://askxubing.cn/index.php/hy/Alipay/wap_alipay_order?uid=2&d_id=1&j_id=4&sign=123456";
+          this.alipayImg = this.host + "/index.php/hy/Alipay/wap_alipay_order?uid="+this.addCoupon.address.uid+"&d_id="+this.gohubDetailData.dang+"&j_id="+this.gohubDetailData.id + "&coupon="+(this.addCoupon.coupon.id != undefined? this.addCoupon.coupon.id : '' )+"&sign=" + "123456";
           let alipaycanvas = document.getElementById('alipaycanvas')
           QRCode.toCanvas(alipaycanvas, this.alipayImg, (error) => {
             if (error) {
@@ -117,7 +117,7 @@ var QRCode = require('qrcode')
       },
       // 移动端支付宝支付
       iphoneClick(){
-        window.location.href = "askxubing.cn/index.php/hy/Alipay/wap_alipay_order?uid=2&d_id=1&j_id=4&sign=123456"
+        window.location.href = this.alipayImg;
       }
     },
     components: {}

@@ -135,6 +135,8 @@
        border-radius: 10px;
        height: 100%;
        width: 100%;
+       overflow: hidden;
+       padding-bottom: 10px;
        .title{
          display: flex;
          height: 40px;
@@ -160,7 +162,7 @@
          overflow: auto;
          ul li{
            margin-left: 20px;
-           width: 17%;
+           width: 21.5%;
            margin-top: 10px;
            float: left;
            .info_jade{

@@ -100,6 +100,7 @@
             return {
                 userData:'',    //顶部信息-头像昵称等
                 rankingList:[],  // 排行榜
+                wayData:'',     //获奖方式
             };
         },
         created() {
@@ -111,6 +112,15 @@
             .then((response) => {
                 console.log(response)
                 this.userData = response.data;
+            })
+
+            // 获奖方式
+            this.$get('/index.php/hy/user/way',{
+                "uid":"1",
+            })
+            .then((response) => {
+                console.log(response)
+                this.wayData = response.data;
             })
 
             // 排行榜

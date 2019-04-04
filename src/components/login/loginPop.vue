@@ -1,56 +1,58 @@
 <template>
-  <div class="loginPop" v-if="flag">
-    <div class="info">
-      <div class="logo_info">
-        <div class="imgIcon"></div>
-        <div class="info_dec">
-          <div>爱上弘毅</div>
-          <div>幸福从此结缘</div>
+  <div v-if="flag">
+    <div class="loginPop_bg" @click.stop="hiden($event)"></div>
+    <div class="loginPop">
+      <div class="info">
+        <div class="logo_info">
+          <div class="imgIcon"></div>
+          <div class="info_dec">
+            <div>爱上弘毅</div>
+            <div>幸福从此结缘</div>
+          </div>
         </div>
-      </div>
 
-      <div class="inp" v-if="login_I">
-        <input type="text" placeholder="请输入电话号码" v-model="phone">
-      </div>
-      <div class="inp" v-if="login_I">
-        <input type="password" placeholder="请输入登陆密码" v-model="psw">
-      </div>
-      <div class="inp" v-if="reg_I">
-        <input type="text" placeholder="请输入昵称" v-model="reg_name">
-      </div>
-      <div class="inp" v-if="reg_I">
-        <input type="password" placeholder="请设置密码" v-model="reg_psw">
-      </div>
-      <div class="inp" v-if="reg_I">
-        <span>+86</span>
-        <input class="phone" type="text" placeholder="请输入手机号" v-model="reg_phone">
-      </div>
-      <div class="inp" v-if="reg_I">
-        <input type="text" placeholder="请输入短信验证码" v-model="reg_yz">
-        <button class='yz' @click="send" ref="btn_bg" :disabled="isDisable">
-          <i v-if="sendMsgDisabled">{{time+'秒后获取'}}</i>
-          <i v-if="!sendMsgDisabled">获取验证码</i>
-        </button>
-      </div>
-      <div class="inp" v-if="reg_I">
-        <input type="text" placeholder="请输入邀请人昵称" v-model='iv_name'>
-      </div>
-      <div class="reade" v-if="reg_I">
-        <Checkbox :checked.sync="single" v-model='single'> 我已经阅读相关服务条款和隐私政策</Checkbox>
-      </div>
-      <div class="login_btn" @click="login_btn">
-        {{btn_text}}
-      </div>
-      <div class="dec_btn" v-if="login_I">
-        <div>忘记密码</div>
-        <div @click="regClick()">立即注册</div>
-      </div>
+        <div class="inp" v-if="login_I">
+          <input type="text" placeholder="请输入电话号码" v-model="phone">
+        </div>
+        <div class="inp" v-if="login_I">
+          <input type="password" placeholder="请输入登陆密码" v-model="psw">
+        </div>
+        <div class="inp" v-if="reg_I">
+          <input type="text" placeholder="请输入昵称" v-model="reg_name">
+        </div>
+        <div class="inp" v-if="reg_I">
+          <input type="password" placeholder="请设置密码" v-model="reg_psw">
+        </div>
+        <div class="inp" v-if="reg_I">
+          <span>+86</span>
+          <input class="phone" type="text" placeholder="请输入手机号" v-model="reg_phone">
+        </div>
+        <div class="inp" v-if="reg_I">
+          <input type="text" placeholder="请输入短信验证码" v-model="reg_yz">
+          <button class='yz' @click="send" ref="btn_bg" :disabled="isDisable">
+            <i v-if="sendMsgDisabled">{{time+'秒后获取'}}</i>
+            <i v-if="!sendMsgDisabled">获取验证码</i>
+          </button>
+        </div>
+        <div class="inp" v-if="reg_I">
+          <input type="text" placeholder="请输入邀请人昵称" v-model='iv_name'>
+        </div>
+        <div class="reade" v-if="reg_I">
+          <Checkbox :checked.sync="single" v-model='single'> 我已经阅读相关服务条款和隐私政策</Checkbox>
+        </div>
+        <div class="login_btn" @click="login_btn">
+          {{btn_text}}
+        </div>
+        <div class="dec_btn" v-if="login_I">
+          <div>忘记密码</div>
+          <div @click="regClick()">立即注册</div>
+        </div>
 
+
+      </div>
 
     </div>
-
   </div>
-
 </template>
 
 <script type="text/ecmascript-6">
@@ -204,7 +206,7 @@
           console.log(response.data);
         })
       },
-      hiden() {
+      hiden(e) {
         this.flag = false;
       }
     },
@@ -214,17 +216,30 @@
 
 <style type="text/css" lang="less" scoped>
   @import "../../assets/css/config.less";
-
+  .loginPop_bg{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 1000;
+    background-color: rgba(0,0,0,0.3);/* IE9、标准浏览器、IE6和部分IE7内核的浏览器(如QQ浏览器)会读懂 */
+  }
+  @media \0screen\,screen\9 {/* 只支持IE6、7、8 */
+    .loginPop_bg{
+      background-color:#000000;
+      filter:Alpha(opacity=50);
+      position:static; /* IE6、7、8只能设置position:static(默认属性) ，否则会导致子元素继承Alpha值 */
+      *zoom:1; /* 激活IE6、7的haslayout属性，让它读懂Alpha */
+    }
+  }
   .loginPop {
     padding: 20px 0;
     width: 40%;
     background-color: @mask;
     position: fixed;
-    top: 60px;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000;
-
+    z-index: 1001;
+    transform: translate(-50%,-50%);
     .info {
       padding: 0px 100px;
 

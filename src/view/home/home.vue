@@ -2,7 +2,7 @@
     <div class="homeC noselect">
         <!-- 轮播图 -->
         <div class="banner">
-            <Carousel autoplay>
+            <Carousel autoplay radius-dot="true">
                 <Carousel-item v-for="(item,index) in bannerData" :key="index">
                     <div class="demo-carousel"><img :src="item" alt=""></div>
                 </Carousel-item>
@@ -101,35 +101,34 @@
         <!-- 产品介绍 end -->
 
         <!-- 开奖公告 -->
-        <div class="home_bg notice_bg">
+        <div class="home_bg notice_bg" v-if="drawDataStatus">
             <div class="home_layout notice">
                 <div class="top_title">开奖公告</div>
                 <div class="notice_con">
                     <div class="notice_con_left">
                         <div class="video">
-                            <video width="100%" height="480" controls>
-                                <source src="" type="application/x-mpegURL">
+                            <video :src="`http://askxubing.cn/${drawData.left_movie}`"  width="100%" height="480" controls="controls">
+                            标题
                             </video>
                         </div>
                         <p class="history">历史中奖名单</p>
-                        <div class="notice_left_list">
-                            <div class="list">第1234期 <span>中奖号码：182****0832</span></div>
-                            <div class="list">第1234期 <span>中奖号码：182****0832</span></div>
-                            <div class="list">第1234期 <span>中奖号码：182****0832</span></div>
-                            <div class="list">第1234期 <span>中奖号码：182****0832</span></div>
-                            <div class="list">第1234期 <span>中奖号码：182****0832</span></div>
-                            <div class="list">第1234期 <span>中奖号码：182****0832</span></div> 
+                        <div class="notice_left_list" id="left_list">
+                            <Scroll>
+                                <Card dis-hover v-for="(item, index) in drawData.left_list" :key="index">
+                                    <div class="list">第{{item.gear}}期 <span>中奖号码：{{item.mobile}}</span></div>
+                                </Card>
+                            </Scroll>
                         </div>
                     </div>
                     <div class="notice_con_right ">
                         <div class="list">
                             <div class="title">
-                                <span class="sp01">日常奖   第8797946期</span>
-                                <span class="sp02">价值320000元</span>
-                                <span class="sp03">开奖日期：2019/03/28</span>
+                                <span class="sp01">{{drawData.q.name}}   {{drawData.q.gear}}</span>
+                                <span class="sp02">价值{{drawData.q.money}}元</span>
+                                <span class="sp03">开奖日期：{{drawData.q.time}}</span>
                             </div>
                             <div class="con_cen">
-                                <div class="imgs"><img src="../../assets/img/product.jpg" alt=""></div>
+                                <div class="imgs"><img :src="drawData.q.img" alt=""></div>
                                 <div class="rights">
                                     <div class="icons">
                                         <span class="iconfont">&#xe661;</span>
@@ -146,16 +145,17 @@
                                 </div>
                                 <p class="position_right">未参加</p>
                             </div>
-                            <p class="p_txt">上期中奖名单：13585786847</p>
+                            <p class="p_txt">上期中奖名单：{{drawData.q.last}}</p>
                         </div>
+
                         <div class="list">
                             <div class="title">
-                                <span class="sp01">日常奖   第8797946期</span>
-                                <span class="sp02">价值320000元</span>
-                                <span class="sp03">开奖日期：2019/03/28</span>
+                                <span class="sp01">{{drawData.w.name}}   {{drawData.w.gear}}</span>
+                                <span class="sp02">价值{{drawData.w.money}}元</span>
+                                <span class="sp03">开奖日期：{{drawData.w.time}}</span>
                             </div>
                             <div class="con_cen">
-                                <div class="imgs"><img src="../../assets/img/product.jpg" alt=""></div>
+                                <div class="imgs"><img :src="drawData.w.img" alt=""></div>
                                 <div class="rights">
                                     <div class="icons">
                                         <span class="iconfont">&#xe661;</span>
@@ -172,16 +172,17 @@
                                 </div>
                                 <p class="position_right">未参加</p>
                             </div>
-                            <p class="p_txt">上期中奖名单：13585786847</p>
+                            <p class="p_txt">上期中奖名单：{{drawData.w.last}}</p>
                         </div>
+
                         <div class="list">
                             <div class="title">
-                                <span class="sp01">日常奖   第8797946期</span>
-                                <span class="sp02">价值320000元</span>
-                                <span class="sp03">开奖日期：2019/03/28</span>
+                                <span class="sp01">{{drawData.q_vip.name}}   {{drawData.q_vip.gear}}</span>
+                                <span class="sp02">价值{{drawData.q_vip.money}}元</span>
+                                <span class="sp03">开奖日期：{{drawData.q_vip.time}}</span>
                             </div>
                             <div class="con_cen">
-                                <div class="imgs"><img src="../../assets/img/product.jpg" alt=""></div>
+                                <div class="imgs"><img :src="drawData.q_vip.img" alt=""></div>
                                 <div class="rights">
                                     <div class="icons">
                                         <span class="iconfont">&#xe661;</span>
@@ -198,16 +199,17 @@
                                 </div>
                                 <p class="position_right">未参加</p>
                             </div>
-                            <p class="p_txt">上期中奖名单：13585786847</p>
+                            <p class="p_txt">上期中奖名单：{{drawData.q_vip.last}}</p>
                         </div>
+
                         <div class="list">
                             <div class="title">
-                                <span class="sp01">日常奖   第8797946期</span>
-                                <span class="sp02">价值320000元</span>
-                                <span class="sp03">开奖日期：2019/03/28</span>
+                                <span class="sp01">{{drawData.w_vip.name}}   {{drawData.w_vip.gear}}</span>
+                                <span class="sp02">价值{{drawData.w_vip.money}}元</span>
+                                <span class="sp03">开奖日期：{{drawData.w_vip.time}}</span>
                             </div>
                             <div class="con_cen">
-                                <div class="imgs"><img src="../../assets/img/product.jpg" alt=""></div>
+                                <div class="imgs"><img :src="drawData.w_vip.img" alt=""></div>
                                 <div class="rights">
                                     <div class="icons">
                                         <span class="iconfont">&#xe661;</span>
@@ -224,16 +226,17 @@
                                 </div>
                                 <p class="position_right">未参加</p>
                             </div>
-                            <p class="p_txt">上期中奖名单：13585786847</p>
+                            <p class="p_txt">上期中奖名单：{{drawData.w_vip.last}}</p>
                         </div>
+
                         <div class="list">
                             <div class="title">
-                                <span class="sp01">日常奖   第8797946期</span>
-                                <span class="sp02">价值320000元</span>
-                                <span class="sp03">开奖日期：2019/03/28</span>
+                                <span class="sp01">{{drawData.one.name}}   {{drawData.one.gear}}</span>
+                                <span class="sp02">价值{{drawData.one.money}}元</span>
+                                <span class="sp03">开奖日期：{{drawData.one.time}}</span>
                             </div>
                             <div class="con_cen">
-                                <div class="imgs"><img src="../../assets/img/product.jpg" alt=""></div>
+                                <div class="imgs"><img :src="drawData.one.img" alt=""></div>
                                 <div class="rights">
                                     <div class="icons">
                                         <span class="iconfont">&#xe661;</span>
@@ -250,7 +253,7 @@
                                 </div>
                                 <p class="position_right">未参加</p>
                             </div>
-                            <p class="p_txt">上期中奖名单：13585786847</p>
+                            <p class="p_txt">上期中奖名单：{{drawData.one.last}}</p>
                         </div>
                         <div class="notice_con_r_tis">
                             更多活动敬请期待 <span class="iconfont">&#xe649;</span>
@@ -298,7 +301,6 @@
         <!-- 底部 end-->
     </div>
 </template>
-
 <script type="text/ecmascript-6">
     import foodTitle from '@/components/global/foot';
     let timer = null
@@ -310,6 +312,8 @@
                 aboutData:'',   //关于我们
                 productData:'', //产品介绍
                 productStatus:false,    //产品介绍显示状态
+                drawData:'',  //开奖公告
+                drawDataStatus:'',  //开奖公告显示状态
                 commonlist:[],  //常见问题
                 isTop: true
             };
@@ -341,6 +345,16 @@
                 console.log(response)
                 this.productStatus = true;
                 this.productData = response.data;
+            })
+
+            // 开奖公告
+            this.$get('/index.php/hy/user/draw_notice',{
+                "uid":"1",
+            })
+            .then((response) => {
+                console.log(response,"drawData")
+                this.drawDataStatus = true;
+                this.drawData = response.data;
             })
 
             // 常见问题
@@ -455,6 +469,12 @@
 }
 .ivu-modal-confirm-footer{
     margin-top:0;
+}
+#left_list .ivu-card-bordered{
+    border:none;
+}
+#left_list .ivu-card-body{
+    padding:0;
 }
 </style>
 
@@ -828,6 +848,7 @@
                         color:#333;
                         padding:0 20px;
                         box-sizing: border-box;
+                        border-bottom: 1px solid #e8eaec;
                         span{
                             float: right;
                         }

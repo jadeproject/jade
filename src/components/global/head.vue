@@ -37,9 +37,14 @@
             };
         },
         created() {
-
           console.log(JSON.parse(window.localStorage.getItem("loginData")));
           this.loginData=JSON.parse(window.localStorage.getItem("loginData"));
+          if(this.loginData == null){
+            this.$router.push({
+              path:'./',
+              query:{}
+            })
+          }
           this.hostStatusClick();
         },
         mounted() {

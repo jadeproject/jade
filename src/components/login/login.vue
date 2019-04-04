@@ -136,14 +136,18 @@
             })
             // this.hostStatus = false;
             this.$emit("host_click",key)
-            // window.location.reload();
+            window.location.reload();
           },
           exitOnclik(){
             this.type=1;
             this.flag=true;
             // 清除缓存
             window.localStorage.removeItem('loginData');
-
+            this.$router.push({
+              path:'./',
+              query:{}
+            })
+            this.$emit("host_click","index")
           },
           // 登陆后弹对应的弹窗
           showLogin(){

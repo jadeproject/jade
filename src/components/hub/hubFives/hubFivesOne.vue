@@ -1,5 +1,5 @@
 <template>
-  <div class="info">
+  <div class="info" v-if="flag">
     <div class="info_T">
       <div class="info_img">
         <img :src="loginData.avatar" :onerror="imgURL" alt="">
@@ -21,6 +21,7 @@
         </div>
       </div>
     </div>
+    <div class="pay_txt" @click="gopay()">0元租1元得  <span class="iconfont">&#xe65e;</span></div>
     <div class="infoC">
       <div class="T">
         <div>时间</div>
@@ -38,25 +39,25 @@
           <div>{{item.money}}元</div>
           <div>{{item.desc}} </div>
         </div>
-
       </div>
-
     </div>
-   
-  </div>
 
+    <hub-pay-t ref="showPay_flag" :gohubDetailDatas="gohubDetailData"></hub-pay-t>
+  </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import hubPayT from  './hubPayT'
   export default {
     data() {
       return {
+        flag:false,
         // 默认图片
         imgURL:'this.src="' + require('../../../assets/img/m_avatar.png') + '"',
         loginData:{},
         infoData:{},
-        erFlag:false
-
+        erFlag:false,
+        gohubDetailData:{},
       };
     },
     created() {
@@ -64,11 +65,13 @@
     },
     mounted() {
       this.loginData=JSON.parse(window.localStorage.getItem("loginData"));
+      console.log(this.loginData)
       this.$get('/index.php/hy/user/my_asset',{
         "uid":JSON.parse(window.localStorage.getItem("loginData")).id
 
       }).then((responese)=>{
-          this.infoData=responese.data;
+        this.flag = true;
+        this.infoData=responese.data;
         console.log(this.infoData);
       })
 
@@ -82,11 +85,14 @@
         }).then((response)=>{
           response.data
         })
-
+      },
+      gopay(data){
+        this.$refs.showPay_flag.show();
+        this.gohubDetailData.uid = JSON.parse(window.localStorage.getItem("loginData")).id;
       }
     },
     components: {
-
+      hubPayT
     }
   };
 </script>
@@ -153,6 +159,19 @@
         div:nth-child(2){
           background-color: @bg;
         }
+      }
+    }
+    .pay_txt{
+      font-size: 18px;
+      color:#fff;
+      background-color: #5fcdc7;
+      padding:10px;
+      box-sizing: border-box;
+      cursor:pointer;
+      text-align: right;
+      border-top: 1px solid #fff;
+      .iconfont{
+        font-size: 20px;
       }
     }
     .infoC{

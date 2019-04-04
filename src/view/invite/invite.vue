@@ -38,28 +38,28 @@
         <!-- 步骤 end-->
 
         <!-- 获奖方式 -->
-        <div class="invite_bg getmode_bg">
+        <div class="invite_bg getmode_bg" v-if="getmodeStatus">
             <div class="getmode_title"><span>获奖方式</span></div>
             <div class="ihsteps_layout getmode">
                 <div class="getmode_in">
                     <div class="getmode_list">
                         <div class="list listRed">
-                            <div class="title">邀请5人</div>
-                            <div class="imgs"><img src="../../assets/img/m_avatar.png" alt=""></div>
+                            <div class="title">{{wayData[0].yaoqing}}</div>
+                            <div class="imgs"><img :src="wayData[0].img" alt=""></div>
                             <div class="receive">领 取</div>
-                            <div class="nums">0/2000</div>
+                            <div class="nums">{{wayData[0].nums}}</div>
                         </div>
                         <div class="list listYellow">
-                            <div class="title">邀请20人</div>
-                            <div class="imgs"><img src="../../assets/img/m_avatar.png" alt=""></div>
+                            <div class="title">{{wayData[1].yaoqing}}</div>
+                            <div class="imgs"><img :src="wayData[1].img" alt=""></div>
                             <div class="receive">领 取</div>
-                            <div class="nums">0/2000</div>
+                            <div class="nums">{{wayData[1].nums}}</div>
                         </div>
                         <div class="list listBlue">
-                            <div class="title">排名第一</div>
-                            <div class="imgs"><img src="../../assets/img/m_avatar.png" alt=""></div>
+                            <div class="title">{{wayData[2].yaoqing}}</div>
+                            <div class="imgs"><img :src="wayData[2].img" alt=""></div>
                             <div class="receive">领 取</div>
-                            <div class="nums">0/1</div>
+                            <div class="nums">{{wayData[2].nums}}</div>
                         </div>
                         <p class="p_txt">邀请新人并完成租赁即可获取以上<span>全部</span>奖励</p>
                     </div>
@@ -101,13 +101,13 @@
                 userData:'',    //顶部信息-头像昵称等
                 rankingList:[],  // 排行榜
                 wayData:'',     //获奖方式
+                getmodeStatus:false,   //获奖方式显示状态 
             };
         },
         created() {
             // 顶部信息-头像昵称等
             this.$get('/index.php/hy/user/invitation_user',{
-                // "uid":JSON.parse(window.localStorage.getItem("loginData")).id
-                "uid":"7",
+                "uid":JSON.parse(window.localStorage.getItem("loginData")).id
             })
             .then((response) => {
                 console.log(response)
@@ -120,6 +120,7 @@
             })
             .then((response) => {
                 console.log(response)
+                this.getmodeStatus = true;
                 this.wayData = response.data;
             })
 

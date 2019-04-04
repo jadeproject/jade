@@ -56,7 +56,7 @@ var QRCode = require('qrcode')
         addCoupon:'', //地址和优惠券
         moneys:'',  //付款金额
         weixinpayImg:'',  //微信付款二维码
-        host:window.location.host,
+        host:"http://askxubing.cn",
         alipayImg:'', //阿里付款二维码
         deviceStatus:true,  //打开的设备，true = pc端，false = 移动端
       };
@@ -70,22 +70,7 @@ var QRCode = require('qrcode')
           this.gohubDetailData = this.gohubDetailDatas;
           this.addCoupon = this.addCoupons;
           this.moneys = this.gohubDetailData.Totalmoney;
-          this.weixinpayImg = "/index.php/hy/wechat/pc_wechat_order?uid="+this.addCoupon.address.uid+"&d_id="+this.gohubDetailData.dang+"&j_id="+this.gohubDetailData.id + "&coupon="+(this.addCoupon.coupon.id != undefined? this.addCoupon.coupon.id : '' )+"&sign=" + "123456";
-          //this.alipayImg = "http://askxubing.cn" + "/index.php/hy/alipay/pc_alipay_order?uid="+this.addCoupon.address.uid+"&d_id="+this.gohubDetailData.dang+"&j_id="+this.gohubDetailData.id + "&coupon="+(this.addCoupon.coupon.id != undefined? this.addCoupon.coupon.id : '' )+"&sign=" + "123456";
-          // 获取支付宝支付二维码
-          // this.$get('/index.php/hy/alipay/pc_alipay_order',{
-          //     "uid":this.addCoupon.address.uid,
-          //     "d_id":this.gohubDetailData.dang,
-          //     "j_id":this.gohubDetailData.dang,
-          //     "coupon":this.addCoupon.coupon.id != undefined ? this.addCoupon.coupon.id : ''
-          // })
-          // .then((response) => {
-          //   console.log(response)
-          //   const div = document.createElement('div')
-          //   div.innerHTML = response //此处form就是后台返回接收到的数据
-          //   document.body.appendChild(div)
-          //   document.forms[0].submit()
-          // })
+          this.weixinpayImg = this.host + "/index.php/hy/wechat/pc_wechat_order?uid="+this.addCoupon.address.uid+"&d_id="+this.gohubDetailData.dang+"&j_id="+this.gohubDetailData.id + "&coupon="+(this.addCoupon.coupon.id != undefined? this.addCoupon.coupon.id : '' )+"&sign=" + "123456";
           let weixinpaycanvas = document.getElementById('weixinpaycanvas')
           this.alipayImg = this.host + "/index.php/hy/Alipay/wap_alipay_order?uid="+this.addCoupon.address.uid+"&d_id="+this.gohubDetailData.dang+"&j_id="+this.gohubDetailData.id + "&coupon="+(this.addCoupon.coupon.id != undefined? this.addCoupon.coupon.id : '' )+"&sign=" + "123456";
           let alipaycanvas = document.getElementById('alipaycanvas')

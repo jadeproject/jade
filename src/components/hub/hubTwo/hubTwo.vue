@@ -24,21 +24,21 @@
         <span>{{item.payment}}</span>
         <span>{{item.time}}</span>
         <span>{{item.number}}<i v-if="item.prize=='1'">中奖</i></span>
-        <span>{{item.status}}</span>
+        <span @click="item.status == '付租金'? gopay(item):''" :style="item.status == '付租金'?'color:red;cursor:pointer;':''">{{item.status}}</span>
       </div>
-
-
     </div>
-
+    <hub-pay-t ref="showPay_flag" :gohubDetailDatas="gohubDetailData"></hub-pay-t>
   </div>
 
 </template>
 
 <script type="text/ecmascript-6">
+  import hubPayT from  './hubPayT'
   export default {
     data() {
       return {
-        order:[]
+        order:[],
+        gohubDetailData:'',
       };
     },
     created() {
@@ -53,8 +53,18 @@
       })
 
     },
-    methods: {},
-    components: {}
+    methods: {
+      payT(e){
+
+      },
+      gopay(data){
+        this.$refs.showPay_flag.show();
+        this.gohubDetailData = data;
+      }
+    },
+    components: {
+      hubPayT
+    }
   };
 </script>
 
@@ -65,6 +75,7 @@
     width: 100%;
     background-color: #fff;
     overflow: hidden;
+    position: relative;
     .title{
       height: 40px;
       line-height: 40px;
@@ -73,7 +84,7 @@
       color: #fff;
     }
     .itemKey,.itemC{
-      height: 40px;
+      height: auto;
       line-height: 40px;
       display: flex;
       border-bottom: 1px solid #f4f4f4;
@@ -99,7 +110,7 @@
         font-weight: 400;
         font-size: 10px;
         padding: 6px 0;
-        line-height: 22px;
+        // line-height: 22px;
         span:nth-child(4),span:nth-child(5),span:nth-child(6),span:nth-child(8){
           color: @bg;
           i{
@@ -117,7 +128,7 @@
           width: 100px !important;
         }
         span:nth-child(4){
-          line-height: 15px;
+          line-height: 20px;
         }
 
       }

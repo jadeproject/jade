@@ -134,16 +134,22 @@
               "password":this.psw,
               "coupon":this.$GQ('coupon')
             }).then((response)=>{
-
-              // 将用户数据存放在缓存中
-              window.localStorage.setItem("loginData",JSON.stringify(response.data));
-              // 将用户数据存放在vuex中
-              this.$store.state.loginData=JSON.parse(window.localStorage.getItem("loginData"));
-              this.flag = false;
-              this.$emit('showLoginR', this.loginR);
-              // 刷新获取数据
-              this.$router.push('./')
-              reloadOne();
+              console.log(response)
+              if(response.code == 200){
+                // 将用户数据存放在缓存中
+                window.localStorage.setItem("loginData",JSON.stringify(response.data));
+                // 将用户数据存放在vuex中
+                this.$store.state.loginData=JSON.parse(window.localStorage.getItem("loginData"));
+                this.flag = false;
+                this.$emit('showLoginR', this.loginR);
+                // 刷新获取数据
+                this.$router.push('./')
+                reloadOne();
+              }else if(response.code == 108){
+                alert("登录密码错误，请重新输入")
+              }else{
+                alert(response.msg)
+              }
             })
 
           }
@@ -233,7 +239,7 @@
   }
   .loginPop {
     padding: 20px 0;
-    width: 40%;
+    width: 600px;
     background-color: @mask;
     position: fixed;
     top: 50%;

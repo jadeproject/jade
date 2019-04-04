@@ -13,7 +13,7 @@
     </div>
     <div class="right_p">
       <div><input type="text" v-model="name"></div>
-      <div>
+      <!-- <div>
         <i-select :model.sync="model1" size="small" style="width:70px;margin-top: 5px">
           <i-option v-for="item in cityList" :value="item.value">{{ item.label }}</i-option>
         </i-select>
@@ -23,6 +23,9 @@
         <i-select :model.sync="model1" size="small" style="width:70px;margin-top: 5px">
           <i-option v-for="item in cityList" :value="item.value">{{ item.label }}</i-option>
         </i-select>
+      </div> -->
+      <div class="addressTxt">
+        <input type="text" v-model="value1" placeholder="省份"> - <input type="text" v-model="value2" placeholder="城市"> - <input type="text" v-model="value3" placeholder="区域/县城">
       </div>
       <div><input type="text" v-model="addressD"></div>
       <div><input type="text" v-model="phoneD"></div>
@@ -91,6 +94,9 @@
           }
         ],
         model1: '',
+        value1:'',
+        value2:'',
+        value3:'',
         name:'',
         address:'',
         addressD:'',
@@ -106,16 +112,13 @@
 
     },
     mounted() {
-      console.log(this.value2);
-
-
-
+      console.log(this.value2)
     },
     methods: {
       btnAddress(){
         console.log(this.value2);
         // 拼接地址入参
-        this.address=`${this.value2[0]},${this.value2[1]},${this.value2[2]}`
+        this.address=`${this.value1},${this.value2},${this.value3}`
         if(this.name==''){
           this.$Message.info('请输人姓名')
         }else if(this.phone==''){
@@ -130,14 +133,14 @@
             'city':this.address,
             'address':this.addressD
           }).then((response)=>{
-            if(response.code==200){
-              this.$Message.info('提交数据成功');
+            if(response.code == 200){
+            this.$Message.success("提交数据成功");
+            }else{
+              this.$Message.error(response.msg);
             }
           })
         }
-
       }
-
     },
     components: {}
   };
@@ -157,6 +160,7 @@
       height: 100%;
       float: left;
       div{
+        height: 30px;
         margin-top: 25px;
         i{
           color: red;
@@ -167,7 +171,13 @@
       float: left;
       margin-left: 20px;
       div{
-        margin-top: 20px;
+        height: 30px;
+        margin-top: 25px;
+      }
+      .addressTxt{
+        input{
+          width: 120px;
+        }
       }
       input{
         border-right: none;
@@ -175,19 +185,21 @@
         border-left: none;
         outline: none;
       }
+      .btn{
+        width: 243px;
+        height: 40px;
+        padding: 10px 30px;
+        text-align: center;
+        // position: absolute;
+        // left: 50%;
+        // bottom: 10px;
+        /*margin-left: -50%;*/
+        background-color: @bg;
+        color: #fff;
+        // margin-left: -60px;
+      }
+    }
 
-    }
-    .btn{
-      padding: 10px 30px;
-      text-align: center;
-      // position: absolute;
-      // left: 50%;
-      // bottom: 10px;
-      /*margin-left: -50%;*/
-      background-color: @bg;
-      color: #fff;
-      // margin-left: -60px;
-    }
 
   }
 

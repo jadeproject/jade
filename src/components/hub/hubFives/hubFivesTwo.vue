@@ -12,7 +12,7 @@
     <div class="right_p">
       <div>{{loginData.username}}</div>
       <!--<div><input type="text"></div>-->
-      <div>
+      <!-- <div>
         <i-select :model.sync="model1" size="small" v-model="value1" style="width:70px;margin-top: 10px">
           <i-option v-for="item in cityList" :value="item.label">{{ item.label }}</i-option>
         </i-select>
@@ -22,6 +22,9 @@
         <i-select :model.sync="model1" size="small"  v-model="value3" style="width:70px;margin-top: 10px">
           <i-option v-for="item in cityList" :value="item.label">{{ item.label }}</i-option>
         </i-select>
+      </div> -->
+      <div class="addressTxt">
+        <input type="text" v-model="value1" placeholder="省份"> - <input type="text" v-model="value2" placeholder="城市"> - <input type="text" v-model="value3" placeholder="区域/县城">
       </div>
       <div><input type="text" v-model="address"></div>
       <div><input type="text" v-model="contacts"></div>
@@ -110,15 +113,20 @@
     methods: {
       subM(){
         if(this.value1 == "" || this.value2 == "" || this.value3 == "" ||this.address == "" || this.contacts == ""){
-          alert("选择和输入不能为空")
+          this.$Message.error("输入不能为空");
           return;
         }
         this.$get('/index.php/hy/user/my_person',{
-          "uid":"7",
+          "uid":JSON.parse(window.localStorage.getItem("loginData")).id,
           "city":this.value1+','+this.value2+','+this.value3,
           "address":this.address,
           "contacts":this.contacts,
         }).then((response)=>{
+          if(response.code == 200){
+            this.$Message.success("修改成功！");
+          }else{
+            this.$Message.error(response.msg);
+          }
           console.log(response.data);
         })
       }
@@ -142,6 +150,7 @@
       float: left;
       div{
         margin-top: 25px;
+        height: 30px;
         i{
           color: red;
         }
@@ -151,7 +160,13 @@
       float: left;
       margin-left: 20px;
       div{
-        margin-top: 18px;
+        margin-top: 25px;
+        height: 30px;
+      }
+      .addressTxt{
+        input{
+          width: 120px;
+        }
       }
       .phone_inp{
         margin-top: 25px;
@@ -168,20 +183,20 @@
         color: red;
         font-size: 14px;
       }
-
+      .btn{
+        width: 243px;
+        height: 40px;
+        padding: 10px 30px;
+        text-align: center;
+        // position: absolute;
+        // left: 50%;
+        // bottom: 10px;
+        /*margin-left: -50%;*/
+        background-color: @bg;
+        color: #fff;
+        // margin-left: -30px;
+      }
     }
-    .btn{
-      padding: 10px 30px;
-      text-align: center;
-      // position: absolute;
-      // left: 50%;
-      // bottom: 10px;
-      /*margin-left: -50%;*/
-      background-color: @bg;
-      color: #fff;
-      // margin-left: -30px;
-    }
-
   }
 
 

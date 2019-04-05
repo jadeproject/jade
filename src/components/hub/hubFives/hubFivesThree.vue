@@ -70,10 +70,10 @@
 
       // 对接图形生成码
       // 生成随机数
-      this.randNum=sum(1,100);
-      this.showTx(this.randNum);
+      // this.randNum=sum(1,100);
+      // this.showTx(this.randNum);
 
-      console.log();
+      // console.log();
 
 
     },
@@ -90,6 +90,7 @@
           this.$get('/index.php/hy/user/change_pwd_1',{
              "uid":JSON.parse(window.localStorage.getItem("loginData")).id,
             "username":JSON.parse(window.localStorage.getItem("loginData")).username,
+            "s_code":this.yzm,
             "code":this.dxyz,
             "mobile":JSON.parse(window.localStorage.getItem("loginData")).mobile
 
@@ -124,19 +125,19 @@
         })
       },
       btnClick(){
-        this.randNum=sum(1,100);
+        this.randNum=sum(1,10000);
         this.showTx(this.randNum);
 
       },
-      // 获取图形验证码
-      showTx(Num){
-        this.$get('/index.php',{
-          's':'/captcha',
-          'r':Num
-        }).then((responese)=>{
-          console.log(responese.data);
-        })
-      }
+      // // 获取图形验证码
+      // showTx(Num){
+      //   this.$get('/index.php',{
+      //     's':'/captcha',
+      //     'r':Num
+      //   }).then((responese)=>{
+      //     console.log(responese.data);
+      //   })
+      // }
 
     },
 

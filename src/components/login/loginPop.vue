@@ -4,7 +4,9 @@
     <div class="loginPop">
       <div class="info">
         <div class="logo_info">
-          <div class="imgIcon"></div>
+          <div class="imgIcon">
+            <img src="../../assets/img/logo.jpg" alt="">
+          </div>
           <div class="info_dec">
             <div>爱上弘毅</div>
             <div>幸福从此结缘</div>
@@ -261,6 +263,11 @@
           width: 60px;
           border-radius: 50%;
           background-color: #fff;
+          img{
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+          }
         }
 
         .info_dec {

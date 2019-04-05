@@ -87,10 +87,12 @@ export function get(url,params={}){
     axios.get(url,{
       params:qs.parse(params)
     }).then(response => {
+      // alert(typeof response.data.code);
       if(response.data.code!=200){
         this.$Message.info(`${response.data.code}:${response.data.msg}`)
       }
       resolve(response.data);
+
     }).catch(err => {
       this.$Message.info('系统异常请联系管理员')
       reject(err);

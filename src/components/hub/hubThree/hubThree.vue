@@ -174,14 +174,14 @@
       // 获取用户所有抽奖
       this.$get('/index.php/hy/user/my_draw',{
         // "uid":JSON.parse(window.localStorage.getItem("loginData")).id
-          "uid":"7",
+          "uid":JSON.parse(window.localStorage.getItem("loginData")).id,
       })
       .then((response) => {
         this.drawData = response.data;
         // 获取所有抽奖栏目开奖时间
         this.$get('/index.php/hy/user/show_draw',{
           // "uid":JSON.parse(window.localStorage.getItem("loginData")).id
-            "uid":"7",
+            "uid":JSON.parse(window.localStorage.getItem("loginData")).id,
         })
         .then((res) => {
           this.flag = true;
@@ -206,7 +206,7 @@
         // 获取所有抽奖栏目五个栏目数据
         this.$get('/index.php/hy/user/my_draw_data',{
           // "uid":JSON.parse(window.localStorage.getItem("loginData")).id
-            "uid":"7",
+            "uid":JSON.parse(window.localStorage.getItem("loginData")).id,
             "type":e,
             "page":1
         })

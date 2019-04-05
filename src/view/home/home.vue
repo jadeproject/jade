@@ -289,7 +289,7 @@
         <!-- 浮窗 -->
         <div class="contactbut" v-if="isTop == true">
             <i-button @click="contactbut('info',2)" class="int"><span class="iconfont">&#xe678;</span></i-button>
-            <i-button @click="contactbut('info',2)" class="int"><span class="iconfont">&#xe624;</span></i-button>
+            <i-button @click="contactbut('info',3)" class="int"><span class="iconfont">&#xe624;</span></i-button>
             <i-button @click="goTopbut()" class="int" ref="btn" title="回到顶部"><span class="iconfont">&#xe623;</span></i-button>
         </div>
         <!-- 浮窗 end -->
@@ -318,6 +318,7 @@
                 drawData:'',  //开奖公告
                 drawDataStatus:'',  //开奖公告显示状态
                 commonlist:[],  //常见问题
+                qq_wechat:{},   //qq微信二维码
                 isTop: true
             };
         },
@@ -366,6 +367,14 @@
             })
             .then((response) => {
                 this.commonlist = response.data;
+            })
+
+            // QQ和微信二维码
+            this.$get('/index.php/hy/user/qq_wechat',{
+                "uid":7,
+            })
+            .then((response) => {
+                this.qq_wechat = response.data;
             })
         },
         mounted () {
@@ -433,8 +442,15 @@
 
             // 联系弹窗
             contactbut (type,nums) {
-                const title = nums == 1? '微信扫码查看更多' : '微信扫码联系我们';
-                const content = '<img class="contactimg" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554054131629&di=2aaffaabed444056a500d99f97a39036&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201701%2F28%2F20170128085020_jfRhX.jpeg" />';
+                let title = '';
+                if(nums == 1){
+                    title = '微信扫码查看更多'
+                }else{
+                    title = nums == 2 && nums != 1? '微信扫码查看更多' : 'QQ扫码联系我们';
+                }
+                let imgs = nums == 2 && nums != 1 ? this.qq_wechat.wechat : this.qq_wechat.qq;
+                this.qq_wechat
+                let content = `<img class="contactimg" src="${imgs}" />`;
                 switch (type) {
                     case 'info':
                         this.$Modal.info({

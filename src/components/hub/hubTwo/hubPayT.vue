@@ -106,7 +106,6 @@ var QRCode = require('qrcode')
     color: #fff;
     .ecode{
       padding: 20px;
-      border: 1px dashed #999;
       margin-top: 50px;
       text-align: center;
       line-height: 30px;

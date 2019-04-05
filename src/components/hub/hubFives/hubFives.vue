@@ -9,7 +9,7 @@
       <hub-fives-three v-if="tt==2"></hub-fives-three>
       <hub-fives-four v-if="tt==3"></hub-fives-four>
     </div>
-
+    <hub-pay-ok ref="showPayOk_flag" ></hub-pay-ok>
   </div>
 
 </template>
@@ -19,6 +19,7 @@
   import hubFivesTwo from './hubFivesTwo'
   import hubFivesThree from './hubFivesThree'
   import hubFivesFour from './hubFivesFour'
+  import hubPayOk from  './hubPayOk'
   export default {
     data() {
       return {
@@ -52,7 +53,10 @@
 
     },
     mounted() {
-
+      // 支付成功回调事件
+      if(this.$GQ("pay") && this.$GQ("id") && this.$GQ("username")){
+        this.$refs.showPayOk_flag.show();
+      }
     },
     methods: {
       select(item,index){
@@ -63,7 +67,8 @@
       hubFivesOne,
       hubFivesTwo,
       hubFivesThree,
-      hubFivesFour
+      hubFivesFour,
+      hubPayOk
     }
   };
 </script>

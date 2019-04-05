@@ -6,7 +6,7 @@
             <div class="banner_position" v-if="userStatus">
                 <div class="name_img"><div><img :src="userData.avatar" alt=""></div></div>
                 <div class="name_txt">{{userData.username}}</div>
-                <div class="tips">我已成功邀请 <span>{{userData.count}}</span> 人</div>
+                <div class="tips" @click="countClick(userData)">我已成功邀请 <span>{{userData.count}}</span> 人</div>
             </div>
         </div>
         <!-- 大图 end -->
@@ -91,7 +91,27 @@
             </div>
         </div>
         <!-- 排行榜 end -->
-
+        
+        <!-- 邀请的人资料 -->
+        <div class="count" v-if="invitationPidStatus">
+            <div class="count_bg" @click="count_bgClick()"></div>
+            <div class="count_in">
+                <div class="title">成功邀请的人</div>
+                <div class="count_list">
+                    <div class="list_in">
+                        <span>用户名</span>
+                        <span>手机号</span>
+                        <span>租贡状态</span>
+                    </div>
+                    <div class="list_in" v-for="(item,index) in invitationPid" :key="index">
+                        <span>{{item.username}}</span>
+                        <span>{{item.mobile}}</span>
+                        <span>{{item.status}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 邀请的人资料 end -->
         <!-- 登录注册 -->
         <login-pop ref="log_Pop"></login-pop>
         <!-- 登录注册 end -->
@@ -105,6 +125,8 @@
             return {
                 userStatus:false,//顶部信息-头像昵称等,显示隐藏
                 userData:'',    //顶部信息-头像昵称等
+                invitationPid:'',//邀请的人数据
+                invitationPidStatus:false,//邀请的人模块显示隐藏
                 rankingList:[],  // 排行榜
                 wayData:'',     //获奖方式
                 getmodeStatus:false,   //获奖方式显示状态 
@@ -119,7 +141,6 @@
                 "uid":"1",
             })
             .then((response) => {
-                console.log(response)
                 this.getmodeStatus = true;
                 this.wayData = response.data;
             })
@@ -129,7 +150,6 @@
                 "uid":"1",
             })
             .then((response) => {
-                console.log(response)
                 this.rankingList = response.data;
             })
         },
@@ -148,11 +168,28 @@
                         "uid":JSON.parse(window.localStorage.getItem("loginData")).id
                     })
                     .then((response) => {
-                        console.log(response)
                         this.userStatus = true;
                         this.userData = response.data;
                     })
                 }
+            },
+            // 查看邀请的人
+            countClick(data){
+                if(this.userData.count == 0){
+                    this.$Message.info("暂无邀请到的人数据");
+                    return;
+                }
+                this.$get('/index.php/hy/user/invitation_pid',{
+                    "uid":JSON.parse(window.localStorage.getItem("loginData")).id
+                })
+                .then((response) => {
+                    this.invitationPid = response.data;
+                    this.invitationPidStatus = true;
+                })
+            },
+            // 关闭查看邀请的人
+            count_bgClick(){
+                this.invitationPidStatus = false;
             },
             // 立即邀请
             inviteClick(type){
@@ -229,6 +266,7 @@
                 line-height: 40px;
             }
             .tips{
+                cursor: pointer;
                 padding: 0 10px;
                 display: inline-block;
                 height:50px;
@@ -520,7 +558,68 @@
             }
         }
     }
+    .count{
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top:0;
+        left: 0;
+        z-index: 10;
+        .count_bg{
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.3);/* IE9、标准浏览器、IE6和部分IE7内核的浏览器(如QQ浏览器)会读懂 */
+        }
+        @media \0screen\,screen\9 {/* 只支持IE6、7、8 */
+            .count_bg{
+            background-color:#000000;
+            filter:Alpha(opacity=50);
+            position:static; /* IE6、7、8只能设置position:static(默认属性) ，否则会导致子元素继承Alpha值 */
+            *zoom:1; /* 激活IE6、7的haslayout属性，让它读懂Alpha */
+            }
+        }
+        .count_in{
+            width: 600px;
+            height: 500px;
+            background: #fff;
+            border-radius: 10px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -250px;
+            margin-left: -300px;
+            .title{
+                font-size: 22px;
+                font-weight: bold;
+                text-align: center;
+                color:#000;
+                height: 54px;
+                padding:15px 10px;
+                box-sizing: border-box;
+                border-bottom: 1px solid #d9d9d9;
+            }
+            .count_list{
+                width: 100%;
+                height:445px;
+                padding:0 10px 10px;
+                box-sizing: border-box;
+                .list_in{
+                    width: 100%;
+                    padding:10px 0;
+                    box-sizing: border-box;
+                    line-height: 40px;
+                    color:#666;
+                    border-bottom: 1px solid #f5f5f5;
+                    span{
+                        width: 32.3%;
+                        display: inline-block;
+                        text-align: center;
+                    }
+                }
+            }
 
+        }
+    }
 }
 
 </style>

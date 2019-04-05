@@ -12,7 +12,7 @@
           <hub-one v-if="type==0"></hub-one>
           <hub-two v-if="type==1"></hub-two>
           <hub-three v-if="type==2"></hub-three>
-          <hub-four v-if="type==3"></hub-four>
+          <hub-four v-if="type==30"></hub-four>
           <hub-fives v-if="type==4"></hub-fives>
           <hub-six v-if="type==5"></hub-six>
         </div>
@@ -45,7 +45,7 @@
             type:'3'
           }, {
             val:'邀请中心',
-            type:'4'
+            type:'40'
           },
           {
             val:'账户中心',
@@ -83,16 +83,18 @@
     },
     methods: {
       select_Item(index){
-        this.tt=index;
-        this.type=index;
-        this.$router.push({
-          path:'./hub',
-          query:{
-            type:index
-          }
-        })
-        if(this.type==3){
+        // 去邀请页面
+        if(index==3){
           this.$router.push('./invite')
+        }else{
+          this.tt=index;
+          this.type=index;
+          this.$router.push({
+            path:'./hub',
+            query:{
+              type:index
+            }
+          })
         }
       }
     },

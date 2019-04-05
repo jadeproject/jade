@@ -28,12 +28,14 @@
       </div>
     </div>
     <hub-pay-t ref="showPay_flag" :gohubDetailDatas="gohubDetailData"></hub-pay-t>
+    <hub-pay-ok ref="showPayOk_flag" ></hub-pay-ok>
   </div>
 
 </template>
 
 <script type="text/ecmascript-6">
   import hubPayT from  './hubPayT'
+  import hubPayOk from  './hubPayOk'
   export default {
     data() {
       return {
@@ -45,9 +47,13 @@
 
     },
     mounted() {
+      // 支付成功回调事件
+      if(this.$GQ("pay") && this.$GQ("id") && this.$GQ("username")){
+        this.$refs.showPayOk_flag.show();
+      }
       this.$get('/index.php/hy/user/my_order',{
         // "uid":JSON.parse(window.localStorage.getItem("loginData")).id
-        "uid":'7'
+        "uid":JSON.parse(window.localStorage.getItem("loginData")).id
       }).then((response)=>{
         this.order=response.data
       })
@@ -63,7 +69,8 @@
       }
     },
     components: {
-      hubPayT
+      hubPayT,
+      hubPayOk
     }
   };
 </script>

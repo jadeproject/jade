@@ -26,6 +26,7 @@
       <hub-detail ref="showDetail"  :gohubDetailDatas="gohubDetailData" @showPay="PayPage"></hub-detail>
       <hub-pay ref="showPay_flag" :gohubDetailDatas="gohubDetailData" @showPayT="payT"></hub-pay>
       <hub-pay-t ref="showPayT_flag" :gohubDetailDatas="gohubDetailData"  :addCoupons="addCoupon" :paydatas="paydata"></hub-pay-t>
+      <hub-pay-ok ref="showPayOk_flag" ></hub-pay-ok>
     </div>
 
 </template>
@@ -34,6 +35,7 @@
     import hubDetail from './hubDetail'
     import hubPay from './hubPay'
     import hubPayT from  './hubPayT'
+    import hubPayOk from  './hubPayOk'
     export default {
         data() {
             return {
@@ -68,7 +70,10 @@
         mounted() {
           // this.tt=Number(this.$GQ('tt'))
           // this.getgoods(this.tt+1);
-
+          // 支付成功回调事件
+          if(this.$GQ("pay") && this.$GQ("id") && this.$GQ("username")){
+            this.$refs.showPayOk_flag.show();
+          }
         },
         methods: {
           getgoods(status){
@@ -96,6 +101,8 @@
           // tab切换
           typeClick(item,index){
             if(index == this.tt){return;}
+            //  
+            this.goodslist == '';
             this.tt=index;
             this.getgoods(index+1);
           },
@@ -124,7 +131,8 @@
         components: {
           hubDetail,
           hubPay,
-          hubPayT
+          hubPayT,
+          hubPayOk
         }
     };
 </script>

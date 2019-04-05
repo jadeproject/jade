@@ -1,26 +1,29 @@
 <template>
     <div class="hubPayC" v-if="flag">
       <div class="address">
-          <div class="title">选择地址:</div>
-          <div class="select">
-            <ul class="clearfix">
-              <li v-for="(item,index) in address" :key="index" @click="addressClick(item,index)" :class="addressIndex == index ? 'add_cur':''">
-                <div class="info_h">
-                  <span>{{item.city}}</span>
-                  <span>{{item.name}}（收）</span>
-                </div>
-                <div class="info_d">
-                  {{item.address}}
-                </div>
-                <div class="info_d">
-                  电话：{{item.mobile}} 
-                </div>
-              </li>
-            </ul>
+        <div class="title">Hi,{{username}}</div>
+        <div class="line_type">
+          <div class="line">
+            <div>1</div>
+            <span>立即租</span>
           </div>
-        <div class="youhui" v-if="coupon !=''">
+          <div class="line">
+            <div>2</div>
+            <span>签合同</span>
+          </div>
+          <div class="line">
+            <div>3</div>
+            <span>付款</span>
+          </div>
+          <div class="line2">
+            <div>4</div>
+            <span>确认收货</span>
+          </div>
+        </div>
+        <div class="youhui">
+          <div class="tis">获得 {{coupon.nums}} 张优惠券</div>
           <ul class="clearfix">
-            <li v-for="(item,index) in coupon" :key="index" @click="couponClick(item,index)" :class="couponIndex == index ? 'add_cur':''" v-if="item.status === 'normal'">
+            <li v-for="(item,index) in coupon.data" :key="index">
               <div class="moneys">
                 <p>{{item.money}}元</p>
                 <p>租赁可用</p>
@@ -32,14 +35,7 @@
             </li>
           </ul>
         </div>
-        <div class="paySubmint" v-if="addName !='' && adds != '' && moneys !=''">
-          <div class="header_p">
-            <div>实付款：<span>{{moneys}}元</span></div>
-            <div>收件人：<span>{{addName}}</span></div>
-            <div>收件地址：<span>{{adds}}</span></div>
-          </div>
-          <div class="btn" @click="sub">提交订单</div>
-        </div>
+        <div class="bot_tis">优惠券可在租赁时使用，也可赠送好友</div>
       </div>
     </div>
 
@@ -53,17 +49,8 @@
         data() {
             return {
               flag:false,
-              addressIndex:-2,
-              address:'',
-              couponIndex:-2,
               coupon:'',
-              moneys:'',
-              addName:'',
-              adds:'',
-              addCoupon:{
-                address:{},
-                coupon:{}
-              },
+              username:this.$GQ('username')
             };
         },
         created() {
@@ -71,19 +58,15 @@
         },
         watch:{
           flag(e){
-            console.log(e)
             if(e == true){
-              this.moneys = this.gohubDetailDatas.Totalmoney;
-              // 选择收货地址和优惠券
-              this.$get('/index.php/hy/user/address_coupon',{
-                  "uid":JSON.parse(window.localStorage.getItem("loginData")).id,
+              // 租贡成功生成优惠券
+              this.$get('/index.php/hy/user/how_coupon',{
+                  "uid":this.$GQ('id'),
               })
               .then((response) => {
                 console.log(response)
-                // 地址
-                this.address = response.data.address;
                 // 优惠券
-                this.coupon = response.data.coupon;
+                this.coupon = response.data;
               })
             }
           }
@@ -92,30 +75,11 @@
 
         },
         methods: {
-          // 选择地址
-          addressClick(data,index){
-            this.addressIndex = index;
-            this.addName = data.name;
-            this.adds = data.address;
-            this.addCoupon.address = data;
-          },
-          // 选择优惠券
-          couponClick(data,index){
-            if(this.couponIndex == index){
-              this.addCoupon.coupon = {};
-              this.moneys = this.gohubDetailDatas.Totalmoney;
-              this.couponIndex = '-2';
-              return;
-            }
-            this.couponIndex = index;
-            this.moneys = this.gohubDetailDatas.Totalmoney - data.money;
-            this.addCoupon.coupon = data;
-          },
           show(){
             this.flag=true;
           },
-          sub(){
-            this.$emit('showPayT',"1",this.addCoupon,this.moneys)
+          hide(){
+            this.flag=false;
           }
         },
         components: {}
@@ -138,6 +102,55 @@
       position: relative;
       .title{
         font-size: 20px;
+      }
+      .line_type{
+        margin-top: 40px;
+        margin-left: 20%;
+        margin-bottom: 50px;
+        .line,.line2{
+          height: 4px;
+          width: 100px;
+          background-color: @bg;
+          position: relative;
+          display: inline-block;
+          margin: 0;
+          padding: 0;
+          div{
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -10px;
+            margin-top: -10px;
+            color: #fff;
+            background-color: @bg;
+            text-align: center;
+            line-height: 20px;
+
+          }
+          span{
+            position: absolute;
+            left: 40%;
+            top: 50%;
+            margin-left: -10px;
+            margin-top: 20px;
+            font-size: 14px;
+          }
+        }
+        .line2{
+          background-color: #999;
+          div{
+            color: #fff;
+            background-color: #999;
+          }
+        }   
+      }
+      .bot_tis{
+        font-size: 16px;
+        color:#666;
+        line-height: 40px;
       }
       .select{
         margin-top: 10px;
@@ -176,8 +189,12 @@
         width: 100%;
         padding: 10px;
         border: 1px dashed #999;
-        height: 40%;
         overflow: auto;
+        .tis{
+          color:#5fcdc7;
+          font-size: 20px;
+          padding-bottom: 10px;
+        }
         ul li{
           float: left;
           margin-left: 5%;
@@ -210,6 +227,7 @@
             height: 100%;
             text-align: center;
             border: 1px solid #d9d9d9;
+            border-left-color: #5fcdc7;
             div{
               width: 20%;
               text-align: center;
@@ -230,7 +248,8 @@
           .moneys{
             width: 70%;
             float: left;
-            background: #d9d9d9;
+            background: #5fcdc7;
+            color:#fff;
             text-align: right;
             padding: 20px 5px;
             box-sizing: border-box;

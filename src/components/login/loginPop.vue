@@ -146,9 +146,9 @@
                 // this.$router.push('./')
                 reloadOne();
               }else if(response.code == 108){
-                alert("登录密码错误，请重新输入")
+                this.$Message.error("登录密码错误，请重新输入")
               }else{
-                alert(response.msg)
+                this.$Message.error(response.msg)
               }
             })
 

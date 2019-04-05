@@ -2,7 +2,7 @@
   <div class="hubPayC" v-show="flag">
     <div class="titleT">订单支付</div>
     <div class="address">
-      <div class="title">Hi,小明</div>
+      <div class="title">Hi,{{username}}</div>
       <div class="line_type">
         <div class="line">
           <div>1</div>
@@ -59,6 +59,7 @@ var QRCode = require('qrcode')
         host:"http://askxubing.cn",
         alipayImg:'', //阿里付款二维码
         deviceStatus:true,  //打开的设备，true = pc端，false = 移动端
+        username:JSON.parse(window.localStorage.getItem("loginData")).username
       };
     },
     created() {

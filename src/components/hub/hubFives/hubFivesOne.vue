@@ -112,20 +112,25 @@
               on: {
                 input: (val) => {
                   this.value = val;
-                },
-                'on-ok': ()=> {
-                  // 体现接口
-                  this.$get('/index.php/hy/user/user_tixian',{
-                    "uid": JSON.parse(window.localStorage.getItem("loginData")).id,
-                    "num":this.value
-                  }).then((response)=>{
-                    if(response.code==200){
-                      this.$Message.info('体现成功');
-                    }
-                  })
                 }
               }
             })
+          },
+          onOk: ()=> {
+            if (this.value==''){
+              this.$Message.info('请输入体现金额');
+            }else {
+              // 体现接口
+              this.$get('/index.php/hy/user/user_tixian',{
+                "uid": JSON.parse(window.localStorage.getItem("loginData")).id,
+                "num":this.value
+              }).then((response)=>{
+                if(response.code==200){
+                  this.$Message.info('体现成功');
+                }
+              })
+            }
+
           }
         })
         // alert(111);

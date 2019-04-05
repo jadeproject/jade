@@ -6,31 +6,31 @@
       <div><i>*</i>详细地址：</div>
       <div><i>*</i>固定电话(选填)：</div>
       <div><i>*</i>手机号：</div>
-      <div><i>*</i>邮箱：</div>
+<!--      <div><i>*</i>邮箱：</div>-->
       <div><i>*</i>紧急联系人：</div>
       <div><i>*</i>联系人电话：</div>
 
     </div>
     <div class="right_p">
       <div><input type="text" v-model="name"></div>
-      <!-- <div>
-        <i-select :model.sync="model1" size="small" style="width:70px;margin-top: 5px">
-          <i-option v-for="item in cityList" :value="item.value">{{ item.label }}</i-option>
+      <div>
+        <i-select @on-change="getshi" :model.sync="model1" size="small" v-model="value1" style="width:70px;margin-top: 0px">
+          <i-option  v-for="item in shenData" :value="item" >{{ item.name }}</i-option>
         </i-select>
-        <i-select :model.sync="model1" size="small" style="width:70px;margin-top: 5px">
-          <i-option v-for="item in cityList" :value="item.value">{{ item.label }}</i-option>
+        <i-select  @on-change="getxian" :model.sync="model2" size="small" v-model="value2" style="width:70px;margin-top: 0px">
+          <i-option v-for="item in shiData" :value="item">{{ item.name }}</i-option>
         </i-select>
-        <i-select :model.sync="model1" size="small" style="width:70px;margin-top: 5px">
-          <i-option v-for="item in cityList" :value="item.value">{{ item.label }}</i-option>
+        <i-select :model.sync="model3" size="small"  v-model="value3" style="width:70px;margin-top: 0px">
+          <i-option v-for="item in xianData" :value="item">{{ item.name }}</i-option>
         </i-select>
-      </div> -->
-      <div class="addressTxt">
-        <input type="text" v-model="value1" placeholder="省份"> - <input type="text" v-model="value2" placeholder="城市"> - <input type="text" v-model="value3" placeholder="区域/县城">
       </div>
+<!--      <div class="addressTxt">-->
+<!--        <input type="text" v-model="value1" placeholder="省份"> - <input type="text" v-model="value2" placeholder="城市"> - <input type="text" v-model="value3" placeholder="区域/县城">-->
+<!--      </div>-->
       <div><input type="text" v-model="addressD"></div>
       <div><input type="text" v-model="phoneD"></div>
       <div><input type="text" v-model="phone"></div>
-      <div><input type="text" v-model="em"></div>
+<!--      <div><input type="text" v-model="em"></div>-->
       <div><input type="text" v-model="jjName"></div>
       <div> <div><input type="text" v-model="jjPhone"></div></div>
       <div class="btn" @click="btnAddress">保存收货人信息</div>
@@ -44,54 +44,8 @@
     data() {
       return {
         value2: [],
-        data2: [{
-          value: '浙江',
-          label: '浙江',
-          children: [{
-            value: '杭州',
-            label: '杭州',
-            children: [{
-              value: '西湖',
-              label: '西湖'
-            }]
-          }]
-        }, {
-          value: '江苏',
-          label: '江苏',
-          children: [{
-            value: '南京',
-            label: '南京',
-            children: [{
-              value: '中华门',
-              label: '中华门'
-            }]
-          }]
-        }],
         cityList: [
-          {
-            value: 'beijing',
-            label: '北京市'
-          },
-          {
-            value: 'shanghai',
-            label: '上海市'
-          },
-          {
-            value: 'shenzhen',
-            label: '深圳市'
-          },
-          {
-            value: 'hangzhou',
-            label: '杭州市'
-          },
-          {
-            value: 'nanjing',
-            label: '南京市'
-          },
-          {
-            value: 'chongqing',
-            label: '重庆市'
-          }
+
         ],
         model1: '',
         value1:'',
@@ -104,7 +58,10 @@
         phoneD:'',
         em:'',
         jjName:'',
-        jjPhone:''
+        jjPhone:'',
+        shenData:[],
+        shiData:[],
+        xianData:[]
 
       };
     },
@@ -113,12 +70,43 @@
     },
     mounted() {
       console.log(this.value2)
+      this.getSSX('1','0');
     },
     methods: {
+      getSSX(type,id){
+        // 获取省
+        this.$get('/index.php/hy/code/sheng',{
+          type:type,
+          pid:id
+        }).then((responese)=>{
+
+          this.shenData=responese.data;
+        })
+      },
+      getshi(){
+        // 获取市
+        this.$get('/index.php/hy/code/sheng',{
+          type:'2',
+          pid:this.value1.id
+
+        }).then((responese)=>{
+          this.shiData=responese.data;
+        })
+      },
+      getxian(){
+        // 获取市
+        this.$get('/index.php/hy/code/sheng',{
+          type:'2',
+          pid:this.value2.id
+
+        }).then((responese)=>{
+          this.xianData=responese.data;
+        })
+      },
       btnAddress(){
         console.log(this.value2);
         // 拼接地址入参
-        this.address=`${this.value1},${this.value2},${this.value3}`
+        this.address=`${this.value1.name},${this.value2.name},${this.value3.name}`
         if(this.name==''){
           this.$Message.info('请输人姓名')
         }else if(this.phone==''){
@@ -161,7 +149,7 @@
       float: left;
       div{
         height: 30px;
-        margin-top: 25px;
+        margin-top: 20px;
         i{
           color: red;
         }
@@ -172,7 +160,7 @@
       margin-left: 20px;
       div{
         height: 30px;
-        margin-top: 25px;
+        margin-top: 20px;
       }
       .addressTxt{
         input{

@@ -65,14 +65,12 @@
     },
     mounted() {
       this.loginData=JSON.parse(window.localStorage.getItem("loginData"));
-      console.log(this.loginData)
       this.$get('/index.php/hy/user/my_asset',{
         "uid":JSON.parse(window.localStorage.getItem("loginData")).id
 
       }).then((responese)=>{
         this.flag = true;
         this.infoData=responese.data;
-        console.log(this.infoData);
       })
 
     },
@@ -87,8 +85,17 @@
         })
       },
       gopay(data){
-        this.$refs.showPay_flag.show();
-        this.gohubDetailData.uid = JSON.parse(window.localStorage.getItem("loginData")).id;
+        // 是否参与过0元活动
+        this.$get('/index.php/hy/user/is_one',{
+          "uid":JSON.parse(window.localStorage.getItem("loginData")).id
+        }).then((response)=>{
+          if(response.code == 200){
+            this.$refs.showPay_flag.show();
+            this.gohubDetailData.uid = JSON.parse(window.localStorage.getItem("loginData")).id;
+          }else{
+            this.$Message.info(response.msg);
+          }
+        })
       }
     },
     components: {

@@ -52,7 +52,6 @@
         this.$refs.showPayOk_flag.show();
       }
       this.$get('/index.php/hy/user/my_order',{
-        // "uid":JSON.parse(window.localStorage.getItem("loginData")).id
         "uid":JSON.parse(window.localStorage.getItem("loginData")).id
       }).then((response)=>{
         this.order=response.data

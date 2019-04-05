@@ -11,21 +11,21 @@
     </div>
     <div class="right_p">
       <div>{{loginData.username}}</div>
-      <!--<div><input type="text"></div>-->
-      <!-- <div>
-        <i-select :model.sync="model1" size="small" v-model="value1" style="width:70px;margin-top: 10px">
-          <i-option v-for="item in cityList" :value="item.label">{{ item.label }}</i-option>
+<!--      <div><input type="text"></div>-->
+     <div>
+        <i-select @on-change="getshi" :model.sync="model1" size="small" v-model="value1" style="width:70px;margin-top: 0px">
+          <i-option  v-for="item in shenData" :value="item" >{{ item.name }}</i-option>
         </i-select>
-        <i-select :model.sync="model1" size="small" v-model="value2" style="width:70px;margin-top: 10px">
-          <i-option v-for="item in cityList" :value="item.label">{{ item.label }}</i-option>
+        <i-select  @on-change="getxian" :model.sync="model2" size="small" v-model="value2" style="width:70px;margin-top: 0px">
+          <i-option v-for="item in shiData" :value="item">{{ item.name }}</i-option>
         </i-select>
-        <i-select :model.sync="model1" size="small"  v-model="value3" style="width:70px;margin-top: 10px">
-          <i-option v-for="item in cityList" :value="item.label">{{ item.label }}</i-option>
+        <i-select :model.sync="model3" size="small"  v-model="value3" style="width:70px;margin-top: 0px">
+          <i-option v-for="item in xianData" :value="item">{{ item.name }}</i-option>
         </i-select>
-      </div> -->
-      <div class="addressTxt">
-        <input type="text" v-model="value1" placeholder="省份"> - <input type="text" v-model="value2" placeholder="城市"> - <input type="text" v-model="value3" placeholder="区域/县城">
       </div>
+<!--      <div class="addressTxt">-->
+<!--        <input type="text" v-model="value1" placeholder="省份"> - <input type="text" v-model="value2" placeholder="城市"> - <input type="text" v-model="value3" placeholder="区域/县城">-->
+<!--      </div>-->
       <div><input type="text" v-model="address"></div>
       <div><input type="text" v-model="contacts"></div>
       <div class="phone_inp">{{loginData.mobile}} <span>已验证</span></div>
@@ -42,65 +42,45 @@
   export default {
     data() {
       return {
-        data2: [{
-          value: 'zhejiang',
-          label: '浙江',
-          children: [{
-            value: 'hangzhou',
-            label: '杭州',
-            children: [{
-              value: 'xihu',
-              label: '西湖'
-            }]
-          }]
-        }, {
-          value: 'jiangsu',
-          label: '江苏',
-          disabled: true,
-          children: [{
-            value: 'nanjing',
-            label: '南京',
-            children: [{
-              value: 'zhonghuamen',
-              label: '中华门'
-            }]
-          }]
-        }],
+
         cityList: [
-          {
-            value: 'beijing',
-            label: '北京市'
-          },
-          {
-            value: 'shanghai',
-            label: '上海市'
-          },
-          {
-            value: 'shenzhen',
-            label: '深圳市'
-          },
-          {
-            value: 'hangzhou',
-            label: '杭州市'
-          },
-          {
-            value: 'nanjing',
-            label: '南京市'
-          },
-          {
-            value: 'chongqing',
-            label: '重庆市'
-          }
+          // {
+          //   value: 'beijing',
+          //   label: '北京市'
+          // },
+          // {
+          //   value: 'shanghai',
+          //   label: '上海市'
+          // },
+          // {
+          //   value: 'shenzhen',
+          //   label: '深圳市'
+          // },
+          // {
+          //   value: 'hangzhou',
+          //   label: '杭州市'
+          // },
+          // {
+          //   value: 'nanjing',
+          //   label: '南京市'
+          // },
+          // {
+          //   value: 'chongqing',
+          //   label: '重庆市'
+          // }
         ],
         model1: '',
-        loginData:{
-
-        },
+        model2: '',
+        model3: '',
+        loginData:{},
         value1:'',
         value2:'',
         value3:'',
         address:'',
         contacts:'',
+        shenData:[],
+        shiData:[],
+        xianData:[]
       };
     },
     created() {
@@ -109,8 +89,41 @@
     mounted() {
       this.loginData=JSON.parse(window.localStorage.getItem("loginData"));
 
+      this.getSSX('1','0');
+
+
     },
     methods: {
+
+      getSSX(type,id){
+        // 获取省
+        this.$get('/index.php/hy/code/sheng',{
+          type:type,
+          pid:id
+        }).then((responese)=>{
+            this.shenData=responese.data;
+        })
+      },
+      getshi(){
+        // 获取市
+        this.$get('/index.php/hy/code/sheng',{
+          type:'2',
+          pid:this.value1.id
+
+        }).then((responese)=>{
+          this.shiData=responese.data;
+        })
+      },
+      getxian(){
+        // 获取市
+        this.$get('/index.php/hy/code/sheng',{
+          type:'2',
+          pid:this.value2.id
+
+        }).then((responese)=>{
+          this.xianData=responese.data;
+        })
+      },
       subM(){
         if(this.value1 == "" || this.value2 == "" || this.value3 == "" ||this.address == "" || this.contacts == ""){
           this.$Message.error("输入不能为空");
@@ -118,7 +131,7 @@
         }
         this.$get('/index.php/hy/user/my_person',{
           "uid":JSON.parse(window.localStorage.getItem("loginData")).id,
-          "city":this.value1+','+this.value2+','+this.value3,
+          "city":this.value1.name+','+this.value2.name+','+this.value3.name,
           "address":this.address,
           "contacts":this.contacts,
         }).then((response)=>{
@@ -129,10 +142,15 @@
           }
           console.log(response.data);
         })
-      }
+      },
+
     },
     components: {}
   };
+
+
+
+
 </script>
 
 <style type="text/css" lang="less" scoped>

@@ -38,6 +38,10 @@
                   <!-- <span class="iconfont">&#xe65e;</span> -->
                 </span>
               </div>
+
+              <div class="page" v-if="AllPageStatus">
+                <Page :current="current" :total="AllPages" simple @on-change="Page_cur"></Page>
+              </div>
             </div>
           </Panel>
 
@@ -64,6 +68,9 @@
                 <span>{{item.partake}}
                   <!-- <span class="iconfont">&#xe65e;</span> -->
                 </span>
+              </div>
+              <div class="page" v-if="AllPageStatus">
+                <Page :current="current" :total="AllPages" simple @on-change="Page_cur"></Page>
               </div>
             </div>
           </Panel>
@@ -92,6 +99,9 @@
                   <!-- <span class="iconfont">&#xe65e;</span> -->
                 </span>
               </div>
+              <div class="page" v-if="AllPageStatus">
+                <Page :current="current" :total="AllPages" simple @on-change="Page_cur"></Page>
+              </div>
             </div>
           </Panel>
 
@@ -118,6 +128,9 @@
                 <span>{{item.partake}}
                   <!-- <span class="iconfont">&#xe65e;</span> -->
                 </span>
+              </div>
+              <div class="page" v-if="AllPageStatus">
+                <Page :current="current" :total="AllPages" simple @on-change="Page_cur"></Page>
               </div>
             </div>
           </Panel>
@@ -146,13 +159,13 @@
                   <!-- <span class="iconfont">&#xe65e;</span> -->
                 </span>
               </div>
+              <div class="page" v-if="AllPageStatus">
+                <Page :current="current" :total="AllPages" simple @on-change="Page_cur"></Page>
+              </div>
             </div>
           </Panel>
       </Collapse>
     </div>
-    <!-- <div class="page">
-      <Page :current="2" :total="50" simple></Page>
-    </div> -->
   </div>
 
 </template>
@@ -167,6 +180,9 @@
         timeData:'',
         indexs:'',
         value1:'',
+        current:1,
+        AllPages:10,
+        AllPageStatus:true
       };
     },
     created() {
@@ -198,8 +214,8 @@
 
     },
     methods: {
-      drawListClick(e){
-        if(this.indexs == e){
+      drawListClick(e,page){
+        if(this.indexs == e && page != "page"){
           return;
         }
         this.indexs = e;
@@ -208,11 +224,18 @@
           // "uid":JSON.parse(window.localStorage.getItem("loginData")).id
             "uid":JSON.parse(window.localStorage.getItem("loginData")).id,
             "type":e,
-            "page":1
+            "page":this.current
         })
         .then((response) => {
           this.drawDataList = response.data;
+          this.AllPageStatus = this.drawDataList.length == 0 ? false : true;
+          this.AllPages = Number(response.data[0].AllPage + 0);
         })
+      },
+      Page_cur(e){
+        // e = 页码数
+        this.current = e;
+        this.drawListClick(this.indexs,"page");
       }
     },
     components: {}
@@ -303,13 +326,9 @@
       width: 14.28%;
     }
     .page{
-      position: absolute;
-      right: 0px;
-      bottom: 20px;
+      text-align: right;
+      padding: 10px 0;
+      box-sizing: border-box;
     }
-
-
   }
-
-
 </style>

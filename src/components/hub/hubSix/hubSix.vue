@@ -43,7 +43,10 @@
       }
     },
     created() {
-
+      console.log(this.$GQ("indextt"))
+      if(this.$GQ("indextt")){
+        this.tt = this.$GQ("indextt");
+      }  
     },
     mounted() {
 

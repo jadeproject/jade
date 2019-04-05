@@ -75,6 +75,13 @@ axios.interceptors.response.use(
 
 export function get(url,params={}){
   // console.log(qs.stringify(params));
+  // 判断有没有登录
+  if(JSON.parse(window.localStorage.getItem("loginData"))==null){
+    // 判断当前页面是不是首页和邀请页
+    if( window.location.href != ("http://" +window.location.host +"/") &&  window.location.href != ("http://" +window.location.host +"/invite?type=invite")){
+      window.location.reload();
+    }
+  }
   params.sign = getSign(params);
   return new Promise((resolve,reject) => {
     axios.get(url,{

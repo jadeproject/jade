@@ -12,107 +12,6 @@
           第{{item.gear}}期 开奖回放
         </div>
       </div>
-
-      <!--<div class="list">-->
-        <!--<div class="video_in">-->
-          <!--<video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">-->
-          <!--标题-->
-          <!--</video>-->
-        <!--</div>-->
-        <!--<div class="txt">-->
-          <!--第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="list">-->
-        <!--<div class="video_in">-->
-          <!--<video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">-->
-          <!--标题-->
-          <!--</video>-->
-        <!--</div>-->
-        <!--<div class="txt">-->
-          <!--第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="list">-->
-        <!--<div class="video_in">-->
-          <!--<video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">-->
-          <!--标题-->
-          <!--</video>-->
-        <!--</div>-->
-        <!--<div class="txt">-->
-          <!--第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="list">-->
-        <!--<div class="video_in">-->
-          <!--<video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">-->
-          <!--标题-->
-          <!--</video>-->
-        <!--</div>-->
-        <!--<div class="txt">-->
-          <!--第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="list">-->
-        <!--<div class="video_in">-->
-          <!--<video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">-->
-          <!--标题-->
-          <!--</video>-->
-        <!--</div>-->
-        <!--<div class="txt">-->
-          <!--第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="list">-->
-        <!--<div class="video_in">-->
-          <!--<video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">-->
-          <!--标题-->
-          <!--</video>-->
-        <!--</div>-->
-        <!--<div class="txt">-->
-          <!--第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="list">-->
-        <!--<div class="video_in">-->
-          <!--<video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">-->
-          <!--标题-->
-          <!--</video>-->
-        <!--</div>-->
-        <!--<div class="txt">-->
-          <!--第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="list">-->
-        <!--<div class="video_in">-->
-          <!--<video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">-->
-          <!--标题-->
-          <!--</video>-->
-        <!--</div>-->
-        <!--<div class="txt">-->
-          <!--第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="list">-->
-        <!--<div class="video_in">-->
-          <!--<video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">-->
-          <!--标题-->
-          <!--</video>-->
-        <!--</div>-->
-        <!--<div class="txt">-->
-          <!--第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="list">-->
-        <!--<div class="video_in">-->
-          <!--<video src="../../../assets/video/movie.mp4"  width="200" height="130" controls="controls">-->
-          <!--标题-->
-          <!--</video>-->
-        <!--</div>-->
-        <!--<div class="txt">-->
-          <!--第13168期 开奖回放，第13168期开奖回放，第13168期 开奖回放-->
-        <!--</div>-->
-      <!--</div>-->
     </div>
     <div class="page">
       <Page :current="current" :total="videoDataType[0].AllPage" simple @on-change="Page_cur"></Page>
@@ -197,7 +96,7 @@
       font-weight: bold;
     }
     .list{
-      width: 200px;
+      width: 167px;
       height: 180px;
       background: #fff;
       display: inline-block;

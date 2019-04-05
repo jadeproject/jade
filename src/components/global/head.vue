@@ -4,7 +4,6 @@
         <!-- <div class="left"></div> -->
         <div class="right">
           <div></div>
-          <div></div>
           <div @click="tabClick('0')">
             <router-link to="/"> 首页</router-link>
           </div>
@@ -14,13 +13,15 @@
           <div @click="tabClick('1430')" v-if="hostStatus">产品介绍</div>
           <div @click="tabClick('3810')" v-if="hostStatus">开奖公告</div>
           <div @click="tabClick('4700')" v-if="hostStatus">常见问题</div>
+          <div v-if="hostStatus" @click="Invite()">
+            邀请好友
+          </div>
           <div v-if="hostStatus"></div>
         </div>
         <div @click="longinShow()" class="icon noselect"><span class="iconfont">&#xe602;</span></div>
       </div>
       <login ref="loginT" @On_click="log_click" @host_click="hostStatusClick" :loginData="loginData"></login>
       <login-pop ref="log_Pop" @showLoginR="logR"></login-pop>
-
     </div>
 
 </template>
@@ -113,6 +114,17 @@
                 document.documentElement.scrollTop = data;
                 clearInterval(timer)
             }, 30)
+          },
+          // 邀请好友
+          Invite(){
+            this.flag=false;
+            this.$router.push({
+              path:'./invite',
+              query:{
+                type:"invite"
+              }
+            })
+            this.hostStatusClick("invite")
           }
         },
         components: {

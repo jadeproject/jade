@@ -48,14 +48,21 @@
       };
     },
     created() {
-
+      
     },
     mounted() {
-
+      if(this.$GQ("indextt")){
+        let ss = {};
+        ss.type = this.$GQ("typeStatus");
+        ss.title = this.videoData[parseInt(this.$GQ("typeStatus"))-1].title;
+        console.log(ss)
+        this.gohubDetail(ss);
+      }
     },
     methods: {
       // 点击到视频列表
       gohubDetail(item){
+        console.log(item)
         this.OneData=item;
         this.$refs.showDetail.show();
 
@@ -65,6 +72,7 @@
           "type":item.type,
           "page":this.pageLeng
         }).then((response)=>{
+          console.log(response)
          this.videoDataType=response.data
 
         })

@@ -3,7 +3,7 @@
         <!-- 大图 -->
         <div class="banner">
             <img src="../../assets/img/invite_banner.jpg" alt="">
-            <div class="banner_position">
+            <div class="banner_position" v-if="userStatus">
                 <div class="name_img"><div><img :src="userData.avatar" alt=""></div></div>
                 <div class="name_txt">{{userData.username}}</div>
                 <div class="tips">我已成功邀请 <span>{{userData.count}}</span> 人</div>
@@ -31,7 +31,7 @@
                         <p>并在商城</p>
                         <p>完成租赁</p>
                     </div>
-                    <span class="tip_position noselect">立即邀请</span>
+                    <span class="tip_position noselect" @click="inviteClick('info')">立即邀请</span>
                 </div>
             </div>
         </div>
@@ -91,13 +91,19 @@
             </div>
         </div>
         <!-- 排行榜 end -->
+
+        <!-- 登录注册 -->
+        <login-pop ref="log_Pop"></login-pop>
+        <!-- 登录注册 end -->
     </div>
 </template>
 
 <script type="text/ecmascript-6">
+    import loginPop from '@/components/login/loginPop';
     export default {
         data() {
             return {
+                userStatus:false,//顶部信息-头像昵称等,显示隐藏
                 userData:'',    //顶部信息-头像昵称等
                 rankingList:[],  // 排行榜
                 wayData:'',     //获奖方式
@@ -106,13 +112,7 @@
         },
         created() {
             // 顶部信息-头像昵称等
-            this.$get('/index.php/hy/user/invitation_user',{
-                "uid":JSON.parse(window.localStorage.getItem("loginData")).id
-            })
-            .then((response) => {
-                console.log(response)
-                this.userData = response.data;
-            })
+            this.userDatas();
 
             // 获奖方式
             this.$get('/index.php/hy/user/way',{
@@ -136,8 +136,47 @@
         mounted() {
 
         },
-        methods: {},
-        components: {}
+        methods: {
+            // 用户数据
+            userDatas(){
+                // 判断有没有登录
+                if(JSON.parse(window.localStorage.getItem("loginData"))==null){
+                    this.userStatus = false;
+                }else{
+                    // 顶部信息-头像昵称等
+                    this.$get('/index.php/hy/user/invitation_user',{
+                        "uid":JSON.parse(window.localStorage.getItem("loginData")).id
+                    })
+                    .then((response) => {
+                        console.log(response)
+                        this.userStatus = true;
+                        this.userData = response.data;
+                    })
+                }
+            },
+            // 立即邀请
+            inviteClick(type){
+                // 判断有没有登录
+                if(JSON.parse(window.localStorage.getItem("loginData"))==null){
+                    this.$refs.log_Pop.showlogin();
+                    return;
+                }else{
+                    const title = '温馨提示';
+                    const content = `<p>复制链接进行邀请：${window.location.href}</p>`;
+                    switch (type) {
+                        case 'info':
+                        this.$Modal.info({
+                            title: title,
+                            content: content
+                        });
+                        break;
+                    }
+                }
+            }
+        },
+        components: {
+            loginPop
+        }
     };
 </script>
 

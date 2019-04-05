@@ -143,7 +143,7 @@
                 this.flag = false;
                 this.$emit('showLoginR', this.loginR);
                 // 刷新获取数据
-                this.$router.push('./')
+                // this.$router.push('./')
                 reloadOne();
               }else if(response.code == 108){
                 alert("登录密码错误，请重新输入")
@@ -227,6 +227,8 @@
     height: 100%;
     position: fixed;
     z-index: 1000;
+    top: 0;
+    left: 0;
     background-color: rgba(0,0,0,0.3);/* IE9、标准浏览器、IE6和部分IE7内核的浏览器(如QQ浏览器)会读懂 */
   }
   @media \0screen\,screen\9 {/* 只支持IE6、7、8 */

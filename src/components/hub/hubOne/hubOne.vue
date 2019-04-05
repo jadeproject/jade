@@ -79,6 +79,18 @@
             .then((response) => {
               console.log(response)
               this.goodslist = response.data;
+              let that = this;
+              // 首页跳转过来处理
+              if(this.$GQ('goodsId')){
+                that.tt = that.$GQ('indextt');
+                let datas = '';
+                that.goodslist.forEach(function(e){
+                  if(e.id = that.$GQ('goodsId')){
+                    datas = e;
+                  }
+                })
+                that.gohubDetail(datas)
+              }
             })
           },
           // tab切换

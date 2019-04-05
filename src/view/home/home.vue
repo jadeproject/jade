@@ -2,7 +2,7 @@
     <div class="homeC noselect">
         <!-- 轮播图 -->
         <div class="banner">
-            <Carousel autoplay radius-dot="true">
+            <Carousel autoplay>
                 <Carousel-item v-for="(item,index) in bannerData" :key="index">
                     <div class="demo-carousel"><img :src="item" alt=""></div>
                 </Carousel-item>
@@ -34,7 +34,7 @@
         <div class="home_bg product_bg bdDDCAA2" v-if="productStatus">
             <div class="product">
                 <div class="top_title">产品介绍</div>
-                <div class="home_layout">
+                <div class="home_layout bg01">
                     <div class="con_goods">
                         <div class="left"><img :src="productData.q[0].png" alt=""></div>
                         <div class="right">
@@ -43,7 +43,7 @@
                             <p class="p2">材料：{{productData.q[0].ms}}</p>
                             <p class="p3">种类：{{productData.q[0].type}}</p>
                             <div class="but">
-                                <strong>1元/月</strong> <span @click="productDataClick(productData.q[0])">立即起租</span>
+                                <strong>1元/月</strong> <span @click="productDataClick(productData.q[0],0)">立即起租</span>
                             </div>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                             <div class="goods_list_txt">
                                 <h5>{{productData.q[1].name}}</h5>
                                 <p>1元/月</p>
-                                <div @click="productDataClick(productData.q[1])">立即起租</div>
+                                <div @click="productDataClick(productData.q[1],0)">立即起租</div>
                             </div>
                         </div>
                         <div class="goods_list_in">
@@ -61,7 +61,7 @@
                             <div class="goods_list_txt">
                                 <h5>{{productData.q[2].name}}</h5>
                                 <p>1元/月</p>
-                                <div @click="productDataClick(productData.q[2])">立即起租</div>
+                                <div @click="productDataClick(productData.q[2],0)">立即起租</div>
                             </div>
                         </div>
                         <div class="goods_list_in">
@@ -69,7 +69,7 @@
                             <div class="goods_list_txt">
                                 <h5>{{productData.q[3].name}}</h5>
                                 <p>1元/月</p>
-                                <div @click="productDataClick(productData.q[3])">立即起租</div>
+                                <div @click="productDataClick(productData.q[3],0)">立即起租</div>
                             </div>
                         </div>
                     </div>
@@ -78,10 +78,12 @@
         </div>
         <div class="home_bg product_bg" v-if="productStatus">
             <div class="product">
-                <div class="home_layout">
-                    <div class="product_imgsbg"><img src="../../assets/img/banner1.png" alt=""></div>
+                <div class="home_layout bg02">
+                    <div class="product_imgsbg">
+                        <!-- <img src="../../assets/img/banner1.png" alt=""> -->
+                    </div>
                     <div class="con_goods_list pb100">
-                        <div class="goods_left"><img src="../../assets/img/banner1.png" alt=""></div>
+                        <div class="goods_left"><img src="../../assets/img/goods3.png" alt=""></div>
                         <div class="goods_right">
                             <div class="goods_r_list" v-for="(item,index) in productData.w" :key="index">
                                 <div class="imgs"><img :src="item.png" alt=""></div>
@@ -90,7 +92,7 @@
                                         <h5>10元/月</h5>
                                         <p>{{item.name}}</p>
                                     </div>
-                                    <div class="t_right"><span @click="productDataClick(item)">立即起租</span></div>
+                                    <div class="t_right"><span @click="productDataClick(item,1)">立即起租</span></div>
                                 </div>
                             </div>
                         </div>
@@ -112,12 +114,8 @@
                             </video>
                         </div>
                         <p class="history">历史中奖名单</p>
-                        <div class="notice_left_list" id="left_list">
-                            <Scroll>
-                                <Card dis-hover v-for="(item, index) in drawData.left_list" :key="index">
-                                    <div class="list">第{{item.gear}}期 <span>中奖号码：{{item.mobile}}</span></div>
-                                </Card>
-                            </Scroll>
+                        <div class="notice_left_list">
+                            <div class="list" v-for="(item, index) in drawData.left_list" :key="index">第{{item.gear}}期 <span>中奖号码：{{item.mobile}}</span></div>
                         </div>
                     </div>
                     <div class="notice_con_right ">
@@ -130,20 +128,20 @@
                             <div class="con_cen">
                                 <div class="imgs"><img :src="drawData.q.img" alt=""></div>
                                 <div class="rights">
-                                    <div class="icons">
+                                    <div class="icons" @click="noticeDetails(drawData.q,0)">
                                         <span class="iconfont">&#xe661;</span>
                                         <p>详情</p>
                                     </div>
-                                    <div class="icons">
+                                    <div class="icons" @click="noticeDetails(drawData.q,0)">
                                         <span class="iconfont">&#xe609;</span>
                                         <p>往期</p>
                                     </div>
-                                    <div class="icons">
+                                    <div class="icons" @click="noticePeriod(drawData.q,1,1)">
                                         <span class="iconfont">&#xe627;</span>
                                         <p>视频</p>
                                     </div>
                                 </div>
-                                <p class="position_right">未参加</p>
+                                <p class="position_right">{{drawData.q.status}}</p>
                             </div>
                             <p class="p_txt">上期中奖名单：{{drawData.q.last}}</p>
                         </div>
@@ -157,20 +155,20 @@
                             <div class="con_cen">
                                 <div class="imgs"><img :src="drawData.w.img" alt=""></div>
                                 <div class="rights">
-                                    <div class="icons">
+                                    <div class="icons" @click="noticeDetails(drawData.w,1)">
                                         <span class="iconfont">&#xe661;</span>
                                         <p>详情</p>
                                     </div>
-                                    <div class="icons">
+                                    <div class="icons" @click="noticeDetails(drawData.w,1)">
                                         <span class="iconfont">&#xe609;</span>
                                         <p>往期</p>
                                     </div>
-                                    <div class="icons">
+                                    <div class="icons" @click="noticePeriod(drawData.w,1,2)">
                                         <span class="iconfont">&#xe627;</span>
                                         <p>视频</p>
                                     </div>
                                 </div>
-                                <p class="position_right">未参加</p>
+                                <p class="position_right">{{drawData.w.status}}</p>
                             </div>
                             <p class="p_txt">上期中奖名单：{{drawData.w.last}}</p>
                         </div>
@@ -184,20 +182,20 @@
                             <div class="con_cen">
                                 <div class="imgs"><img :src="drawData.q_vip.img" alt=""></div>
                                 <div class="rights">
-                                    <div class="icons">
+                                    <div class="icons" @click="noticeDetails(drawData.q_vip,2)">
                                         <span class="iconfont">&#xe661;</span>
                                         <p>详情</p>
                                     </div>
-                                    <div class="icons">
+                                    <div class="icons" @click="noticeDetails(drawData.q_vip,2)">
                                         <span class="iconfont">&#xe609;</span>
                                         <p>往期</p>
                                     </div>
-                                    <div class="icons">
+                                    <div class="icons" @click="noticePeriod(drawData.q_vip,1,3)">
                                         <span class="iconfont">&#xe627;</span>
                                         <p>视频</p>
                                     </div>
                                 </div>
-                                <p class="position_right">未参加</p>
+                                <p class="position_right">{{drawData.q_vip.status}}</p>
                             </div>
                             <p class="p_txt">上期中奖名单：{{drawData.q_vip.last}}</p>
                         </div>
@@ -211,20 +209,20 @@
                             <div class="con_cen">
                                 <div class="imgs"><img :src="drawData.w_vip.img" alt=""></div>
                                 <div class="rights">
-                                    <div class="icons">
+                                    <div class="icons" @click="noticeDetails(drawData.w_vip,3)">
                                         <span class="iconfont">&#xe661;</span>
                                         <p>详情</p>
                                     </div>
-                                    <div class="icons">
+                                    <div class="icons" @click="noticeDetails(drawData.w_vip,3)">
                                         <span class="iconfont">&#xe609;</span>
                                         <p>往期</p>
                                     </div>
-                                    <div class="icons">
+                                    <div class="icons" @click="noticePeriod(drawData.w_vip,1,4)">
                                         <span class="iconfont">&#xe627;</span>
                                         <p>视频</p>
                                     </div>
                                 </div>
-                                <p class="position_right">未参加</p>
+                                <p class="position_right">{{drawData.w_vip.status}}</p>
                             </div>
                             <p class="p_txt">上期中奖名单：{{drawData.w_vip.last}}</p>
                         </div>
@@ -238,20 +236,20 @@
                             <div class="con_cen">
                                 <div class="imgs"><img :src="drawData.one.img" alt=""></div>
                                 <div class="rights">
-                                    <div class="icons">
+                                    <div class="icons" @click="noticeDetails(drawData.one,4)">
                                         <span class="iconfont">&#xe661;</span>
                                         <p>详情</p>
                                     </div>
-                                    <div class="icons">
+                                    <div class="icons" @click="noticeDetails(drawData.one,4)">
                                         <span class="iconfont">&#xe609;</span>
                                         <p>往期</p>
                                     </div>
-                                    <div class="icons">
+                                    <div class="icons" @click="noticePeriod(drawData.one,1,5)">
                                         <span class="iconfont">&#xe627;</span>
                                         <p>视频</p>
                                     </div>
                                 </div>
-                                <p class="position_right">未参加</p>
+                                <p class="position_right">{{drawData.one.status}}</p>
                             </div>
                             <p class="p_txt">上期中奖名单：{{drawData.one.last}}</p>
                         </div>
@@ -299,10 +297,15 @@
         <!-- 底部 -->
         <food-title></food-title>
         <!-- 底部 end-->
+
+        <!-- 登录注册 -->
+        <login-pop ref="log_Pop"></login-pop>
+        <!-- 登录注册 end -->
     </div>
 </template>
 <script type="text/ecmascript-6">
     import foodTitle from '@/components/global/foot';
+    import loginPop from '@/components/login/loginPop';
     let timer = null
     export default {
         data() {
@@ -366,12 +369,62 @@
             })
         },
         mounted () {
-            this.needScroll()   
+            this.needScroll(); 
         },
         methods: {
             // 产品介绍点击
-            productDataClick(data){
-                console.log(data)
+            productDataClick(data,index){
+                // 判断有没有登录
+                if(JSON.parse(window.localStorage.getItem("loginData"))==null){
+                    this.$refs.log_Pop.showlogin();
+                    return;
+                }
+                // data = 数据
+                // index = 产品类型，0=千元，1=万元
+                this.$router.push({
+                path:'./hub',
+                    query:{
+                        type:0,
+                        goodsId:data.id,
+                        indextt:index
+                    }
+                })
+            },
+            // 开奖公告-详情点击
+            noticeDetails(data,index){
+                // 判断有没有登录
+                if(JSON.parse(window.localStorage.getItem("loginData"))==null){
+                    this.$refs.log_Pop.showlogin();
+                    return;
+                }
+                // data = 数据
+                // index = 需要展开列表的索引值
+                this.$router.push({
+                path:'./hub',
+                    query:{
+                        type:2,
+                        index:index
+                    }
+                })
+            },
+            // 开奖公告-往期点击
+            noticePeriod(data,index,typeStatus){
+                // 判断有没有登录
+                if(JSON.parse(window.localStorage.getItem("loginData"))==null){
+                    this.$refs.log_Pop.showlogin();
+                    return;
+                }
+                // data = 数据
+                // index = tab显示索引值
+                // typeStatus = 视频类型
+                this.$router.push({
+                path:'./hub',
+                    query:{
+                        type:5,
+                        indextt:index,
+                        typeStatus:typeStatus
+                    }
+                })
             },
             // 常见问题列表点击
             commonClick(e){
@@ -426,7 +479,8 @@
             }
         },
         components: {
-            foodTitle
+            foodTitle,
+            loginPop
         }
     };
 </script>
@@ -470,12 +524,6 @@
 .ivu-modal-confirm-footer{
     margin-top:0;
 }
-#left_list .ivu-card-bordered{
-    border:none;
-}
-#left_list .ivu-card-body{
-    padding:0;
-}
 </style>
 
 <style type="text/css" lang="less" scoped>
@@ -503,6 +551,12 @@
         .home_layout{
             width: 1000px;
             margin: 0 auto;
+        }
+        .bg01{
+            background: url("../../assets/img/bg1.png") no-repeat;
+        }
+        .bg02{
+            background: url("../../assets/img/bg2.png") no-repeat right top;
         }
         .about_bg{
             background: #fff;
@@ -707,6 +761,7 @@
             }
             .product_imgsbg{
                 width: 100%;
+                height: 506px;
                 font-size: 0;
                 overflow: hidden;
                 img{
@@ -836,6 +891,8 @@
                 }
                 .notice_left_list{
                     width: 100%;
+                    height:240px;
+                    overflow: auto;
                     background: #fff;
                     -webkit-box-shadow: 0px 0px 4px rgba(0,0,0,0.16);  
                     -moz-box-shadow: 0px 0px 4px rgba(0,0,0,0.16);

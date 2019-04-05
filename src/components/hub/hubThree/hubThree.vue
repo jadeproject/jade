@@ -13,7 +13,7 @@
       <span>参与/未参与</span>
     </div>
     <div class="rang_content" id="rang_cont" v-if="flag">
-      <Collapse active-key="1" accordion>
+      <Collapse active-key="1" accordion  v-model="value1">
           <Panel> 
             <div class="itemC" @click="drawListClick('1')">
               <span>千元抽奖日常</span>
@@ -165,10 +165,12 @@
         drawData:'',
         drawDataList:'',
         timeData:'',
-        indexs:''
+        indexs:'',
+        value1:'',
       };
     },
     created() {
+      let that = this;
       // 获取用户所有抽奖
       this.$get('/index.php/hy/user/my_draw',{
         // "uid":JSON.parse(window.localStorage.getItem("loginData")).id
@@ -184,9 +186,13 @@
         .then((res) => {
           this.flag = true;
           this.timeData = res.data;
+          // 首页开奖公告详情按钮进来处理
+          if(that.$GQ("index")){
+            that.value1 = that.$GQ("index");
+            that.drawListClick(parseInt(that.value1)+1);
+          }
         })
       })
-      
     },
     mounted() {
 

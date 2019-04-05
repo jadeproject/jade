@@ -34,7 +34,7 @@
           <div>{{item.time==null?'--':item.time}}</div>
           <div>
             <span class="in">{{item.title==null?'--':item.title}}</span>
-            <!--<span class="out">体现金额</span>-->
+            <!--<span class="out">提现金额</span>-->
           </div>
           <div>{{item.money}}元</div>
           <div>{{item.desc}}</div>
@@ -95,8 +95,6 @@
           if (response.code == 200) {
             this.$refs.showPay_flag.show();
             this.gohubDetailData.uid = JSON.parse(window.localStorage.getItem("loginData")).id;
-          } else {
-            this.$Message.info(response.msg);
           }
         })
       },
@@ -107,7 +105,7 @@
               props: {
                 value: this.value,
                 autofocus: true,
-                placeholder: '请输入体现金额，体现金额必须大于>0.1'
+                placeholder: '请输入提现金额，提现金额必须大于>0.1'
               },
               on: {
                 input: (val) => {
@@ -118,15 +116,15 @@
           },
           onOk: ()=> {
             if (this.value==''){
-              this.$Message.info('请输入体现金额');
+              this.$Message.info('请输入提现金额');
             }else {
-              // 体现接口
+              // 提现接口
               this.$get('/index.php/hy/user/user_tixian',{
                 "uid": JSON.parse(window.localStorage.getItem("loginData")).id,
                 "num":this.value
               }).then((response)=>{
                 if(response.code==200){
-                  this.$Message.info('体现成功');
+                  this.$Message.info('提现成功');
                 }
               })
             }

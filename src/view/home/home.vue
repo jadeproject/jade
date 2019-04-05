@@ -531,7 +531,7 @@
 #idlist .ivu-icon-ios-arrow-forward:before{
     display: none;
 }
-.ivu-modal-confirm-body{
+.ivu-modal-body .ivu-modal-confirm-body{
     padding: 0;
 }
 .ivu-modal-confirm-body img{
@@ -965,6 +965,7 @@
                         .imgs{
                             width: 45%;
                             float: left;
+                            overflow: hidden;
                         }
                         .rights{
                             width: 55%;

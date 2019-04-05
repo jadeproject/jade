@@ -257,6 +257,7 @@
                     height: 190px;
                     border-radius:50%;
                     border:10px solid #fff;
+                    overflow: hidden;
                 }
             }
             .name_txt{

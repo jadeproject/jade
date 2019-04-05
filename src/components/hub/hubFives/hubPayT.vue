@@ -30,7 +30,7 @@ var QRCode = require('qrcode')
         gohubDetailData:'', //商品信息
         moneys:'1',  //付款金额
         weixinpayImg:'',  //微信付款二维码
-        host:"http://askxubing.cn",
+        host: "http://"+window.location.host,
         alipayImg:'', //阿里付款二维码
         deviceStatus:true,  //打开的设备，true = pc端，false = 移动端
       };

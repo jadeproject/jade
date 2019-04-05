@@ -135,9 +135,10 @@
         width: 100%;
         display:flex;
         .left{
-          // width:40%;
+          width: 360px;
           height: 100%;
           padding: 20px 30px;
+          box-sizing: border-box;
           .imgbig{
             width: 300px;
             height: 300px;

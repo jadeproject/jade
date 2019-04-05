@@ -45,7 +45,6 @@
             if(e == true){
               // 合同内容
               this.$get('/index.php/hy/user/my_fa_contract',{
-                // "uid":JSON.parse(window.localStorage.getItem("loginData")).id
                 "uid":JSON.parse(window.localStorage.getItem("loginData")).id
               }).then((response)=>{
                 console.log(response)
@@ -72,7 +71,6 @@
             }
             // 填写合同名字
             this.$get('/index.php/hy/user/update_user_name',{
-              // "uid":JSON.parse(window.localStorage.getItem("loginData")).id
               "uid":JSON.parse(window.localStorage.getItem("loginData")).id,
               "username":this.names
             }).then((response)=>{

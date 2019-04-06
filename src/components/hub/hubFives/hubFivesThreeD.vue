@@ -72,6 +72,7 @@
             console.log(response.data);
             if(response.code==200){
               this.linebg='line'
+              this.$Message.info(response.msg)
             }
             // if(response.code==106){
             //   this.$emit('showhubFivesThree','')

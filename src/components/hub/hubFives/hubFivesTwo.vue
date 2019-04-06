@@ -14,13 +14,13 @@
 <!--      <div><input type="text"></div>-->
      <div>
         <i-select @on-change="getshi" :model.sync="model1" size="small" v-model="value1" style="width:70px;margin-top: 0px">
-          <i-option  v-for="item in shenData" :value="item" >{{ item.name }}</i-option>
+          <i-option  v-for="item in shenData" :value="item.name" :key="item.id">{{ item.name }}</i-option>
         </i-select>
         <i-select  @on-change="getxian" :model.sync="model2" size="small" v-model="value2" style="width:70px;margin-top: 0px">
-          <i-option v-for="item in shiData" :value="item">{{ item.name }}</i-option>
+          <i-option v-for="item in shiData" :value="item.name" >{{ item.name }}</i-option>
         </i-select>
         <i-select :model.sync="model3" size="small"  v-model="value3" style="width:70px;margin-top: 0px">
-          <i-option v-for="item in xianData" :value="item">{{ item.name }}</i-option>
+          <i-option v-for="item in xianData" :value="item.name">{{ item.name }}</i-option>
         </i-select>
       </div>
 <!--      <div class="addressTxt">-->
@@ -39,6 +39,8 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import {reloadOne} from "../../../../common/GetJS";
+
   export default {
     data() {
       return {
@@ -80,7 +82,10 @@
         contacts:'',
         shenData:[],
         shiData:[],
-        xianData:[]
+        xianData:[],
+        shenid:'',
+        shiid:'',
+        xianid:''
       };
     },
     created() {
@@ -88,14 +93,45 @@
     },
     mounted() {
       this.loginData=JSON.parse(window.localStorage.getItem("loginData"));
-
       this.getSSX('1','0');
+      // 默认
+      // this.
+      // 获取个人信息
+     this.$get('/index.php/hy/user/my_person',{
+       "uid":JSON.parse(window.localStorage.getItem("loginData")).id
+     }).then((response)=>{
+       console.log(response.data);
+       this.value1=response.data.city.sheng.name;
+       this.value2=response.data.city.shi.name;
+       this.value3=response.data.city.xian.name;
+       this.shenid=response.data.city.sheng.id;
+       this.shiid=response.data.city.shi.id;
+       this.contacts=response.data.contacts;
+       this.address=response.data.address;
 
+
+      // 获取市
+       this.$get('/index.php/hy/code/sheng',{
+         type:'2',
+         pid:this.shenid
+       }).then((responese)=>{
+         this.shiData=responese.data;
+       })
+       // 获取县
+       this.$get('/index.php/hy/code/sheng',{
+         type:'2',
+         pid:this.shiid
+       }).then((responese)=>{
+         this.xianData=responese.data;
+       })
+       // this.value1.name="北京"
+     })
 
     },
     methods: {
 
       getSSX(type,id){
+
         // 获取省
         this.$get('/index.php/hy/code/sheng',{
           type:type,
@@ -105,24 +141,35 @@
         })
       },
       getshi(){
-        // 获取市
-        this.$get('/index.php/hy/code/sheng',{
-          type:'2',
-          pid:this.value1.id
+        this.value2='';
+        this.value3='';
+        this.shenData.find((item)=>{
+         if(item.name == this.value1){
+           // 获取市
+           this.$get('/index.php/hy/code/sheng',{
+             type:'2',
+             pid:item.id
 
-        }).then((responese)=>{
-          this.shiData=responese.data;
+           }).then((responese)=>{
+             this.shiData=responese.data;
+           })
+         }
         })
       },
       getxian(){
-        // 获取市
-        this.$get('/index.php/hy/code/sheng',{
-          type:'2',
-          pid:this.value2.id
+        this.shiData.find((item)=>{
+          if(item.name=this.value2){
+            // 获取市
+            this.$get('/index.php/hy/code/sheng',{
+              type:'2',
+              pid:item.id
 
-        }).then((responese)=>{
-          this.xianData=responese.data;
+            }).then((responese)=>{
+              this.xianData=responese.data;
+            })
+          }
         })
+
       },
       subM(){
         if(this.value1 == "" || this.value2 == "" || this.value3 == "" ||this.address == "" || this.contacts == ""){
@@ -131,14 +178,14 @@
         }
         this.$get('/index.php/hy/user/my_person',{
           "uid":JSON.parse(window.localStorage.getItem("loginData")).id,
-          "city":this.value1.name+','+this.value2.name+','+this.value3.name,
+          "city":this.value1+','+this.value2+','+this.value3,
           "address":this.address,
           "contacts":this.contacts,
         }).then((response)=>{
           if(response.code == 200){
             this.$Message.success(response.msg);
-            this.address='';
-            this.contacts='';
+            // window.location.reload();
+
           }else{
             this.$Message.error(response.msg);
           }

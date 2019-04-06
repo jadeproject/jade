@@ -18,16 +18,17 @@
             <div class="itemC" @click="drawListClick('1')">
               <span>千元抽奖日常</span>
               <span>{{drawData.fa_luck_draw_q.gear}}/{{drawData.fa_luck_draw_q.gear_today}}</span>
-              <span>{{timeData[0]}}</span>
-              <span>{{drawData.fa_luck_draw_q.number}} <!-- <div>最新</div>  --></span>
-              <span>{{drawData.fa_luck_draw_q.status}}</span>
+              <span>{{drawData.fa_luck_draw_q.number==null?'暂无':timeData[0]}}</span>  
+              <span>{{drawData.fa_luck_draw_q.number==null?'暂无':drawData.fa_luck_draw_q.number}}</span>
+              <span>{{drawData.fa_luck_draw_q.status==null?'暂无':drawData.fa_luck_draw_q.status}}</span>
               <span>{{drawData.fa_luck_draw_q.my_number==null?'暂无':drawData.fa_luck_draw_q.my_number}}</span>
-              <span>{{drawData.fa_luck_draw_q.partake}}
+              <span>{{drawData.fa_luck_draw_q.partake==null?'暂无':drawData.fa_luck_draw_q.partake}}
                 <!-- <span class="iconfont">&#xe65e;</span> -->
-              </span>
+              </span>   
             </div>
             <div slot="content">
-              <div class="itemC" v-for="(item,index) in drawDataList" :key="index">
+              <div v-if="drawDataList ==''" class="tips">暂无数据</div>
+              <div v-else class="itemC" v-for="(item,index) in drawDataList" :key="index">
                 <span>千元抽奖日常</span>
                 <span>{{item.gear}}/{{item.gear_today}}</span>
                 <span>{{timeData[0]}}</span>
@@ -38,7 +39,6 @@
                   <!-- <span class="iconfont">&#xe65e;</span> -->
                 </span>
               </div>
-
               <div class="page" v-if="AllPageStatus">
                 <Page :current="current" :total="AllPages" simple @on-change="Page_cur"></Page>
               </div>
@@ -48,17 +48,18 @@
           <Panel> 
             <div class="itemC" @click="drawListClick('2')">
               <span>万元抽奖日常</span>
-              <span>{{drawData.fa_luck_draw_q.gear}}/{{drawData.fa_luck_draw_q.gear_today}}</span>
-              <span>{{timeData[1]}}</span>
-              <span>{{drawData.fa_luck_draw_w.number}}</span>
-              <span>{{drawData.fa_luck_draw_w.status}}</span>
+              <span>{{drawData.fa_luck_draw_w.gear}}/{{drawData.fa_luck_draw_w.gear_today}}</span>
+              <span>{{drawData.fa_luck_draw_w.number==null?'暂无':timeData[1]}}</span>  
+              <span>{{drawData.fa_luck_draw_w.number==null?'暂无':drawData.fa_luck_draw_w.my_number}}</span>
+              <span>{{drawData.fa_luck_draw_w.status==null?'暂无':drawData.fa_luck_draw_w.status}}</span>
               <span>{{drawData.fa_luck_draw_w.my_number==null?'暂无':drawData.fa_luck_draw_w.my_number}}</span>
-              <span>{{drawData.fa_luck_draw_w.partake}}
+              <span>{{drawData.fa_luck_draw_w.partake==null?'暂无':drawData.fa_luck_draw_w.partake}}
                 <!-- <span class="iconfont">&#xe65e;</span> -->
               </span>
             </div>
             <div slot="content">
-              <div class="itemC" v-for="(item,index) in drawDataList" :key="index">
+              <div v-if="drawDataList ==''" class="tips">暂无数据</div>
+              <div v-else class="itemC" v-for="(item,index) in drawDataList" :key="index">
                 <span>万元抽奖日常</span>
                 <span>{{item.gear}}/{{item.gear_today}}</span>
                 <span>{{timeData[0]==''?'暂无':timeData[0]}}</span>
@@ -67,7 +68,7 @@
                 <span>{{item.my_number==''?'暂无':item.my_number}}</span>
                 <span>{{item.partake}}
                   <!-- <span class="iconfont">&#xe65e;</span> -->
-                </span>
+                </span> 
               </div>
               <div class="page" v-if="AllPageStatus">
                 <Page :current="current" :total="AllPages" simple @on-change="Page_cur"></Page>
@@ -78,17 +79,18 @@
           <Panel> 
             <div class="itemC" @click="drawListClick('3')">
               <span>千元尊享大奖</span>
-              <span>{{drawData.fa_luck_draw_vip_q.gear}}</span>
-              <span>{{timeData[2]}}</span>
-              <span>{{drawData.fa_luck_draw_vip_q.uid}}</span>
-              <span>{{drawData.fa_luck_draw_vip_q.status}}</span>
+              <span>{{drawData.fa_luck_draw_vip_q.gear == null?'/':drawData.fa_luck_draw_vip_q.gear}}</span>
+              <span>{{drawData.fa_luck_draw_vip_q.uid==null?'暂无':timeData[2]}}</span>  
+              <span>{{drawData.fa_luck_draw_vip_q.uid==null?'暂无':drawData.fa_luck_draw_vip_q.uid}}</span>
+              <span>{{drawData.fa_luck_draw_vip_q.status==null?'暂无':drawData.fa_luck_draw_vip_q.status}}</span>
               <span>{{drawData.fa_luck_draw_vip_q.my_uid==null?'暂无':drawData.fa_luck_draw_vip_q.my_uid}}</span>
-              <span>{{drawData.fa_luck_draw_vip_q.partake}}
+              <span>{{drawData.fa_luck_draw_vip_q.partake==null?'暂无':drawData.fa_luck_draw_vip_q.partake}}
                 <!-- <span class="iconfont">&#xe65e;</span> -->
               </span>
             </div>
             <div slot="content">
-              <div class="itemC" v-for="(item,index) in drawDataList" :key="index">
+              <div v-if="drawDataList ==''" class="tips">暂无数据</div>
+              <div v-else class="itemC" v-for="(item,index) in drawDataList" :key="index">
                 <span>千元尊享大奖</span>
                 <span>{{item.gear}}</span>
                 <span>{{timeData[0]}}</span>
@@ -108,21 +110,22 @@
           <Panel> 
             <div class="itemC" @click="drawListClick('4')">
               <span>万元尊享大奖</span>
-              <span>{{drawData.fa_luck_draw_vip_w.gear}}</span>
-              <span>{{timeData[3]}}</span>
-              <span>{{drawData.fa_luck_draw_vip_w.uid}}</span>
-              <span>{{drawData.fa_luck_draw_vip_w.status}}</span>
+              <span>{{drawData.fa_luck_draw_vip_w.gear == null?'/':drawData.fa_luck_draw_vip_w.gear}}</span>
+              <span>{{drawData.fa_luck_draw_vip_w.uid==null?'暂无':timeData[3]}}</span>  
+              <span>{{drawData.fa_luck_draw_vip_w.uid==null?'暂无':drawData.fa_luck_draw_vip_w.uid}}</span>
+              <span>{{drawData.fa_luck_draw_vip_w.status==null?'暂无':drawData.fa_luck_draw_vip_w.status}}</span>
               <span>{{drawData.fa_luck_draw_vip_w.my_uid==null?'暂无':drawData.fa_luck_draw_vip_w.my_uid}}</span>
-              <span>{{drawData.fa_luck_draw_vip_w.partake}}
+              <span>{{drawData.fa_luck_draw_vip_w.partake==null?'暂无':drawData.fa_luck_draw_vip_w.partake}}
                 <!-- <span class="iconfont">&#xe65e;</span> -->
               </span>
             </div>
             <div slot="content">
-              <div class="itemC" v-for="(item,index) in drawDataList" :key="index">
+              <div v-if="drawDataList ==''" class="tips">暂无数据</div>
+              <div v-else class="itemC" v-for="(item,index) in drawDataList" :key="index">
                 <span>万元尊享大奖</span>
                 <span>{{item.gear}}</span>
                 <span>{{timeData[0]}}</span>
-                <span>{{item.number}}</span>
+                <span>{{item.uid}}</span>
                 <span>{{item.status}}</span>
                 <span>{{item.my_uid==null?'暂无':item.my_uid}}</span>
                 <span>{{item.partake}}
@@ -138,17 +141,18 @@
           <Panel> 
             <div class="itemC" @click="drawListClick('5')">
               <span>0元购1元得</span>
-              <span>{{drawData.one.qs}}</span>
-              <span>{{timeData[4]}}</span>
-              <span>{{drawData.one.uid}}</span>
-              <span>{{drawData.one.status}}</span>
+              <span>{{drawData.one.qs == null?'/':drawData.one.qs}}</span>
+              <span>{{drawData.one.uid==null?'暂无':timeData[4]}}</span>  
+              <span>{{drawData.one.uid==null?'暂无':drawData.one.uid}}</span>
+              <span>{{drawData.one.status==null?'暂无':drawData.one.status}}</span>
               <span>{{drawData.one.my_uid==null?'暂无':drawData.one.my_uid}}</span>
-              <span>{{drawData.one.partake}}
+              <span>{{drawData.one.partake==null?'暂无':drawData.one.partake}}
                 <!-- <span class="iconfont">&#xe65e;</span> -->
               </span>
             </div>
             <div slot="content">
-              <div class="itemC" v-for="(item,index) in drawDataList" :key="index">
+              <div v-if="drawDataList ==''" class="tips">暂无数据</div>
+              <div v-else class="itemC" v-for="(item,index) in drawDataList" :key="index">
                 <span>0元购1元得</span>
                 <span>{{item.qs}}</span>
                 <span>{{timeData[0]}}</span>
@@ -175,8 +179,8 @@
     data() {
       return {
         flag:false,
-        drawData:'',
-        drawDataList:'',
+        drawData:[],
+        drawDataList:'data',//data是假数据
         timeData:'',
         indexs:'',
         value1:'',
@@ -189,7 +193,6 @@
       let that = this;
       // 获取用户所有抽奖
       this.$get('/index.php/hy/user/my_draw',{
-        // "uid":JSON.parse(window.localStorage.getItem("loginData")).id
           "uid":JSON.parse(window.localStorage.getItem("loginData")).id,
       })
       .then((response) => {
@@ -197,7 +200,6 @@
         console.log(this.drawData);
         // 获取所有抽奖栏目开奖时间
         this.$get('/index.php/hy/user/show_draw',{
-          // "uid":JSON.parse(window.localStorage.getItem("loginData")).id
             "uid":JSON.parse(window.localStorage.getItem("loginData")).id,
         })
         .then((res) => {
@@ -222,14 +224,13 @@
         this.indexs = e;
         // 获取所有抽奖栏目五个栏目数据
         this.$get('/index.php/hy/user/my_draw_data',{
-          // "uid":JSON.parse(window.localStorage.getItem("loginData")).id
             "uid":JSON.parse(window.localStorage.getItem("loginData")).id,
             "type":e,
             "page":this.current
         })
         .then((response) => {
-          this.drawDataList = response.data;
-          this.AllPageStatus = this.drawDataList.length == 0 ? false : true;
+          this.drawDataList = response.data.length == 0 ? '' : response.data;
+          this.AllPageStatus = response.data.length == 0 ? false : true;
           this.AllPages = Number(response.data[0].AllPage + 0);
         })
       },
@@ -320,6 +321,11 @@
         font-size: 14px;
         font-weight: 400;
         cursor: pointer;
+      }
+      .tips{
+        text-align: center;
+        font-size: 16px;
+        color:#999;
       }
     }
 

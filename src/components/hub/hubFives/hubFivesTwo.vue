@@ -19,7 +19,7 @@
         <i-select  @on-change="getxian" :model.sync="model2" size="small" v-model="value2" style="width:70px;margin-top: 0px">
           <i-option v-for="item in shiData" :value="item.name" >{{ item.name }}</i-option>
         </i-select>
-        <i-select :model.sync="model3" size="small"  v-model="value3" style="width:70px;margin-top: 0px">
+        <i-select @on-change="getxianID" :model.sync="model3" size="small"  v-model="value3" style="width:70px;margin-top: 0px">
           <i-option v-for="item in xianData" :value="item.name">{{ item.name }}</i-option>
         </i-select>
       </div>
@@ -93,7 +93,7 @@
     },
     mounted() {
       this.loginData=JSON.parse(window.localStorage.getItem("loginData"));
-      this.getSSX('1','0');
+
       // 默认
       // this.
       // 获取个人信息
@@ -108,6 +108,7 @@
        this.shiid=response.data.city.shi.id;
        this.contacts=response.data.contacts;
        this.address=response.data.address;
+       this.getSSX('1','0');
 
 
       // 获取市
@@ -145,10 +146,11 @@
         this.value3='';
         this.shenData.find((item)=>{
          if(item.name == this.value1){
+           this.shenid=item.id;
            // 获取市
            this.$get('/index.php/hy/code/sheng',{
              type:'2',
-             pid:item.id
+             pid:this.shenid
 
            }).then((responese)=>{
              this.shiData=responese.data;
@@ -160,10 +162,10 @@
         this.shiData.find((item)=>{
           if(item.name=this.value2){
             // 获取市
+            this.shiid=item.id;
             this.$get('/index.php/hy/code/sheng',{
               type:'2',
-              pid:item.id
-
+              pid:this.shiid
             }).then((responese)=>{
               this.xianData=responese.data;
             })
@@ -171,15 +173,25 @@
         })
 
       },
+      getxianID(){
+        this.xianData.find((item)=>{
+          if(item.name=this.value3){
+            this.xianid=item.id;
+          }
+        })
+      },
       subM(){
         if(this.value1 == "" || this.value2 == "" || this.value3 == "" ||this.address == "" || this.contacts == ""){
           this.$Message.error("输入不能为空");
           return;
         }
-        this.$get('/index.php/hy/user/my_person',{
+        this.$get('/index.php/hy/user/my_person_edit',{
           "uid":JSON.parse(window.localStorage.getItem("loginData")).id,
           "city":this.value1+','+this.value2+','+this.value3,
           "address":this.address,
+          "shengid":this.shenid,
+          "shiid":this.shiid,
+          'xianid':this.xianid,
           "contacts":this.contacts,
         }).then((response)=>{
           if(response.code == 200){

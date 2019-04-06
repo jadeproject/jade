@@ -37,7 +37,7 @@
           </button>
         </div>
         <div class="inp" v-if="reg_I">
-          <input type="text" placeholder="请输入邀请人昵称" v-model='iv_name'>
+          <input type="text" placeholder="请输入邀请人昵称(选填)" v-model='iv_name'>
         </div>
         <div class="reade" v-if="reg_I">
           <Checkbox :checked.sync="single" v-model='single'> 我已经阅读相关服务条款和隐私政策</Checkbox>

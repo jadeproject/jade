@@ -36,7 +36,10 @@
                 <div class="top_title">产品介绍</div>
                 <div class="home_layout bg01">
                     <div class="con_goods">
-                        <div class="left"><img :src="productData.q[0].png" alt=""></div>
+                        <div class="left">
+                          <div class="weizhi"></div>
+                          <img :src="productData.q[0].png" alt="">
+                        </div>
                         <div class="right">
                             <h5>{{productData.q[0].name}}</h5>
                             <p class="p1">{{productData.q[0].moral}}</p>
@@ -269,7 +272,7 @@
                 <div class="common">
                     <div id="idlist">
                         <Collapse active-key="1" accordion>
-                            <Panel :key="index" v-for="(item,index) in commonlist"> 
+                            <Panel :key="index" v-for="(item,index) in commonlist">
                                 <div class="list" :class="index == indexs ?'listcur list':'list'" @click="commonClick(index)">
                                     <div class="lefts"><span>{{index+1}}</span></div>
                                     <div class="centers">{{item.title}}</div>
@@ -282,7 +285,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
         <!-- 常见问题 end-->
 
@@ -378,7 +381,7 @@
             })
         },
         mounted () {
-            this.needScroll(); 
+            this.needScroll();
         },
         methods: {
             // 产品介绍点击
@@ -649,9 +652,15 @@
                     height: 355px;
                     float: left;
                     font-size: 0;
+                    .weizhi{
+                      width: 50%;
+                      height: 100%;
+                      display: inline-block;
+                    }
                     img{
-                        width: 100%;
-                        height: 100%;
+                        width: 50%;
+                        height: 355px;
+                        display: inline-block;
                     }
                 }
                 .right{
@@ -689,9 +698,9 @@
                             background: #F93939;
                             border-radius:39px;
                             font-size: 25px;
-                            cursor: pointer;    
+                            cursor: pointer;
                             margin-left: 10px;
-                            -webkit-box-shadow: 0px 3px 4px rgba(0,0,0,0.16);  
+                            -webkit-box-shadow: 0px 3px 4px rgba(0,0,0,0.16);
                             -moz-box-shadow: 0px 3px 4px rgba(0,0,0,0.16);
                             box-shadow: 0px 3px 4px rgba(0,0,0,0.16);
                             border-collapse:separate !important;
@@ -746,7 +755,7 @@
                                 position: absolute;
                                 bottom: 8px;
                                 left: 50%;
-                                margin-left: -50px;  
+                                margin-left: -50px;
                             }
                         }
                         p{
@@ -764,7 +773,7 @@
                             border-radius:20px;
                             margin: 20px auto;
                             cursor: pointer;
-                            -webkit-box-shadow: 0px 3px 4px rgba(0,0,0,0.16);  
+                            -webkit-box-shadow: 0px 3px 4px rgba(0,0,0,0.16);
                             -moz-box-shadow: 0px 3px 4px rgba(0,0,0,0.16);
                             box-shadow: 0px 3px 4px rgba(0,0,0,0.16);
                             border-collapse:separate !important;
@@ -846,7 +855,7 @@
                                 width: 44%;
                                 float: right;
                                 padding: 22px 0;
-                                box-sizing: border-box; 
+                                box-sizing: border-box;
                                 span{
                                     padding: 6px 15px;
                                     box-sizing: border-box;
@@ -854,7 +863,7 @@
                                     font-size:12px;
                                     background: #F93939;
                                     cursor: pointer;
-                                    -webkit-box-shadow: 0px 3px 4px rgba(0,0,0,0.16);  
+                                    -webkit-box-shadow: 0px 3px 4px rgba(0,0,0,0.16);
                                     -moz-box-shadow: 0px 3px 4px rgba(0,0,0,0.16);
                                     box-shadow: 0px 3px 4px rgba(0,0,0,0.16);
                                     border-collapse:separate !important;
@@ -910,7 +919,7 @@
                     height:240px;
                     overflow: auto;
                     background: #fff;
-                    -webkit-box-shadow: 0px 0px 4px rgba(0,0,0,0.16);  
+                    -webkit-box-shadow: 0px 0px 4px rgba(0,0,0,0.16);
                     -moz-box-shadow: 0px 0px 4px rgba(0,0,0,0.16);
                     box-shadow: 0px 0px 4px rgba(0,0,0,0.16);
                     border-collapse:separate !important;
@@ -1135,12 +1144,12 @@
                 border-radius:5px;
                 border: none;
                 padding: 0;
-                -webkit-box-shadow: 0px 2px 4px rgba(0,0,0,0.16);  
+                -webkit-box-shadow: 0px 2px 4px rgba(0,0,0,0.16);
                 -moz-box-shadow: 0px 2px 4px rgba(0,0,0,0.16);
                 box-shadow: 0px 2px 4px rgba(0,0,0,0.16);
                 border-collapse:separate !important;
                 &:hover{
-                   background: #D84E0B; 
+                   background: #D84E0B;
                    color:#fff;
                 }
                 .iconfont{

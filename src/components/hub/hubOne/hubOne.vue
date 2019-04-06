@@ -25,7 +25,7 @@
       </div>
       <hub-detail ref="showDetail"  :gohubDetailDatas="gohubDetailData" @showPay="PayPage"></hub-detail>
       <hub-pay ref="showPay_flag" :gohubDetailDatas="gohubDetailData" @showPayT="payT"></hub-pay>
-      <hub-pay-t ref="showPayT_flag" :gohubDetailDatas="gohubDetailData"  :addCoupons="addCoupon" :paydatas="paydata"></hub-pay-t>
+      <hub-pay-t ref="showPayT_flag" :gohubDetailDatas="gohubDetailData"  :addCoupons="addCoupon" :paydatas="paydata" :addsId="addsId"></hub-pay-t>
       <hub-pay-ok ref="showPayOk_flag" ></hub-pay-ok>
     </div>
 
@@ -55,7 +55,9 @@
               goodslist:[], // 玉石中心
               gohubDetailData:'', // 商品信息
               addCoupon:'',// 收货地址和优惠券
-              paydata:'', // 支付信息
+              paydata:'', // 支付信息,
+              addsId:''//收货地址ID
+
             };
         },
       computed:{
@@ -120,10 +122,11 @@
             }
           },
           // 去付款
-          payT(i,data,money){
+          payT(i,data,money,addsId){
             if(i==1){
               this.gohubDetailData.Totalmoney = money;
               this.addCoupon = data;
+              this.addsId=addsId;
               this.$refs.showPayT_flag.show();
             }
           }

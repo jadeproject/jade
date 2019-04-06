@@ -60,6 +60,7 @@
               moneys:'',
               addName:'',
               adds:'',
+              addsId:'',
               addCoupon:{
                 address:{},
                 coupon:{}
@@ -97,9 +98,10 @@
             this.addressIndex = index;
             this.addName = data.name;
             this.adds = data.address;
+            this.addsId=data.id;
             this.addCoupon.address = data;
           },
-          // 选择优惠券
+          // 选择优惠券a
           couponClick(data,index){
             if(this.couponIndex == index){
               this.addCoupon.coupon = {};
@@ -115,7 +117,7 @@
             this.flag=true;
           },
           sub(){
-            this.$emit('showPayT',"1",this.addCoupon,this.moneys)
+            this.$emit('showPayT',"1",this.addCoupon,this.moneys,this.addsId)
           }
         },
         components: {}

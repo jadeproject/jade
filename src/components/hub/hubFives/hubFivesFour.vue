@@ -4,11 +4,11 @@
       <div>收货人：</div>
       <div><i>*</i>所在地区：</div>
       <div><i>*</i>详细地址：</div>
-      <div><i>*</i>固定电话(选填)：</div>
+<!--      <div><i>*</i>固定电话(选填)：</div>-->
       <div><i>*</i>手机号：</div>
 <!--      <div><i>*</i>邮箱：</div>-->
-      <div><i>*</i>紧急联系人：</div>
-      <div><i>*</i>联系人电话：</div>
+<!--      <div><i>*</i>紧急联系人：</div>-->
+<!--      <div><i>*</i>联系人电话：</div>-->
 
     </div>
     <div class="right_p">
@@ -28,11 +28,11 @@
 <!--        <input type="text" v-model="value1" placeholder="省份"> - <input type="text" v-model="value2" placeholder="城市"> - <input type="text" v-model="value3" placeholder="区域/县城">-->
 <!--      </div>-->
       <div><input type="text" v-model="addressD"></div>
-      <div><input type="text" v-model="phoneD"></div>
+<!--      <div><input type="text" v-model="phoneD"></div>-->
       <div><input type="text" v-model="phone"></div>
 <!--      <div><input type="text" v-model="em"></div>-->
-      <div><input type="text" v-model="jjName"></div>
-      <div> <div><input type="text" v-model="jjPhone"></div></div>
+<!--      <div><input type="text" v-model="jjName"></div>-->
+<!--      <div> <div><input type="text" v-model="jjPhone"></div></div>-->
       <div class="btn" @click="btnAddress">保存收货人信息</div>
     </div>
   </div>

@@ -18,12 +18,12 @@
       </div>
       <div class="modify clearfix">
         <div class="l clearfix">
-          <div>账户名:</div>
+<!--          <div>账户名:</div>-->
           <div>验证码:</div>
           <div>短信验证码:</div>
         </div>
         <div class="c clearfix">
-          <div><input type="text" v-model="name"></div>
+<!--          <div><input type="text" v-model="name"></div>-->
           <div><input type="text" v-model="yzm"></div>
           <div><input type="text" v-model="dxyz"></div>
           <div class="btnsub" @click="submint">提交</div>
@@ -80,9 +80,10 @@
     methods: {
       // 提交
       submint(){
-        if(this.name==''){
-          this.$Message.info('请输入姓名');
-        }else if(this.yzm==''){
+        // if(this.name==''){
+        //   this.$Message.info('请输入姓名');
+        // }else
+        if(this.yzm==''){
           this.$Message.info('请输入验证码');
         }else if(this.dxyz==''){
           this.$Message.info('请输入短信验证码');
@@ -96,8 +97,11 @@
 
           }).then((responese)=>{
             console.log(responese.data);
-            this.flag=false;
-            this.$refs.detail.show();
+            if(responese.code==200){
+              this.flag=false;
+              this.$refs.detail.show();
+            }
+
           })
 
         }
@@ -227,7 +231,7 @@
       .r{
         flex: 1;
         div{
-          margin-top: 50px;
+          /*margin-top: 50px;*/
           margin-left: 20px;
           font-size: 16px;
           img{

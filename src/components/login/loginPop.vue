@@ -8,7 +8,7 @@
             <img src="../../assets/img/logo.jpg" alt="">
           </div>
           <div class="info_dec">
-            <div>爱上弘毅</div>
+            <div>爱上弘缘</div>
             <div>幸福从此结缘</div>
           </div>
         </div>
@@ -179,13 +179,12 @@
               "code": this.reg_yz
 
             }).then((response) => {
-              console.log(response.data);
-              this.$Message.info("注册成功")
-              this.showlogin();
-
-
+              // console.log(response.data);
+              if (response.code==200){
+                this.$Message.info(response.msg)
+                this.showlogin();
+              }
             })
-
           }
 
         }

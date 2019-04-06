@@ -136,7 +136,9 @@
           "contacts":this.contacts,
         }).then((response)=>{
           if(response.code == 200){
-            this.$Message.success("修改成功！");
+            this.$Message.success(response.msg);
+            this.address='';
+            this.contacts='';
           }else{
             this.$Message.error(response.msg);
           }

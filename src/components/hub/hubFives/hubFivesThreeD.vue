@@ -73,6 +73,9 @@
             if(response.code==200){
               this.linebg='line'
             }
+            // if(response.code==106){
+            //   this.$emit('showhubFivesThree','')
+            // }
           })
         }
 

@@ -9,7 +9,7 @@
           </video>
         </div>
         <div class="txt">
-          第{{item.gear}}期 开奖回放
+          第{{item.gear}}/{{item.gear_today}}期 开奖回放
         </div>
       </div>
     </div>

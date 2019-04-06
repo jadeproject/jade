@@ -21,7 +21,7 @@
               <span>{{timeData[0]}}</span>
               <span>{{drawData.fa_luck_draw_q.number}} <!-- <div>最新</div>  --></span>
               <span>{{drawData.fa_luck_draw_q.status}}</span>
-              <span>{{drawData.fa_luck_draw_q.my_number}}</span>
+              <span>{{drawData.fa_luck_draw_q.my_number==null?'暂无':drawData.fa_luck_draw_q.my_number}}</span>
               <span>{{drawData.fa_luck_draw_q.partake}}
                 <!-- <span class="iconfont">&#xe65e;</span> -->
               </span>
@@ -31,9 +31,9 @@
                 <span>千元抽奖日常</span>
                 <span>{{item.gear}}/{{item.gear_today}}</span>
                 <span>{{timeData[0]}}</span>
-                <span>{{item.id}}</span>
+                <span>{{item.number}}</span>
                 <span>{{item.status}}</span>
-                <span>{{item.dang}}</span>
+                <span>{{item.my_number==null?'暂无':item.my_number}}</span>
                 <span>{{item.partake}}
                   <!-- <span class="iconfont">&#xe65e;</span> -->
                 </span>
@@ -52,7 +52,7 @@
               <span>{{timeData[1]}}</span>
               <span>{{drawData.fa_luck_draw_w.number}}</span>
               <span>{{drawData.fa_luck_draw_w.status}}</span>
-              <span>{{drawData.fa_luck_draw_w.my_number}}</span>
+              <span>{{drawData.fa_luck_draw_w.my_number==null?'暂无':drawData.fa_luck_draw_w.my_number}}</span>
               <span>{{drawData.fa_luck_draw_w.partake}}
                 <!-- <span class="iconfont">&#xe65e;</span> -->
               </span>
@@ -61,10 +61,10 @@
               <div class="itemC" v-for="(item,index) in drawDataList" :key="index">
                 <span>万元抽奖日常</span>
                 <span>{{item.gear}}/{{item.gear_today}}</span>
-                <span>{{timeData[0]}}</span>
+                <span>{{timeData[0]==''?'暂无':timeData[0]}}</span>
                 <span>{{item.id}}</span>
-                <span>{{item.status}}</span>
-                <span>{{item.dang}}</span>
+                <span>{{item.status==''?'暂无':item.status}}</span>
+                <span>{{item.my_number==''?'暂无':item.my_number}}</span>
                 <span>{{item.partake}}
                   <!-- <span class="iconfont">&#xe65e;</span> -->
                 </span>
@@ -78,11 +78,11 @@
           <Panel> 
             <div class="itemC" @click="drawListClick('3')">
               <span>千元尊享大奖</span>
-              <span>{{drawData.fa_luck_draw_vip_q.gear}}/</span>
+              <span>{{drawData.fa_luck_draw_vip_q.gear}}</span>
               <span>{{timeData[2]}}</span>
               <span>{{drawData.fa_luck_draw_vip_q.uid}}</span>
               <span>{{drawData.fa_luck_draw_vip_q.status}}</span>
-              <span>{{drawData.fa_luck_draw_vip_q.my_uid}}</span>
+              <span>{{drawData.fa_luck_draw_vip_q.my_uid==null?'暂无':drawData.fa_luck_draw_vip_q.my_uid}}</span>
               <span>{{drawData.fa_luck_draw_vip_q.partake}}
                 <!-- <span class="iconfont">&#xe65e;</span> -->
               </span>
@@ -90,11 +90,11 @@
             <div slot="content">
               <div class="itemC" v-for="(item,index) in drawDataList" :key="index">
                 <span>千元尊享大奖</span>
-                <span>{{item.gear}}/</span>
+                <span>{{item.gear}}</span>
                 <span>{{timeData[0]}}</span>
-                <span>{{item.id}}</span>
+                <span>{{item.uid}}</span>
                 <span>{{item.status}}</span>
-                <span>{{item.dang}}</span>
+                <span>{{item.my_uid==null?'暂无':item.my_uid}}</span>
                 <span>{{item.partake}}
                   <!-- <span class="iconfont">&#xe65e;</span> -->
                 </span>
@@ -108,11 +108,11 @@
           <Panel> 
             <div class="itemC" @click="drawListClick('4')">
               <span>万元尊享大奖</span>
-              <span>{{drawData.fa_luck_draw_vip_w.gear}}/</span>
+              <span>{{drawData.fa_luck_draw_vip_w.gear}}</span>
               <span>{{timeData[3]}}</span>
               <span>{{drawData.fa_luck_draw_vip_w.uid}}</span>
               <span>{{drawData.fa_luck_draw_vip_w.status}}</span>
-              <span>{{drawData.fa_luck_draw_vip_w.my_uid}}</span>
+              <span>{{drawData.fa_luck_draw_vip_w.my_uid==null?'暂无':drawData.fa_luck_draw_vip_w.my_uid}}</span>
               <span>{{drawData.fa_luck_draw_vip_w.partake}}
                 <!-- <span class="iconfont">&#xe65e;</span> -->
               </span>
@@ -120,11 +120,11 @@
             <div slot="content">
               <div class="itemC" v-for="(item,index) in drawDataList" :key="index">
                 <span>万元尊享大奖</span>
-                <span>{{item.gear}}/</span>
+                <span>{{item.gear}}</span>
                 <span>{{timeData[0]}}</span>
-                <span>{{item.id}}</span>
+                <span>{{item.number}}</span>
                 <span>{{item.status}}</span>
-                <span>{{item.dang}}</span>
+                <span>{{item.my_uid==null?'暂无':item.my_uid}}</span>
                 <span>{{item.partake}}
                   <!-- <span class="iconfont">&#xe65e;</span> -->
                 </span>
@@ -138,11 +138,11 @@
           <Panel> 
             <div class="itemC" @click="drawListClick('5')">
               <span>0元购1元得</span>
-              <span>{{drawData.one.qs}}/</span>
+              <span>{{drawData.one.qs}}</span>
               <span>{{timeData[4]}}</span>
               <span>{{drawData.one.uid}}</span>
               <span>{{drawData.one.status}}</span>
-              <span>{{drawData.one.my_uid}}</span>
+              <span>{{drawData.one.my_uid==null?'暂无':drawData.one.my_uid}}</span>
               <span>{{drawData.one.partake}}
                 <!-- <span class="iconfont">&#xe65e;</span> -->
               </span>
@@ -150,11 +150,11 @@
             <div slot="content">
               <div class="itemC" v-for="(item,index) in drawDataList" :key="index">
                 <span>0元购1元得</span>
-                <span>{{item.qs}}/</span>
+                <span>{{item.qs}}</span>
                 <span>{{timeData[0]}}</span>
-                <span>{{item.id}}</span>
+                <span>{{item.uid}}</span>
                 <span>{{item.status}}</span>
-                <span>{{item.dang}}</span>
+                <span>{{item.my_uid==null?'暂无':item.my_uid}}</span>
                 <span>{{item.partake}}
                   <!-- <span class="iconfont">&#xe65e;</span> -->
                 </span>
@@ -194,6 +194,7 @@
       })
       .then((response) => {
         this.drawData = response.data;
+        console.log(this.drawData);
         // 获取所有抽奖栏目开奖时间
         this.$get('/index.php/hy/user/show_draw',{
           // "uid":JSON.parse(window.localStorage.getItem("loginData")).id

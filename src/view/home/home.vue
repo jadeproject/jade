@@ -11,7 +11,7 @@
         <!-- 轮播图 end -->
 
         <!-- 关于我们 -->
-        <div class="home_bg about_bg">
+        <a name="about" class="home_bg about_bg">
             <div class="home_layout about">
                 <div class="top_title">
                     <h4>关于我们</h4>
@@ -27,11 +27,11 @@
                 </div>
                 <div class="bot_more" @click="contactbut('info',1)">阅读更多</div>
             </div>
-        </div>
+        </a>
         <!-- 关于我们 end -->
 
         <!-- 产品介绍 -->
-        <div class="home_bg product_bg bdDDCAA2" v-if="productStatus">
+        <a name="product" class="home_bg product_bg bdDDCAA2" v-if="productStatus">
             <div class="product">
                 <div class="top_title">产品介绍</div>
                 <div class="home_layout bg01">
@@ -78,7 +78,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
         <div class="home_bg product_bg" v-if="productStatus">
             <div class="product">
                 <div class="home_layout bg02">
@@ -106,7 +106,7 @@
         <!-- 产品介绍 end -->
 
         <!-- 开奖公告 -->
-        <div class="home_bg notice_bg" v-if="drawDataStatus">
+        <a name="notice" class="home_bg notice_bg" v-if="drawDataStatus">
             <div class="home_layout notice">
                 <div class="top_title">开奖公告</div>
                 <div class="notice_con">
@@ -118,7 +118,9 @@
                         </div>
                         <p class="history">历史中奖名单</p>
                         <div class="notice_left_list">
-                            <div class="list" v-for="(item, index) in drawData.left_list" :key="index">第{{item.gear}}期 <span>中奖号码：{{item.mobile}}</span></div>
+                            <div class="notice_left_list_from" :style="{transform:transform}">
+                                <div class="list" v-for="(item, index) in drawData.left_list" :key="index">第{{item.gear}}期 <span>中奖号码：{{item.mobile}}</span></div>
+                            </div>
                         </div>
                     </div>
                     <div class="notice_con_right ">
@@ -151,9 +153,10 @@
 
                         <div class="list">
                             <div class="title">
-                                <span class="sp01">{{drawData.w.name}}   {{drawData.w.gear}}</span>
-                                <span class="sp02">价值{{drawData.w.money}}元</span>
-                                <span class="sp03">开奖日期：{{drawData.w.time}}</span>
+                                <span class="sp01">{{drawData.w.name==null?'暂无':drawData.w.name}}   {{drawData.w.gear==null?'暂无':drawData.w.gear}}</span>
+                                <span class="sp02" v-if="drawData.w.money==null">暂无</span>
+                                <span class="sp02" v-else>价值{{drawData.w.money}}元</span>
+                                <span class="sp03">开奖日期：{{drawData.w.time==null?'暂无':drawData.w.time}}</span>
                             </div>
                             <div class="con_cen">
                                 <div class="imgs"><img :src="drawData.w.img" alt=""></div>
@@ -171,9 +174,9 @@
                                         <p>视频</p>
                                     </div>
                                 </div>
-                                <p class="position_right">{{drawData.w.status}}</p>
+                                <p class="position_right">{{drawData.w.status==null?'暂无':drawData.w.status}}</p>
                             </div>
-                            <p class="p_txt">上期中奖名单：{{drawData.w.last}}</p>
+                            <p class="p_txt">上期中奖名单：{{drawData.w.last==null?'暂无':drawData.w.last}}</p>
                         </div>
 
                         <div class="list">
@@ -262,11 +265,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
         <!-- 开奖公告 end-->
 
         <!-- 常见问题 -->
-        <div class="home_bg common_bg">
+        <a name="common" class="home_bg common_bg">
             <div class="home_layout">
                 <div class="top_title">常见问题</div>
                 <div class="common">
@@ -286,7 +289,7 @@
                 </div>
             </div>
 
-        </div>
+        </a>
         <!-- 常见问题 end-->
 
         <!-- 浮窗 -->
@@ -322,7 +325,8 @@
                 drawDataStatus:'',  //开奖公告显示状态
                 commonlist:[],  //常见问题
                 qq_wechat:{},   //qq微信二维码
-                isTop: true
+                isTop: true,
+                num: 0
             };
         },
         created() {
@@ -362,6 +366,16 @@
                 console.log(response,"drawData")
                 this.drawDataStatus = true;
                 this.drawData = response.data;
+                let _this = this
+                if(_this.drawData.left_list.length > 7){
+                    setInterval(function () {
+                        if (_this.num !== _this.drawData.left_list.length - 7) {
+                            _this.num++
+                        } else {
+                            _this.num = 0
+                        }
+                    }, 3000)
+                }
             })
 
             // 常见问题
@@ -378,7 +392,12 @@
             })
             .then((response) => {
                 this.qq_wechat = response.data;
-            })
+            }) 
+        },
+        computed: {
+            transform: function () {
+                return 'translateY(-' + this.num * 40 + 'px)'
+            }
         },
         mounted () {
             this.needScroll();
@@ -557,6 +576,9 @@
         not supported by any browser */
     }
     .homeC{
+        a{
+            display:block;
+        }
         margin-top: 80px;
         .banner{
             img{
@@ -566,6 +588,7 @@
         .home_bg{
             width: 100%;
             overflow: hidden;
+            padding-top: 80px;
         }
         .home_layout{
             width: 1000px;
@@ -916,13 +939,16 @@
                 }
                 .notice_left_list{
                     width: 100%;
-                    height:240px;
-                    overflow: auto;
+                    height:290px;
+                    overflow: hidden;
                     background: #fff;
                     -webkit-box-shadow: 0px 0px 4px rgba(0,0,0,0.16);
                     -moz-box-shadow: 0px 0px 4px rgba(0,0,0,0.16);
                     box-shadow: 0px 0px 4px rgba(0,0,0,0.16);
                     border-collapse:separate !important;
+                    .notice_left_list_from{
+                        transition: 1s linear;
+                    }
                     .list{
                         width: 100%;
                         height: 40px;
@@ -1013,7 +1039,7 @@
                         }
                     }
                     .p_txt{
-                        line-height: 30px;
+                        line-height: 40px;
                         font-size: 12px;
                         text-align: center;
                         color:#BD543A;

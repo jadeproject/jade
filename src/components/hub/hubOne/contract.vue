@@ -24,6 +24,9 @@
 
 <script type="text/ecmascript-6">
     export default {
+        props:{
+          goodsDetails:{}
+        },
         data() {
             return {
               flag:false,
@@ -69,14 +72,22 @@
               alert("姓名格式不正确")
               return;
             }
-            // 填写合同名字
-            this.$get('/index.php/hy/user/update_user_name',{
+            // 查询当前期数是否租贡
+            this.$get('/index.php/hy/user/is_zugong',{
               "uid":JSON.parse(window.localStorage.getItem("loginData")).id,
-              "username":this.names
+              "dang":this.goodsDetails.dang
             }).then((response)=>{
-              console.log(response)
-              this.flag=false;
-              this.$emit('gopay','2')
+              if(response.code == 200){
+                // 填写合同名字
+                this.$get('/index.php/hy/user/update_user_name',{
+                  "uid":JSON.parse(window.localStorage.getItem("loginData")).id,
+                  "username":this.names
+                }).then((response)=>{
+                  console.log(response)
+                  this.flag=false;
+                  this.$emit('gopay','2')
+                })
+              }
             })
           }
         },

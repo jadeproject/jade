@@ -7,12 +7,10 @@
           <div @click="tabClick('0')">
             <router-link to="/"> 首页</router-link>
           </div>
-          <div @click="tabClick('700')" v-if="hostStatus">
-            关于我们
-          </div>
-          <div @click="tabClick('1430')" v-if="hostStatus">产品介绍</div>
-          <div @click="tabClick('3810')" v-if="hostStatus">开奖公告</div>
-          <div @click="tabClick('4700')" v-if="hostStatus">常见问题</div>
+          <a href="#about" @click="tabClick('0')" v-if="hostStatus">关于我们</a>
+          <a href="#product" @click="tabClick('0')" v-if="hostStatus">产品介绍</a>
+          <a href="#notice" @click="tabClick('0')" v-if="hostStatus">开奖公告</a>
+          <a href="#common" @click="tabClick('0')" v-if="hostStatus">常见问题</a>
           <div v-if="hostStatus" @click="Invite()">
             邀请好友
           </div>
@@ -107,13 +105,7 @@
             if(data == 0){
               this.hostStatus = true;
             }
-            // console.log(data)
-            let timer = null
-            timer = setInterval(function () {
-                let osTop = document.documentElement.scrollTop || document.body.scrollTop;
-                document.documentElement.scrollTop = data;
-                clearInterval(timer)
-            }, 30)
+            // document.documentElement.scrollTop = data;
           },
           // 邀请好友
           Invite(){
@@ -172,6 +164,12 @@
         height: 100%;
         display: flex;
         color:#000;
+        a{
+          flex: 1;
+          display: block;
+          text-align: center;
+          color:#000;
+        }
         div{
           flex: 1;
           text-align: center;

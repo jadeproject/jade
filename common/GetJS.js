@@ -273,8 +273,9 @@ export function getSign(data) {
     }
     temp.push(k+v);
   }
-  return "123456";
-  // return md5(`hy${temp.join('')}hy`);
+  console.log(temp)
+  // return "123456";
+  return md5(`hy${temp.join('')}hy`);
 }
 
 // 页面刷新一次

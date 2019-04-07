@@ -46,7 +46,7 @@
           </div>
         </div>
       </div>
-      <contract ref="contract_show" @gopay="btnClci"></contract>
+      <contract ref="contract_show" @gopay="btnClci" :goodsDetails="goodsDetail"></contract>
 
     </div>
 

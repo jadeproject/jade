@@ -34,6 +34,7 @@
         </div>
         <div class="paySubmint" v-if="addName !='' && adds != '' && moneys !=''">
           <div class="header_p">
+            <InputNumber class="input" :max="10" :min="1" :step="1" v-model="goodsNums"></InputNumber>
             <div>实付款：<span>{{moneys}}元</span></div>
             <div>收件人：<span>{{addName}}</span></div>
             <div>收件地址：<span>{{adds}}</span></div>
@@ -61,6 +62,7 @@
               addName:'',
               adds:'',
               addsId:'',
+              goodsNums:1,
               addCoupon:{
                 address:{},
                 coupon:{}
@@ -117,12 +119,27 @@
             this.flag=true;
           },
           sub(){
-            this.$emit('showPayT',"1",this.addCoupon,this.moneys,this.addsId)
+            this.$emit('showPayT',"1",this.addCoupon,this.moneys,this.addsId,this.goodsNums)
           }
         },
         components: {}
     };
 </script>
+<style>
+.ivu-input-number-input-wrap{
+  height: 40px;
+}
+.ivu-input-number-input-wrap .ivu-input-number-input{
+  height: 40px;
+  line-height: 40px;
+}
+.ivu-input-number-handler{
+  height: 20px;
+}
+.ivu-input-number-handler-down-inner, .ivu-input-number-handler-up-inner{
+  top: 4px;
+}
+</style>
 
 <style type="text/css" lang="less" scoped>
   @import "../../../assets/css/config";
@@ -264,7 +281,12 @@
               margin-left: 10px;
             }
           }
-
+          .ivu-input-number{
+            width: 150px;
+            height: 40px;
+            display: block;
+            
+          }
         }
         .btn{
           width: 20%;

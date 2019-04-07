@@ -76,16 +76,17 @@
                             </div>
                         </div>
                     </div>
+                    <div class="more" @click="productDataClick('data',1)">查看更多</div>
                 </div>
             </div>
         </a>
         <div class="home_bg product_bg" v-if="productStatus">
             <div class="product">
-                <div class="home_layout bg02">
+                <div class="home_layout bg02 pb100">
                     <div class="product_imgsbg">
                         <!-- <img src="../../assets/img/banner1.png" alt=""> -->
                     </div>
-                    <div class="con_goods_list pb100">
+                    <div class="con_goods_list">
                         <div class="goods_left"><img src="../../assets/img/goods3.png" alt=""></div>
                         <div class="goods_right">
                             <div class="goods_r_list" v-for="(item,index) in productData.w" :key="index">
@@ -100,6 +101,7 @@
                             </div>
                         </div>
                     </div>
+                    <div class="more" @click="productDataClick('data',2)">查看更多</div>
                 </div>
             </div>
         </div>
@@ -410,6 +412,10 @@
                     this.$refs.log_Pop.showlogin();
                     return;
                 }
+                let more = 0;
+                if(data == "data"){
+                    more = 1
+                }
                 // data = 数据
                 // index = 产品类型，0=千元，1=万元
                 this.$router.push({
@@ -417,7 +423,8 @@
                     query:{
                         type:0,
                         goodsId:data.id,
-                        indextt:index
+                        indextt:index,
+                        more:more
                     }
                 })
             },
@@ -897,6 +904,24 @@
                             }
                         }
                     }
+                }
+            }
+            .more{
+                width: 300px;
+                height: 40px;
+                line-height: 40px;
+                color:#fff;
+                background: #F93939;
+                border-radius: 50px;
+                text-align: center;
+                margin: 34px auto;
+                cursor: pointer;
+                -webkit-box-shadow: 0px 3px 4px rgba(0,0,0,0.16);
+                -moz-box-shadow: 0px 3px 4px rgba(0,0,0,0.16);
+                box-shadow: 0px 3px 4px rgba(0,0,0,0.16);
+                border-collapse:separate !important;
+                &:hover{
+                    background: red;
                 }
             }
         }

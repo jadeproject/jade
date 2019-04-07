@@ -263,7 +263,6 @@ export function GetQueryString(name) {
 export function getSign(data) {
   var temp = [];
   var keys = Object.keys(data).sort();
-  var lose = ["IM_KeyID"]
   for (var z in keys) 
   {
     var k = keys[z];
@@ -272,8 +271,7 @@ export function getSign(data) {
       v=JSON.stringify(v);
     }
     temp.push(k+v);
-  }
-  console.log(temp)
+  } 
   // return "123456";
   return md5(`hy${temp.join('')}hy`);
 }

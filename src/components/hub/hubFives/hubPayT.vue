@@ -43,9 +43,13 @@ var QRCode = require('qrcode')
         console.log(this.gohubDetailDatas )
         if(e == true){
           this.gohubDetailData = this.gohubDetailDatas;
-          this.weixinpayImg = this.host + "/index.php/hy/wechat/pc_weixin_one?uid="+this.gohubDetailData.uid+"&sign=" + "123456";
+          let datas = {
+            uid:this.gohubDetailData.uid,
+          }
+          let signs = this.$GS(datas);
+          this.weixinpayImg = this.host + "/index.php/hy/wechat/pc_weixin_one?uid="+this.gohubDetailData.uid+"&sign=" + signs;
           let weixinpaycanvas = document.getElementById('weixinpaycanvas')
-          this.alipayImg = this.host + "/index.php/hy/alipay/wap_alipay_one?uid="+this.gohubDetailData.uid+"&sign=" + "123456";
+          this.alipayImg = this.host + "/index.php/hy/alipay/wap_alipay_one?uid="+this.gohubDetailData.uid+"&sign=" + signs;
           console.log(this.alipayImg)
           let alipaycanvas = document.getElementById('alipaycanvas')
           QRCode.toCanvas(alipaycanvas, this.alipayImg, (error) => {

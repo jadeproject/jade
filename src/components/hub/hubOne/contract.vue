@@ -66,10 +66,10 @@
           gread_clk(){
             let reg = /^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/;//验证姓名正则
             if(this.names == ''){
-              alert("姓名输入不能为空")
+              this.$Message.info("姓名输入不能为空")
               return;
             }else if(!reg.test(this.names)){
-              alert("姓名格式不正确")
+              this.$Message.info("姓名格式不正确")
               return;
             }
             // 查询当前期数是否租贡

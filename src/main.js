@@ -16,6 +16,7 @@ Vue.use(iView);
 // 个人的包
 import './assets/css/base.css'
 import {GetQueryString} from '../common/GetJS'
+import {getSign} from '../common/GetJS'
 // import './assets/css/config.less'
 import './assets/iconfont/iconfont.css'
 // 请求封装
@@ -23,6 +24,7 @@ import {post,get,patch,put} from '../common/require'
 
 // 函数
 Vue.prototype.$GQ=GetQueryString;
+Vue.prototype.$GS=getSign;
 //定义全局变量
 Vue.prototype.$post=post;
 Vue.prototype.$get=get;

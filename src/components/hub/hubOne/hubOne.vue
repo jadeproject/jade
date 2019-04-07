@@ -3,7 +3,7 @@
       <div class="info" v-if="hubone">
         <div class="rang">
           <div class="title">
-             <div v-for="(item,index)  in title" :class="{'current':currentIndex===index}" @click="typeClick(item,index)">{{item.val}}</div>
+             <div v-for="(item,index)  in title" :class="tt==index ? 'current':''" @click="typeClick(index)">{{item.val}}</div>
           </div>
           <div class="content clearfix">
             <ul class="clearfix">
@@ -25,7 +25,7 @@
       </div>
       <hub-detail ref="showDetail"  :gohubDetailDatas="gohubDetailData" @showPay="PayPage"></hub-detail>
       <hub-pay ref="showPay_flag" :gohubDetailDatas="gohubDetailData" @showPayT="payT"></hub-pay>
-      <hub-pay-t ref="showPayT_flag" :gohubDetailDatas="gohubDetailData"  :addCoupons="addCoupon" :paydatas="paydata" :addsId="addsId"></hub-pay-t>
+      <hub-pay-t ref="showPayT_flag" :gohubDetailDatas="gohubDetailData"  :addCoupons="addCoupon" :paydatas="paydata" :addsId="addsId" :goodsnums="goodsnum"></hub-pay-t>
       <hub-pay-ok ref="showPayOk_flag" ></hub-pay-ok>
     </div>
 
@@ -49,25 +49,23 @@
                   type:'2'
                 }
               ],
-              tt:0,
+              tt:-2,
               hubone:true,
               gread:0,
               goodslist:[], // 玉石中心
               gohubDetailData:'', // 商品信息
               addCoupon:'',// 收货地址和优惠券
               paydata:'', // 支付信息,
-              addsId:''//收货地址ID
-
+              addsId:'',//收货地址ID
+              goodsnum:1,//商品数量
             };
         },
       computed:{
-        // 默认显示
-        currentIndex() {
-          return this.tt;
-        }
+
       },
         created() {
-          this.getgoods(1)
+          this.typeClick(this.$GQ('indextt') == 2 ? "1":"0")
+          // this.getgoods()
         },
         mounted() {
           // this.tt=Number(this.$GQ('tt'))
@@ -89,7 +87,7 @@
               let that = this;
               // 首页跳转过来处理
               if(this.$GQ('goodsId')){
-                that.tt = that.$GQ('indextt');
+                that.tt = that.$GQ('indextt') == 2?1:0;
                 let datas = '';
                 that.goodslist.forEach(function(e){
                   if(e.id = that.$GQ('goodsId')){
@@ -101,12 +99,14 @@
             })
           },
           // tab切换
-          typeClick(item,index){
+          typeClick(index){
+            console.log(index)
             if(index == this.tt){return;}
             //  
             this.goodslist == '';
             this.tt=index;
-            this.getgoods(index+1);
+            console.log(this.tt)
+            this.getgoods(parseInt(index)+1);
           },
           // 去商品详情
           gohubDetail(data){
@@ -122,11 +122,12 @@
             }
           },
           // 去付款
-          payT(i,data,money,addsId){
+          payT(i,data,money,addsId,goodsnum){
             if(i==1){
               this.gohubDetailData.Totalmoney = money;
               this.addCoupon = data;
               this.addsId=addsId;
+              this.goodsnum = goodsnum;
               this.$refs.showPayT_flag.show();
             }
           }

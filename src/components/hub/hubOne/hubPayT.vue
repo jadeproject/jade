@@ -48,7 +48,8 @@ var QRCode = require('qrcode')
     props:{
       gohubDetailDatas:{},
       addCoupons:{},
-      addsId:''
+      addsId:'',
+      goodsnums:''
     },
     data() {
       return {
@@ -72,9 +73,20 @@ var QRCode = require('qrcode')
           this.gohubDetailData = this.gohubDetailDatas;
           this.addCoupon = this.addCoupons;
           this.moneys = this.gohubDetailData.Totalmoney;
-          this.weixinpayImg = this.host + "/index.php/hy/wechat/pc_wechat_order?uid="+this.addCoupon.address.uid+"&d_id="+this.gohubDetailData.dang+"&j_id="+this.gohubDetailData.id+'&address_id='+this.addsId + "&coupon="+(this.addCoupon.coupon.id != undefined? this.addCoupon.coupon.id : '' )+"&sign=" + "123456";
+          let datas = {
+            uid:this.addCoupon.address.uid,
+            d_id:this.gohubDetailData.dang,
+            j_id:this.gohubDetailData.id,
+            address_id:this.addsId,
+            coupon:this.addCoupon.coupon.id != undefined? this.addCoupon.coupon.id : '',
+            goodsnums:this.goodsnums,
+          }
+          console.log(datas)
+          console.log(this.goodsnums)
+          let signs = this.$GS(datas);
+          this.weixinpayImg = this.host + "/index.php/hy/wechat/pc_wechat_order?uid="+this.addCoupon.address.uid+"&d_id="+this.gohubDetailData.dang+"&j_id="+this.gohubDetailData.id+'&address_id='+this.addsId + "&coupon="+(this.addCoupon.coupon.id != undefined? this.addCoupon.coupon.id : '' )+"&goodsnums="+this.goodsnums+"&sign=" + signs;
           let weixinpaycanvas = document.getElementById('weixinpaycanvas')
-          this.alipayImg = this.host + "/index.php/hy/Alipay/wap_alipay_order?uid="+this.addCoupon.address.uid+"&d_id="+this.gohubDetailData.dang+"&j_id="+this.gohubDetailData.id+'&address_id='+this.addsId + "&coupon="+(this.addCoupon.coupon.id != undefined? this.addCoupon.coupon.id : '' )+"&sign=" + "123456";
+          this.alipayImg = this.host + "/index.php/hy/Alipay/wap_alipay_order?uid="+this.addCoupon.address.uid+"&d_id="+this.gohubDetailData.dang+"&j_id="+this.gohubDetailData.id+'&address_id='+this.addsId + "&coupon="+(this.addCoupon.coupon.id != undefined? this.addCoupon.coupon.id : '' )+"&goodsnums="+this.goodsnums+"&sign=" + signs;
           let alipaycanvas = document.getElementById('alipaycanvas')
           QRCode.toCanvas(alipaycanvas, this.alipayImg, (error) => {
             if (error) {

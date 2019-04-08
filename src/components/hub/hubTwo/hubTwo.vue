@@ -14,19 +14,20 @@
       <span>抽奖编号</span>
       <span>交易状态</span>
     </div>
-    <div class="rang_content">
+    <div class="rang_content" v-if="order != ''">
       <div class="itemC" v-for="item in order">
         <span>{{item.id}}</span>
         <span>{{item.dang}}</span>
         <span>{{item.jade_name}}</span>
         <span>{{item.money}}</span>
-        <span>1件</span>
+        <span>{{item.nums}}件</span>
         <span>{{item.payment}}</span>
         <span>{{item.time}}</span>
         <span>{{item.number}}<i v-if="item.prize=='1'">中奖</i></span>
         <span @click="item.status == '付租金'? gopay(item):''" :style="item.status == '付租金'?'color:red;cursor:pointer;':''">{{item.status}}</span>
-      </div>
+      </div> 
     </div>
+    <div class="tips" v-else>暂无数据</div>
     <hub-pay-t ref="showPay_flag" :gohubDetailDatas="gohubDetailData"></hub-pay-t>
     <hub-pay-ok ref="showPayOk_flag" ></hub-pay-ok>
   </div>
@@ -82,6 +83,14 @@
     background-color: #fff;
     overflow: hidden;
     position: relative;
+    .tips{
+      width: 100%;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      font-size: 16px;
+      color:#999;
+    }
     .title{
       height: 40px;
       line-height: 40px;

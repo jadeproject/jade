@@ -602,10 +602,10 @@
             margin: 0 auto;
         }
         .bg01{
-            background: url("../../assets/img/bg1.png") no-repeat;
+            background: url("../../assets/img/bg1.jpg") no-repeat;
         }
         .bg02{
-            background: url("../../assets/img/bg2.png") no-repeat right top;
+            background: url("../../assets/img/bg2.jpg") no-repeat right top;
         }
         .about_bg{
             background: #fff;
